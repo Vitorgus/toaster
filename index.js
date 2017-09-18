@@ -1,6 +1,7 @@
 const path = require('path');
 const Commando = require('discord.js-commando');
-const token = require('./token.js');
+//const token = require('./token.js');
+const token = process.env.TOKEN;
 const bot = new Commando.Client({
     owner: '358366590632460288',
     commandPrefix: 'jarvis ',
@@ -34,4 +35,4 @@ bot.registry
     .registerCommandsIn(path.join(__dirname, 'commands'));
 
 //Login
-bot.login(token.token);
+bot.login(token);
