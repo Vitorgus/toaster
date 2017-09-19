@@ -1,9 +1,9 @@
 const { Command } = require('discord.js-commando');
 
-var AuthDetails = require('../../auth.js');
+//var AuthDetails = require('../../auth.js');
 var youtube_node = require('youtube-node');
 youtube = new youtube_node();
-youtube.setKey(AuthDetails.youtube_api_key);
+youtube.setKey(process.env.YOUTUBE_KEY);
 youtube.addParam('type', 'video');
 
 module.exports = class youtubeCommand extends Command {
