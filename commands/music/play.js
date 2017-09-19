@@ -1,7 +1,6 @@
 const { Command } = require('discord.js-commando');
 
 const yt = require('ytdl-core');
-//var AuthDetails = require('../../auth.js');
 var youtube_node = require('youtube-node');
 youtube = new youtube_node();
 youtube.setKey(process.env.YOUTUBE_KEY);
