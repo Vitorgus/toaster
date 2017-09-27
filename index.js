@@ -18,6 +18,10 @@ bot.on('ready', () => {
   bot.user.setGame("JARVIS | jarvis help");
 });
 
+bot.on('unknownCommand', (message) => {
+    console.log('EUERKA!');
+});
+
 process.on('unhandledRejection', console.error);
 
 bot.registry
