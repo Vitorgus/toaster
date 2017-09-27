@@ -18,7 +18,7 @@ bot.on('ready', () => {
   bot.user.setGame("JARVIS | jarvis help");
 });
 
-bot.on('unknownCommand', (message) => {
+bot.on('unknownCommand', message => {
     console.log('EUERKA!');
 });
 
