@@ -20,6 +20,10 @@ bot.on('ready', () => {
 
 bot.on('unknownCommand', message => {
     console.log('EUERKA!');
+    console.log(guild.availble);
+    // Send an emoji:
+    // const emoji = guild.emojis.first();
+    // msg.reply(`Hello! ${emoji}`);
 });
 
 process.on('unhandledRejection', console.error);
