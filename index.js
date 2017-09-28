@@ -5,7 +5,8 @@ const token = process.env.TOKEN;
 const bot = new Commando.Client({
     owner: '358366590632460288',
     commandPrefix: 'jarvis ',
-    disableEveryone: true
+    disableEveryone: true,
+    unknownCommandResponse: false
 });
 
 bot.on('ready', () => {
