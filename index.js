@@ -20,7 +20,7 @@ bot.on('ready', () => {
 
 bot.on('unknownCommand', message => {
     console.log('EUERKA!');
-    console.log("Available: ", guild.available);
+    //console.log("Available: ", guild.available);
     // Send an emoji:
     // const emoji = guild.emojis.first();
     // msg.reply(`Hello! ${emoji}`);
