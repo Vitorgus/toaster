@@ -22,7 +22,7 @@ bot.on('unknownCommand', message => {
     console.log('EUERKA!');
     console.log("Available: ", message.guild.available);
     if (message.guild.available){
-        emoji = message.guild.emojis.random();
+        const emoji = message.guild.emojis.random();
         message.reply('Wubbadubbahuphup ${emoji}');
     }
     // Send an emoji:
