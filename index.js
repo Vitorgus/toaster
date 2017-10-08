@@ -20,7 +20,7 @@ bot.on('ready', () => {
 });
 
 bot.on('unknownCommand', message => {
-    console.log('EUERKA!');
+    console.log('EUERKA!'); //TODO remove logs and check if emojis collection is not empty
     console.log("Available: ", message.guild.available);
     if (message.guild.available){
         emoji = message.guild.emojis.random();

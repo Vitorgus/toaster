@@ -27,6 +27,11 @@ module.exports = class playCommand extends Command {
 
     var final_url = url;
 
+      const voiceChannel = msg.member.voiceChannel;
+      if (!voiceChannel) {
+          return msg.reply(`Please be in a voice channel first!`);
+      }
+
     if(!url.startsWith("http://")){
       youtube.search(url, 1, function(error, result) {
           if (error) {
@@ -37,25 +42,35 @@ module.exports = class playCommand extends Command {
               msg.say("¯\\_(ツ)_/¯");
             } else {
               final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
+                voiceChannel.join()
+                    .then(connnection => {
+                    console.log(final_url);
+                const stream = yt(final_url, {filter: 'audioonly'});
+                const dispatcher = connnection.playStream(stream);
+                dispatcher.on('end', () => {
+                    console.log("dispatcher ended");
+                voiceChannel.leave();
+            });
+                return msg.say("Now Playing " + final_url + " for " + msg.author);
+            });
             }
           }
         });
     }
-
-    const voiceChannel = msg.member.voiceChannel;
-    if (!voiceChannel) {
-      return msg.reply(`Please be in a voice channel first!`);
-    }
-    voiceChannel.join()
-      .then(connnection => {
-        console.log(final_url);
+    else {
+        voiceChannel.join()
+            .then(connnection = > {
+            console.log(final_url);
         const stream = yt(final_url, {filter: 'audioonly'});
         const dispatcher = connnection.playStream(stream);
-        dispatcher.on('end', () => {
-          console.log("dispatcher ended");
-          voiceChannel.leave();
-        });
+        dispatcher.on('end', () = > {
+            console.log("dispatcher ended");
+        voiceChannel.leave();
+    })
+        ;
         return msg.say("Now Playing " + final_url + " for " + msg.author);
-      });
+    })
+        ;
+    }
   }
 };
