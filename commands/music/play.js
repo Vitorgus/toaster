@@ -59,7 +59,7 @@ module.exports = class playCommand extends Command {
     }
     else {
         voiceChannel.join()
-            .then(connnection = > {
+            .then(connnection => {
             console.log(final_url);
         const stream = yt(final_url, {filter: 'audioonly'});
         const dispatcher = connnection.playStream(stream);
