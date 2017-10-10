@@ -32,7 +32,9 @@ bot.on('unknownCommand', message => {
 });
 
 bot.on('message', message => {
-    console.log(message.author);
+    if (message.author.username == "Vitorgus"){
+        console.log("Polo!");
+    }
 });
 
 process.on('unhandledRejection', console.error);
