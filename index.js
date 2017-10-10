@@ -31,6 +31,10 @@ bot.on('unknownCommand', message => {
     // msg.reply(`Hello! ${emoji}`);
 });
 
+bot.on('message', message => {
+    console.log(message.author);
+});
+
 process.on('unhandledRejection', console.error);
 
 bot.registry
