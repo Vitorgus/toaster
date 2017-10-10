@@ -30,14 +30,14 @@ bot.on('unknownCommand', message => {
     // const emoji = guild.emojis.first();
     // msg.reply(`Hello! ${emoji}`);
 });
-
+/*
 bot.on('message', message => {
     if (message.author.username == "Zorg"){
         //console.log("Polo!");
         message.react("🍆");
     }
 });
-
+*/
 process.on('unhandledRejection', console.error);
 
 bot.registry
