@@ -3,7 +3,7 @@ const Commando = require('discord.js-commando');
 //const token = require('./token.js');
 const token = process.env.TOKEN;
 const bot = new Commando.Client({
-    owner: '358366590632460288',
+    owner: '291235973717688321',
     commandPrefix: 'jarvis ',
     disableEveryone: true,
     unknownCommandResponse: false
