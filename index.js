@@ -32,8 +32,8 @@ bot.on('unknownCommand', message => {
 });
 
 bot.on('message', message => {
-    if (message.author.username == "Vitorgus"){
-        console.log("Polo!");
+    if (message.author.username == "Zorg"){
+        //console.log("Polo!");
         message.react("🍆");
     }
 });
