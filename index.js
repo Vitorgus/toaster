@@ -22,14 +22,19 @@ bot.on('ready', () => {
 });
 
 bot.on('unknownCommand', message => {
+    console.log('EUERKA!'); //TODO remove logs and check if emojis collection is not empty
+    console.log("Available: ", message.guild.available);
     if (message.content == bot.commandPrefix + "activate eggplant mode"){
         eggplant = true;
         console.log("Eggplant mode activated!");
-        message.say("🍆");
+        message.say("Activated 🍆");
     }
-    console.log('EUERKA!'); //TODO remove logs and check if emojis collection is not empty
-    console.log("Available: ", message.guild.available);
-    if (message.guild.available){
+    else if (message.content == bot.commandPrefix + "deactivate eggplant mode"){
+        eggplant = true;
+        console.log("Eggplant mode deactivated!");
+        message.say("Deactivated 🍆");
+    }
+    else if (message.guild.available){
         emoji = message.guild.emojis.random();
         message.say(emoji.toString());
     }
@@ -43,7 +48,7 @@ bot.on('message', message => {
         console.log("Eggplant!");
     }
     /*
-    else (message.author.username == "Zorg"){
+    else if (message.author.username == "Zorg"){
         message.react("🍆");
     }
     */
