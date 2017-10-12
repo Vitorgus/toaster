@@ -34,14 +34,15 @@ bot.on('unknownCommand', message => {
 });
 
 bot.on('message', message => {
-    if (message.content == "eggplant mode activate"){
+    if (message.content == bot.commandPrefix + "eggplant mode activate"){
         eggplant = true;
+        console.log("Eggplant mode activated!");
     }
     else if (eggplant){
         console.log("Eggplant!");
     }
     /*
-    if (message.author.username == "Zorg"){
+    else (message.author.username == "Zorg"){
         message.react("🍆");
     }
     */
