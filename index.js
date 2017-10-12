@@ -9,6 +9,8 @@ const bot = new Commando.Client({
     unknownCommandResponse: false
 });
 
+var eggplant = false;
+
 bot.on('ready', () => {
   //console.log('I\'m doing things...');
   //bot.user.setAvatar('http://i.imgur.com/l2KqI3Y.png?1');
@@ -30,13 +32,21 @@ bot.on('unknownCommand', message => {
     // const emoji = guild.emojis.first();
     // msg.reply(`Hello! ${emoji}`);
 });
-/*
+
 bot.on('message', message => {
+    if (message.content == "eggplant mode activate"){
+        eggplant = true;
+    }
+    else if (eggplant){
+        console.log("Eggplant!");
+    }
+    /*
     if (message.author.username == "Zorg"){
         message.react("🍆");
     }
+    */
 });
-*/
+
 process.on('unhandledRejection', console.error);
 
 bot.registry
