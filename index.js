@@ -30,7 +30,7 @@ bot.on('unknownCommand', message => {
         message.say("Activated 🍆");
     }
     else if (message.content == bot.commandPrefix + "deactivate eggplant mode"){
-        eggplant = true;
+        eggplant = false;
         console.log("Eggplant mode deactivated!");
         message.say("Deactivated 🍆");
     }
