@@ -12,13 +12,15 @@ const bot = new Commando.Client({
 var eggplant = false;
 
 bot.on('ready', () => {
-  //console.log('I\'m doing things...');
-  //bot.user.setAvatar('http://i.imgur.com/l2KqI3Y.png?1');
-  package = require('./package.json');
-  console.log("Starting " + package.name + " " + package.version + "...\nLogged in!");
-  console.log("type "+bot.commandPrefix+"help in Discord for a commands list.");
-  bot.user.setStatus("online");
-  bot.user.setGame("JARVIS | jarvis help");
+    //console.log('I\'m doing things...');
+    //bot.user.setAvatar('http://i.imgur.com/l2KqI3Y.png?1');
+    bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');
+    package = require('./package.json');
+    console.log("Starting " + package.name + " " + package.version + "...\nLogged in!");
+    console.log("type "+bot.commandPrefix+"help in Discord for a commands list.");
+    bot.user.setStatus("online");
+    //bot.user.setGame("JARVIS | jarvis help");
+    bot.user.setGame("Becoming sentient...");
 });
 
 bot.on('unknownCommand', message => {
