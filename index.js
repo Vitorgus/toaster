@@ -44,7 +44,7 @@ bot.on('unknownCommand', message => {
 });
 
 bot.on('message', message => {
-    if (eggplant && message.author.username == "Vitorgus"){
+    if (eggplant && message.author.username == "Zorg"){
         message.react("🍆");
     }
 });
