@@ -22,6 +22,11 @@ bot.on('ready', () => {
 });
 
 bot.on('unknownCommand', message => {
+    if (message.content == bot.commandPrefix + "activate eggplant mode"){
+        eggplant = true;
+        console.log("Eggplant mode activated!");
+        message.say("🍆");
+    }
     console.log('EUERKA!'); //TODO remove logs and check if emojis collection is not empty
     console.log("Available: ", message.guild.available);
     if (message.guild.available){
@@ -34,11 +39,7 @@ bot.on('unknownCommand', message => {
 });
 
 bot.on('message', message => {
-    if (message.content == bot.commandPrefix + "eggplant mode activate"){
-        eggplant = true;
-        console.log("Eggplant mode activated!");
-    }
-    else if (eggplant){
+    if (eggplant){
         console.log("Eggplant!");
     }
     /*
