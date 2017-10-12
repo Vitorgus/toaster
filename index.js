@@ -44,14 +44,9 @@ bot.on('unknownCommand', message => {
 });
 
 bot.on('message', message => {
-    if (eggplant){
-        console.log("Eggplant!");
-    }
-    /*
-    else if (message.author.username == "Zorg"){
+    if (eggplant && message.author.username == "Vitorgus"){
         message.react("🍆");
     }
-    */
 });
 
 process.on('unhandledRejection', console.error);
