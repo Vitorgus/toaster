@@ -8,6 +8,7 @@ youtube.addParam('type', 'video');
 
 module.exports = class playCommand extends Command {
     constructor(client) {
+        autoBind(this);
         super(client, {
             name: 'play',
             group: 'music',
