@@ -47,7 +47,7 @@ module.exports = class playCommand extends Command {
                     console.log("Result: " + result);
                 } else {
                     final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
-                    play(msg.member.voiceChannel, final_url, msg.author);
+                    this.play(msg.member.voiceChannel, final_url, msg.author);
                     /*
                     voiceChannel.join()
                     .then(connnection => {
@@ -65,7 +65,7 @@ module.exports = class playCommand extends Command {
             });
         }
         else {
-            play(msg.member.voiceChannel, final_url, msg.author);
+            this.play(msg.member.voiceChannel, final_url, msg.author);
             /*
             voiceChannel.join()
             .then(connnection => {
