@@ -20,7 +20,7 @@ module.exports = class playCommand extends Command {
             type: 'string'
             }]
         });
-        this.play = this.play.bind(this);
+        this.run = this.run.bind(this);
     }
 
     play(channel, url, msg) {
