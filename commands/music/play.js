@@ -21,6 +21,7 @@ module.exports = class playCommand extends Command {
             }]
         });
         this.run = this.run.bind(this);
+        this.play = this.play.bind(this);
     }
 
     play(channel, url, msg) {
