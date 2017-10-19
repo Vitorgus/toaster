@@ -47,7 +47,7 @@ bot.on('unknownCommand', message => {
 
 bot.on('message', message => {
     if (message.content == "alo") {
-        message.say("Alô @Vitorgus !");
+        message.channel.send("Alô @Vitorgus !");
     }
     if (eggplant && message.author.username == "Zorg"){
         message.react("🍆");
