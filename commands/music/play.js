@@ -22,6 +22,20 @@ module.exports = class playCommand extends Command {
         });
     }
 
+    play(channel, url, msg) {
+        channel.join()
+        .then(connnection => {
+            console.log(url);
+            const stream = yt(url, {filter: 'audioonly'});
+            const dispatcher = connnection.playStream(stream);
+            dispatcher.on('end', () => {
+                console.log("dispatcher ended");
+                voiceChannel.leave();
+            });
+            return msg.say("Now Playing " + url + " for " + msg.author);
+        });
+    }
+
     run(msg, args) {
         const { url } = args;
 
@@ -79,19 +93,5 @@ module.exports = class playCommand extends Command {
                 return msg.say("Now Playing " + final_url + " for " + msg.author);
             });*/
         }
-    }
-
-    play(channel, url, msg) {
-        channel.join()
-            .then(connnection => {
-                console.log(url);
-            const stream = yt(url, {filter: 'audioonly'});
-            const dispatcher = connnection.playStream(stream);
-            dispatcher.on('end', () => {
-                console.log("dispatcher ended");
-            voiceChannel.leave();
-        });
-            return msg.say("Now Playing " + url + " for " + msg.author);
-        });
     }
 };
