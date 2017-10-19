@@ -37,6 +37,7 @@ module.exports = class playCommand extends Command {
     }
 
     run(msg, args) {
+        console.log(this);
         const { url } = args;
 
         var final_url = url;
@@ -79,7 +80,7 @@ module.exports = class playCommand extends Command {
             });
         }
         else {
-            return this.play(voiceChannel, final_url, msg.author);
+            return this.play(voiceChannel, final_url, msg);
             /*
             voiceChannel.join()
             .then(connnection => {
