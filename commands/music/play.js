@@ -47,7 +47,7 @@ module.exports = class playCommand extends Command {
                     console.log("Result: " + result);
                 } else {
                     final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
-                    return this.play(msg.member.voiceChannel, final_url, msg);
+                    return this.play(voiceChannel, final_url, msg);
                     /*
                     voiceChannel.join()
                     .then(connnection => {
@@ -65,7 +65,7 @@ module.exports = class playCommand extends Command {
             });
         }
         else {
-            return this.play(msg.member.voiceChannel, final_url, msg.author);
+            return this.play(voiceChannel, final_url, msg.author);
             /*
             voiceChannel.join()
             .then(connnection => {
@@ -81,8 +81,8 @@ module.exports = class playCommand extends Command {
         }
     }
 
-    play(voiceChannel, url, msg) {
-        voiceChannel.join()
+    play(channel, url, msg) {
+        channel.join()
             .then(connnection => {
                 console.log(url);
             const stream = yt(url, {filter: 'audioonly'});
