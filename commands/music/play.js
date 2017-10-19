@@ -23,7 +23,6 @@ module.exports = class playCommand extends Command {
     }
 
     run(msg, args) {
-        console.log(this);
         const { url } = args;
 
         var final_url = url;
