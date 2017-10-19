@@ -8,7 +8,6 @@ youtube.addParam('type', 'video');
 
 module.exports = class playCommand extends Command {
     constructor(client) {
-        this.play = this.play.bind(this);
         super(client, {
             name: 'play',
             group: 'music',
@@ -21,6 +20,7 @@ module.exports = class playCommand extends Command {
             type: 'string'
             }]
         });
+        this.play = this.play.bind(this);
     }
 
     play(channel, url, msg) {
