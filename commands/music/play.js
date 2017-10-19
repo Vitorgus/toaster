@@ -20,22 +20,6 @@ module.exports = class playCommand extends Command {
             type: 'string'
             }]
         });
-        this.run = this.run.bind(this);
-        this.play = this.play.bind(this);
-    }
-
-    play(channel, url, msg) {
-        channel.join()
-        .then(connnection => {
-            console.log(url);
-            const stream = yt(url, {filter: 'audioonly'});
-            const dispatcher = connnection.playStream(stream);
-            dispatcher.on('end', () => {
-                console.log("dispatcher ended");
-                voiceChannel.leave();
-            });
-            return msg.say("Now Playing " + url + " for " + msg.author);
-        });
     }
 
     run(msg, args) {
@@ -64,8 +48,6 @@ module.exports = class playCommand extends Command {
                     console.log("Result: " + result);
                 } else {
                     final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
-                    return this.play(voiceChannel, final_url, msg);
-                    /*
                     voiceChannel.join()
                     .then(connnection => {
                         console.log(final_url);
@@ -76,14 +58,12 @@ module.exports = class playCommand extends Command {
                             voiceChannel.leave();
                         });
                         return msg.say("Now Playing " + final_url + " for " + msg.author);
-                    });*/
+                    });
                 }
             }
             });
         }
         else {
-            return this.play(voiceChannel, final_url, msg);
-            /*
             voiceChannel.join()
             .then(connnection => {
                 console.log(final_url);
@@ -94,7 +74,7 @@ module.exports = class playCommand extends Command {
                     voiceChannel.leave();
                 });
                 return msg.say("Now Playing " + final_url + " for " + msg.author);
-            });*/
+            });
         }
     }
 };
