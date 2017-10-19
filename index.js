@@ -26,9 +26,6 @@ bot.on('ready', () => {
 bot.on('unknownCommand', message => {
     console.log('EUERKA!'); //TODO remove logs and check if emojis collection is not empty
     console.log("Available: ", message.guild.available);
-    if (message.content == "alo") {
-        message.say("Alô @Vitorgus !");
-    }
     if (message.content == bot.commandPrefix + "activate eggplant mode"){
         eggplant = true;
         console.log("Eggplant mode activated!");
@@ -49,6 +46,9 @@ bot.on('unknownCommand', message => {
 });
 
 bot.on('message', message => {
+    if (message.content == "alo") {
+        message.say("Alô @Vitorgus !");
+    }
     if (eggplant && message.author.username == "Zorg"){
         message.react("🍆");
     }
