@@ -47,7 +47,7 @@ module.exports = class playCommand extends Command {
                     console.log("Result: " + result);
                 } else {
                     final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
-                    this.play(msg.member.voiceChannel, final_url, msg.author);
+                    return this.play(msg.member.voiceChannel, final_url, msg);
                     /*
                     voiceChannel.join()
                     .then(connnection => {
@@ -65,7 +65,7 @@ module.exports = class playCommand extends Command {
             });
         }
         else {
-            this.play(msg.member.voiceChannel, final_url, msg.author);
+            return this.play(msg.member.voiceChannel, final_url, msg.author);
             /*
             voiceChannel.join()
             .then(connnection => {
@@ -81,7 +81,7 @@ module.exports = class playCommand extends Command {
         }
     }
 
-    play(voiceChannel, url, user) {
+    play(voiceChannel, url, msg) {
         voiceChannel.join()
             .then(connnection => {
                 console.log(url);
@@ -91,7 +91,7 @@ module.exports = class playCommand extends Command {
                 console.log("dispatcher ended");
             voiceChannel.leave();
         });
-            return msg.say("Now Playing " + url + " for " + user);
+            return msg.say("Now Playing " + url + " for " + msg.author);
         });
     }
 };
