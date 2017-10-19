@@ -35,11 +35,16 @@ module.exports = class playCommand extends Command {
         if(!url.startsWith("http://")){
             youtube.search(url, 1, function(error, result) {
             if (error) {
-                msg.say("¯\\_(ツ)_/¯");
+                msg.say("Uhh, something went wrong. <@291235973717688321>, check the logs.");
+                console.log("ERROR_PLAY1");
+                console.log("Error: " + error);
+                console.log("Result: " + result);
             }
             else {
                 if (!result || !result.items || result.items.length < 1) {
-                    msg.say("¯\\_(ツ)_/¯");
+                    msg.say("Uhh, something went wrong. <@291235973717688321>, check the logs.");
+                    console.log("ERROR_PLAY2");
+                    console.log("Result: " + result);
                 } else {
                     final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
                     voiceChannel.join()

@@ -46,9 +46,10 @@ bot.on('unknownCommand', message => {
 });
 
 bot.on('message', message => {
+    /*
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
-    }
+    }*/
     if (eggplant && message.author.username == "Zorg"){
         message.react("🍆");
     }
