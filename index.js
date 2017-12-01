@@ -20,7 +20,7 @@ bot.on('ready', () => {
     console.log("type "+bot.commandPrefix+"help in Discord for a commands list.");
     bot.user.setStatus("online");
     //bot.user.setGame("JARVIS | jarvis help");
-    bot.user.setGame("Zorg is a butt");
+    bot.user.setGame("Becoming sentient...");
 });
 
 bot.on('unknownCommand', message => {
