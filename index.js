@@ -24,10 +24,8 @@ bot.on('ready', () => {
 });
 
 bot.on('unknownCommand', message => {
-    console.log('EUERKA!'); //TODO remove logs and check if emojis collection is not empty
-    console.log("Available: ", message.guild.available);
-    exp = /^jarv/i;
-    console.log(exp.test(message.content));
+    //TODO remove logs and check if emojis collection is not empty
+    //console.log("Available: ", message.guild.available);
     if (message.content == bot.commandPrefix + "activate eggplant mode"){
         eggplant = true;
         console.log("Eggplant mode activated!");
@@ -38,10 +36,10 @@ bot.on('unknownCommand', message => {
         console.log("Eggplant mode deactivated!");
         message.say("Deactivated 🍆");
     }
-    else if (message.guild.available && exp.test(message.content)){
+    /*else if (message.guild.available && exp.test(message.content)){
         emoji = message.guild.emojis.random();
         message.say(emoji.toString());
-    }
+    }*/
     // Send an emoji:
     // const emoji = guild.emojis.first();
     // msg.reply(`Hello! ${emoji}`);
@@ -52,8 +50,13 @@ bot.on('message', message => {
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
+    var exp = /^jarv/i;
     if (eggplant && message.author.username == "Zorg"){
         message.react("🍆");
+    }
+    else if (message.guild.available && exp.test(message.content)){
+        emoji = message.guild.emojis.random();
+        message.say(emoji.toString());
     }
 });
 
