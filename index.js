@@ -26,6 +26,8 @@ bot.on('ready', () => {
 bot.on('unknownCommand', message => {
     console.log('EUERKA!'); //TODO remove logs and check if emojis collection is not empty
     console.log("Available: ", message.guild.available);
+    exp = /^jarv/i;
+    console.log(exp.test(message.content));
     if (message.content == bot.commandPrefix + "activate eggplant mode"){
         eggplant = true;
         console.log("Eggplant mode activated!");
@@ -36,7 +38,7 @@ bot.on('unknownCommand', message => {
         console.log("Eggplant mode deactivated!");
         message.say("Deactivated 🍆");
     }
-    else if (message.guild.available && /^jarv/i.test(message.content)){
+    else if (message.guild.available && exp.test(message.content)){
         emoji = message.guild.emojis.random();
         message.say(emoji.toString());
     }
