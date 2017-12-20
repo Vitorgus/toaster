@@ -36,7 +36,7 @@ bot.on('unknownCommand', message => {
         console.log("Eggplant mode deactivated!");
         message.say("Deactivated 🍆");
     }
-    else if (message.guild.available){
+    else if (message.guild.available && /^jarv/i.test(message.content)){
         emoji = message.guild.emojis.random();
         message.say(emoji.toString());
     }
