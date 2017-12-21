@@ -24,13 +24,17 @@ bot.on('ready', () => {
 });
 
 bot.on('unknownCommand', message => {
-    //TODO remove logs and check if emojis collection is not empty
+    //TODO check if emojis collection is not empty
     if (message.content == bot.commandPrefix + "activate eggplant mode"){
         eggplant = true;
         console.log("Eggplant mode activated!");
         message.say("Activated 🍆");
     }
     else if (message.content == bot.commandPrefix + "deactivate eggplant mode"){
+        if (message.author.username == "Zorg"){
+            message.say(message.guild.emojis.find("name", "cliffsmug").toString());
+            return;
+        }
         eggplant = false;
         console.log("Eggplant mode deactivated!");
         message.say("Deactivated 🍆");
@@ -49,6 +53,7 @@ bot.on('message', message => {
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
+    console.log(message.guild.emojis.find("name", "cliffsmug"));
     if (eggplant && message.author.username == "Zorg"){
         message.react("🍆");
     }
