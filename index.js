@@ -53,7 +53,6 @@ bot.on('message', message => {
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
-    console.log(message.guild.emojis.find("name", "cliffsmug"));
     if (eggplant && message.author.username == "Zorg"){
         message.react("🍆");
     }
