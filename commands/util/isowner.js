@@ -4,7 +4,7 @@ module.exports = class isownerCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'isowner',
-      group: 'other',
+      group: 'util',
       memberName: 'isowner',
       description: 'debug function to verify if the user is the owner of the bot',
       examples: [';isowner'],
