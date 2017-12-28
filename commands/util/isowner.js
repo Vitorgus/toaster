@@ -7,7 +7,7 @@ module.exports = class isownerCommand extends Command {
       group: 'util',
       memberName: 'isowner',
       description: 'debug function to verify if the user is the owner of the bot',
-      examples: [';isowner'],
+      examples: ['jarvis isowner'],
     });
   }
 
