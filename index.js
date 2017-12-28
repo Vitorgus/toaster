@@ -16,7 +16,7 @@ bot.on('ready', () => {
     //bot.user.setAvatar('http://i.imgur.com/l2KqI3Y.png?1');
     bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');
     package = require('./package.json');
-    console.log("Starting " + package.name + " " + package.version + "...\nLogged in!");
+    console.log("Starting " + package.name + " " + package.version + "...\nLogged in! I'm now on GitHub!");
     console.log("type "+bot.commandPrefix+"help in Discord for a commands list.");
     bot.user.setStatus("online");
     //bot.user.setGame("JARVIS | jarvis help");
