@@ -27,7 +27,7 @@ bot.on('ready', () => {
     bot.user.setStatus("online");                                                           // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setGame("Type 'jarvis help' for commands");                                    // Sets bot game
-    dbprovider = new EnmapRethink({name: "GeneralDB"});
+    dbprovider = new EnmapLevel({name: "GeneralDB"});
     bot.generaldb = new Enmap({provider: dbprovider});
     bot.generaldb.set("eggplant", false);
 });
