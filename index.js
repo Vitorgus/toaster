@@ -36,7 +36,7 @@ NOTE: If there's no custom emoji, he does nothing.
 bot.on('unknownCommand', message => {
     //TODO check if emojis collection is not empty
     //TODO eggplant command with emap
-    console.info(message.guild.emojis.first());
+    console.info(Array.from(message.guild.emojis.values()));
     if (message.guild.emojis)
         console.info("There's custom emojis!");
     else
