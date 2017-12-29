@@ -50,12 +50,12 @@ bot.on('unknownCommand', message => {
         console.log("Eggplant mode deactivated!");                                      // Logs it
         message.say("Deactivated 🍆");                                                   // Sends a message confirming it
     }                                               // If it wasn't any of the two commands, then...
-    else if (message.guild && message.guild.available && Object.keys(message.guild.emojis).length){
+    else if (message.guild && message.guild.available && message.guild.emojis.size){
         /*
         The line above checked 3 things:
             1. If the channel is a guild (it won't send a custom emoji in a DM, cause it's impossible)
             2. If the bot is able to send messages to the guld
-            3. If it exists custom emojis
+            3. If it exists custom emojis (size is different from 0)
         If all the three things are true, then...
         */
         emoji = message.guild.emojis.random();      // Gets a random custom emoji
