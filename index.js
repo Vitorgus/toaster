@@ -6,7 +6,7 @@ const token = process.env.TOKEN;
 const bot = new Commando.Client({
     owner: '291235973717688321',    // Setting myself as the owner. That's my Discord ID.
     commandPrefix: 'jarvis ',       // Setting the prefix
-    disableEveryone: true,          // Uhh... not sure what this does
+    disableEveryone: true,          // Allows the bot to use @everyone and @here
     unknownCommandResponse: false   // Disable the default unknown command response, So that it can reply with a random custom emoji later on the code
 });
 
@@ -36,6 +36,7 @@ NOTE: If there's no custom emoji, he does nothing.
 bot.on('unknownCommand', message => {
     //TODO check if emojis collection is not empty
     //TODO eggplant command with emap
+    console.info(message.guild);
     if (message.content == bot.commandPrefix + "activate eggplant mode"){   // Check if it is the command to activate the eggplant
         eggplant = true;                                                    // Activates
         console.log("Eggplant mode activated!");                            // Logs it
