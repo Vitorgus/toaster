@@ -34,7 +34,6 @@ If not, he will reply with a random custom emoji.
 NOTE: If there's no custom emoji, he does nothing.
 */
 bot.on('unknownCommand', message => {
-    //TODO check if emojis collection is not empty
     //TODO eggplant command with emap
     if (message.content == bot.commandPrefix + "activate eggplant mode"){   // Check if it is the command to activate the eggplant
         eggplant = true;                                                    // Activates
