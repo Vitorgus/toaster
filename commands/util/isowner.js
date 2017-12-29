@@ -16,6 +16,6 @@ module.exports = class isownerCommand extends Command {
   	if (bool)
     	return msg.say("Hello, Vitorgus! You are my owner!");
     else
-    	return msg.say("Sorry, but you are not my owner.")
+      return msg.say("Sorry, but you are not my owner.");
   }
 };
