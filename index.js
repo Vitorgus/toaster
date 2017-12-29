@@ -36,10 +36,10 @@ NOTE: If there's no custom emoji, he does nothing.
 bot.on('unknownCommand', message => {
     //TODO check if emojis collection is not empty
     //TODO eggplant command with emap
-    if (message.guild)
-        console.info("I'm in a guild!");
+    if (message.guild.emojis)
+        console.info("There's custom emojis!");
     else
-        console.info("I think I'm in a DM...");
+        console.info("I think there are custom emojis...");
     if (message.content == bot.commandPrefix + "activate eggplant mode"){   // Check if it is the command to activate the eggplant
         eggplant = true;                                                    // Activates
         console.log("Eggplant mode activated!");                            // Logs it
@@ -54,7 +54,7 @@ bot.on('unknownCommand', message => {
         console.log("Eggplant mode deactivated!");                                      // Logs it
         message.say("Deactivated 🍆");                                                   // Sends a message confirming it
     }                                               // If it wasn't any of the two commands, then...
-    else if (message.guild.available){              // Checks if it is able to send
+    else if (message.guild && message.guild.available){              // Checks if it is able to send
         emoji = message.guild.emojis.random();      // Gets a random custom emoji
         message.say(emoji.toString());              // Says the emoji in the chat
     }
