@@ -12,7 +12,7 @@ const bot = new Commando.Client({
     unknownCommandResponse: false   // Disable the default unknown command response, So that it can reply with a random custom emoji later on the code
 });
 
-var eggplant = false;   //Variable that keeps track if it is to eggplant Zorg or not
+//var eggplant = false;   //Variable that keeps track if it is to eggplant Zorg or not
 
 
 /*
@@ -27,6 +27,9 @@ bot.on('ready', () => {
     bot.user.setStatus("online");                                                           // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setGame("Type 'jarvis help' for commands");                                    // Sets bot game
+    dbprovider = new EnmapRethink({name: "GeneralDB"});
+    bot.generaldb = new Enmap({provider: dbprovider});
+    bot.generaldb.set("eggplant", false);
 });
 
 /*
@@ -37,6 +40,7 @@ NOTE: If there's no custom emoji, he does nothing.
 */
 bot.on('unknownCommand', message => {
     //TODO eggplant command with emap
+    /*
     if (message.content == bot.commandPrefix + "activate eggplant mode"){   // Check if it is the command to activate the eggplant
         eggplant = true;                                                    // Activates
         console.log("Eggplant mode activated!");                            // Logs it
@@ -51,7 +55,7 @@ bot.on('unknownCommand', message => {
         console.log("Eggplant mode deactivated!");                                      // Logs it
         message.say("Deactivated 🍆");                                                   // Sends a message confirming it
     }                                               // If it wasn't any of the two commands, then...
-    else if (message.guild && message.guild.available && message.guild.emojis.size){
+    else */if (message.guild && message.guild.available && message.guild.emojis.size){
         /*
         The line above checked 3 things:
             1. If the channel is a guild (it won't send a custom emoji in a DM, cause it's impossible)
@@ -80,8 +84,9 @@ bot.on('message', message => {
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
+    eggplant = bot.generaldb.get("eggplant")    // Gets the state from de DB
     if (!eggplant) return;                      // If the mode is deactivated, stop
-    if (message.author.username == "Zorg"){     // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
+    if (message.author.username == "Vitorgus"){     // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
         message.react("🍆");                     // If yes, the reacts with an eggplant
     }
 });
