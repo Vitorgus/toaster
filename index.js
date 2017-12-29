@@ -55,10 +55,10 @@ bot.on('unknownCommand', message => {
         console.log("Eggplant mode deactivated!");                                      // Logs it
         message.say("Deactivated 🍆");                                                   // Sends a message confirming it
     }                                               // If it wasn't any of the two commands, then...
-    else if (message.guild && message.guild.available){              // Checks if it is able to send
+    /*else if (message.guild && message.guild.available){              // Checks if it is able to send
         emoji = message.guild.emojis.random();      // Gets a random custom emoji
         message.say(emoji.toString());              // Says the emoji in the chat
-    }
+    }*/
     /* THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
     // Send an emoji:
     const emoji = guild.emojis.first();
