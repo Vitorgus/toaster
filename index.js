@@ -12,9 +12,6 @@ const bot = new Commando.Client({
     unknownCommandResponse: false   // Disable the default unknown command response, So that it can reply with a random custom emoji later on the code
 });
 
-//var eggplant = false;   //Variable that keeps track if it is to eggplant Zorg or not
-
-
 /*
 Code that will be executed when the bot is initialized.
 It mostly just set some things and logs that the bot is online
@@ -39,23 +36,7 @@ If not, he will reply with a random custom emoji.
 NOTE: If there's no custom emoji, he does nothing.
 */
 bot.on('unknownCommand', message => {
-    //TODO eggplant command with emap
-    /*
-    if (message.content == bot.commandPrefix + "activate eggplant mode"){   // Check if it is the command to activate the eggplant
-        eggplant = true;                                                    // Activates
-        console.log("Eggplant mode activated!");                            // Logs it
-        message.say("Activated 🍆");                                         // Sends a message confirming the activation
-    }
-    else if (message.content == bot.commandPrefix + "deactivate eggplant mode"){        // Check if it is the command to deactivate the eggplant
-        if (message.author.username == "Zorg"){                                         // If Zorg is trying to theactiate the eggplant
-            message.say(message.guild.emojis.find("name", "cliffsmug").toString());     // Respond with a cliffsmug
-            return;                                                                     // Exits the code
-        }                                                                               // If it wasn't Zorg, then the code continues
-        eggplant = false;                                                               // Deactivates
-        console.log("Eggplant mode deactivated!");                                      // Logs it
-        message.say("Deactivated 🍆");                                                   // Sends a message confirming it
-    }                                               // If it wasn't any of the two commands, then...
-    else */if (message.guild && message.guild.available && message.guild.emojis.size){
+    if (message.guild && message.guild.available && message.guild.emojis.size){
         /*
         The line above checked 3 things:
             1. If the channel is a guild (it won't send a custom emoji in a DM, cause it's impossible)
