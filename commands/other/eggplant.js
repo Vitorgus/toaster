@@ -26,12 +26,12 @@ module.exports = class rollCommand extends Command {
       return msg.say("Activated 🍆");                // Sends a message confirming the activation
     }
     else if (toggle === "deactivate"){
-      if (msg.author.username == "Zorg"){                   // If Zorg is trying to deactivate the eggplant
+      if (msg.author.username == "Zorg"){                       // If Zorg is trying to deactivate the eggplant
         let cliff = msg.guild.emojis.find("name", "cliffsmug"); // Tries to get the :cliffsmug emoji:
-        if (cliff)                                          // If the emoji exists
-          return msg.say(cliff.toString());                 // Responds with smugness in emoji form
-        else                                                //If there's no such emoji
-          return msg.say("Nope!");                          // Responds with smugness in text form
+        if (cliff)                                              // If the emoji exists
+          return msg.say(cliff.toString());                     // Responds with smugness in emoji form
+        else                                                    //If there's no such emoji
+        return msg.say("Nope!");                                // Responds with smugness in text form
       } 
       this.client.generaldb.set("eggplant", false); // It it wasn't Zorg who is trying to deactivate
       console.log("Eggplant mode deactivated!");    // Logs it

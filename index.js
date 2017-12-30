@@ -19,14 +19,15 @@ It mostly just set some things and logs that the bot is online
 bot.on('ready', () => {
     //bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');                                // Sets the avatar image. Disabled cause Discord complains when setting the image too many times.
     package = require('./package.json');                                                    // Gets the package.json file
-    console.log("Starting " + package.name + " " + package.version + "...\nLogged in!");    // Outputs in the log that the bot has started
-    console.log("type "+bot.commandPrefix+"help in Discord for a commands list.");          // Same as above
     bot.user.setStatus("online");                                                           // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setGame("Type 'jarvis help' for commands");                                    // Sets bot game
-    dbprovider = new EnmapLevel({name: "GeneralDB"});
-    bot.generaldb = new Enmap({provider: dbprovider});
-    bot.generaldb.set("eggplant", false);
+    dbprovider = new EnmapLevel({name: "GeneralDB"});                                       // Sets the database provider
+    bot.generaldb = new Enmap({provider: dbprovider});                                      // Sets the database in the bot, so it can be accessed inside the functions
+    bot.generaldb.set("eggplant", false);                                                   // Sets initial eggplant allue to false
+    console.log("Starting " + package.name + " " + package.version + "...\nLogged in!");    // Outputs in the log that the bot has started
+    console.log("type "+bot.commandPrefix+"help in Discord for a commands list.");          // Same as above
+    console.log(bot.generaldb.get("eggplant"));
 });
 
 /*
@@ -65,7 +66,8 @@ bot.on('message', message => {
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
-    eggplant = bot.generaldb.get("eggplant")        // Gets the state from de DB
+    let eggplant = Boolean(bot.generaldb.get("eggplant"))        // Gets the state from de DB and conerts it (string) to boolean
+
     if (!eggplant) return;                          // If the mode is deactivated, stop
     if (message.author.username == "Vitorgus"){     // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
         message.react("🍆");                         // If yes, the reacts with an eggplant
