@@ -24,10 +24,9 @@ bot.on('ready', () => {
     bot.user.setGame("Type 'jarvis help' for commands");                                    // Sets bot game
     dbprovider = new EnmapLevel({name: "GeneralDB"});                                       // Sets the database provider
     bot.generaldb = new Enmap({provider: dbprovider});                                      // Sets the database in the bot, so it can be accessed inside the functions
-    bot.generaldb.set("eggplant", false);                                                   // Sets initial eggplant allue to false
+    //bot.generaldb.set("eggplant", false);                                                   // Sets initial eggplant allue to false
     console.log("Starting " + package.name + " " + package.version + "...\nLogged in!");    // Outputs in the log that the bot has started
     console.log("type "+bot.commandPrefix+"help in Discord for a commands list.");          // Same as above
-    console.log(bot.generaldb.get("eggplant"));
 });
 
 /*

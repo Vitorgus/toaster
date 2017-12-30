@@ -32,7 +32,7 @@ module.exports = class playCommand extends Command {
               return msg.reply(`Please be in a voice channel first!`);
           }
 
-        if(!url.startsWith("http://") || !url.startsWith("https://")){
+        if(!url.startsWith("http://") && !url.startsWith("https://")){
             youtube.search(url, 1, function(error, result) {
             if (error) {
                 msg.say("Uhh, something went wrong. <@291235973717688321>, check the logs.");
