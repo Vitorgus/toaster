@@ -6,6 +6,12 @@ youtube = new youtube_node();
 youtube.setKey(process.env.YOUTUBE_KEY);
 youtube.addParam('type', 'video');
 
+/*
+TODO find out why does jarvis won't play those videos
+https://www.youtube.com/watch?v=L-u3fkgZkO0
+https://www.youtube.com/watch?v=8GPo-6RQiN0
+*/
+
 module.exports = class playCommand extends Command {
     constructor(client) {
         super(client, {
