@@ -2,7 +2,7 @@ const path = require('path');                       //Gets the system path
 const Commando = require('discord.js-commando');    //Gets the commando library
 const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const Enmap = require('enmap')                      //Gets the enmap. Basically a simple database.
-//const EnmapLevel = require("enmap-level")           //Gets an emap provider. Needed to initialize the DB.
+//const EnmapLevel = require("enmap-level")         //Gets an emap provider. Needed to initialize the DB.
 
 //Initializing bot
 const bot = new Commando.Client({
@@ -65,10 +65,9 @@ bot.on('message', message => {
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
-    let eggplant = Boolean(bot.generaldb.get("eggplant"))        // Gets the state from de DB and conerts it (string) to boolean
-
+    let eggplant = bot.generaldb.get("eggplant")    // Gets the state from de DB
     if (!eggplant) return;                          // If the mode is deactivated, stop
-    if (message.author.username == "Vitorgus"){     // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
+    if (message.author.username == "Zorg"){         // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
         message.react("🍆");                         // If yes, the reacts with an eggplant
     }
 });
