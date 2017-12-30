@@ -84,10 +84,10 @@ bot.on('message', message => {
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
-    eggplant = bot.generaldb.get("eggplant")    // Gets the state from de DB
-    if (!eggplant) return;                      // If the mode is deactivated, stop
+    eggplant = bot.generaldb.get("eggplant")        // Gets the state from de DB
+    if (!eggplant) return;                          // If the mode is deactivated, stop
     if (message.author.username == "Vitorgus"){     // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
-        message.react("🍆");                     // If yes, the reacts with an eggplant
+        message.react("🍆");                         // If yes, the reacts with an eggplant
     }
 });
 

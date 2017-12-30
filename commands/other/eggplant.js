@@ -35,7 +35,7 @@ module.exports = class rollCommand extends Command {
       msg.say("Deactivated 🍆");                                                   // Sends a message confirming it
     }
     else{
-      hollis = client.guild.emojis.find("name", "hollistilt")
+      hollis = msg.guild.emojis.find("name", "hollistilt")
       msg.say("${hollis} I can only activate or deactivate the eggplant mode.");
     }
   }
