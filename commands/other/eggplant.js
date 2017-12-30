@@ -21,7 +21,7 @@ module.exports = class rollCommand extends Command {
   run(msg, args) {
     const { toggle } = args;
     if (toggle === "activate"){
-      client.generaldb.set("eggplant", true);
+      this.client.generaldb.set("eggplant", true);
       console.log("Eggplant mode activated!");                            // Logs it
       msg.say("Activated 🍆");                                         // Sends a message confirming the activation
     }
@@ -30,7 +30,7 @@ module.exports = class rollCommand extends Command {
         msg.say(msg.guild.emojis.find("name", "cliffsmug").toString());     // Respond with a cliffsmug
         return;                                                                     // Exits the code
       } 
-      client.generaldb.set("eggplant", false);
+      this.client.generaldb.set("eggplant", false);
       console.log("Eggplant mode deactivated!");                                      // Logs it
       msg.say("Deactivated 🍆");                                                   // Sends a message confirming it
     }
