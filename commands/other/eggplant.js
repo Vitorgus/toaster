@@ -26,7 +26,7 @@ module.exports = class rollCommand extends Command {
       return msg.say("Activated 🍆");                // Sends a message confirming the activation
     }
     else if (toggle === "deactivate" || toggle === "off"){      // If the command is to deactivate eggplant mode
-      let name = this.client.generaldb.get("vicitm");           // Gets vicitm name
+      let name = this.client.generaldb.get("victim");           // Gets vicitm name
       if (msg.author.username == name){                         // If the vicitm is trying to deactivate the eggplant
         let cliff = msg.guild.emojis.find("name", "cliffsmug"); // Tries to get the :cliffsmug emoji:
         if (cliff)                                              // If the emoji exists

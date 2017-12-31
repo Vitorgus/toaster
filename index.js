@@ -2,7 +2,6 @@ const path = require('path');                       //Gets the system path
 const Commando = require('discord.js-commando');    //Gets the commando library
 const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const Enmap = require('enmap')                      //Gets the enmap. Basically a simple database.
-//const EnmapLevel = require("enmap-level")         //Gets an emap provider. Needed to initialize the DB.
 
 //Initializing bot
 const bot = new Commando.Client({
@@ -22,7 +21,6 @@ bot.on('ready', () => {
     bot.user.setStatus("online");                                                           // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setGame("Type 'jarvis help' for commands");                                    // Sets bot game
-    //dbprovider = new EnmapLevel({name: "GeneralDB"});                                     // Sets the database provider
     bot.generaldb = new Enmap();                                                            // Sets the database in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                                                   // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");
