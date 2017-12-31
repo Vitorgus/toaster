@@ -91,3 +91,8 @@ bot.registry
 
 //Login into discord. WHy is this line in the bottom of the code?
 bot.login(token);
+
+/*
+PS: removed erlpack from package.json, but just in case the bot crashes, here it is
+    "erlpack": "github:hammerandchisel/erlpack",
+*/
