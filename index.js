@@ -24,7 +24,8 @@ bot.on('ready', () => {
     bot.user.setGame("Type 'jarvis help' for commands");                                    // Sets bot game
     //dbprovider = new EnmapLevel({name: "GeneralDB"});                                     // Sets the database provider
     bot.generaldb = new Enmap();                                                            // Sets the database in the bot, so it can be accessed inside the functions
-    bot.generaldb.set("eggplant", false);                                                   // Sets initial eggplant allue tvo false
+    bot.generaldb.set("eggplant", false);                                                   // Sets initial eggplant vallue to false
+    bot.generaldb.set("victim", "Zorg");
     console.log("Starting " + package.name + " " + package.version + "...\nLogged in!");    // Outputs in the log that the bot has started
     console.log("type "+bot.commandPrefix+"help in Discord for a commands list.");          // Same as above
 });
@@ -67,7 +68,8 @@ bot.on('message', message => {
     }*/
     let eggplant = bot.generaldb.get("eggplant")    // Gets the state from de DB
     if (!eggplant) return;                          // If the mode is deactivated, stop
-    if (message.author.username == "Zorg"){         // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
+    let name = bot.generaldb.get("victim");         // Gets the name of the eggplant victim
+    if (message.author.username == name){           // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
         message.react("🍆");                         // If yes, the reacts with an eggplant
     }
 });

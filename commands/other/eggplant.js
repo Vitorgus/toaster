@@ -20,28 +20,31 @@ module.exports = class rollCommand extends Command {
 
   run(msg, args) {
     const { toggle } = args;
-    if (toggle === "activate"){                     // If the command is to activate eggplant mode
+    if (toggle === "activate" || toggle === "on"){  // If the command is to activate eggplant mode
       this.client.generaldb.set("eggplant", true);  // Sets true in the database
       console.log("Eggplant mode activated!");      // Logs it
       return msg.say("Activated 🍆");                // Sends a message confirming the activation
     }
-    else if (toggle === "deactivate"){
-      if (msg.author.username == "Zorg"){                       // If Zorg is trying to deactivate the eggplant
+    else if (toggle === "deactivate" || toggle === "off"){      // If the command is to deactivate eggplant mode
+      let name = bot.generaldb.get("vicitm");                   // Gets vicitm name
+      if (msg.author.username == name){                         // If the vicitm is trying to deactivate the eggplant
         let cliff = msg.guild.emojis.find("name", "cliffsmug"); // Tries to get the :cliffsmug emoji:
         if (cliff)                                              // If the emoji exists
           return msg.say(cliff.toString());                     // Responds with smugness in emoji form
         else                                                    //If there's no such emoji
         return msg.say("Nope!");                                // Responds with smugness in text form
-      } 
-      this.client.generaldb.set("eggplant", false); // It it wasn't Zorg who is trying to deactivate
-      console.log("Eggplant mode deactivated!");    // Logs it
-      return msg.say("Deactivated 🍆");              // Sends a message confirming it
+      }
+      else {                                          // If it wasn't the victim who is trying to deactivate
+        this.client.generaldb.set("eggplant", false); // Sets the eggplant to false
+        console.log("Eggplant mode deactivated!");    // Logs it
+        return msg.say("Deactivated 🍆");              // Sends a message confirming it
+      }
     }
-    else{
-      let hollis = msg.guild.emojis.find("name", "hollistilt")
-      if (hollis)
-        msg.say(hollis.toString());
-      return msg.say("I can only activate or deactivate the eggplant mode.");
+    else{                                                                     // If the command wasn't to either activate or deactivate
+      let hollis = msg.guild.emojis.find("name", "hollistilt")                // Tries to get hollistils emoji
+      if (hollis)                                                             // If it was sucessfull
+        msg.say(hollis.toString());                                           // Prints the emoji
+      return msg.say("I can only activate or deactivate the eggplant mode."); // Sends a message
     }
   }
 };
