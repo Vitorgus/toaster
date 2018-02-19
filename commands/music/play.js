@@ -58,13 +58,8 @@ module.exports = class playCommand extends Command {
                     voiceChannel.join()
                     .then(connnection => {
                         console.log(final_url);
-                        console.log("Why?????");
                         const stream = yt(final_url, {filter: 'audioonly'});
-                        console.log("Stream:");
-                        console.log(stream);
                         const dispatcher = connnection.playStream(stream);
-                        console.log("Dispatcher:");
-                        console.log(dispatcher);
                         dispatcher.on('end', () => {
                             console.log("dispatcher ended");
                             voiceChannel.leave();
@@ -79,13 +74,8 @@ module.exports = class playCommand extends Command {
             voiceChannel.join()
             .then(connnection => {
                 console.log(final_url);
-                console.log("Why?????");
                 const stream = yt(final_url, {filter: 'audioonly'});
-                console.log("Stream:");
-                console.log(stream);
                 const dispatcher = connnection.playStream(stream);
-                console.log("Dispatcher:");
-                console.log(dispatcher);
                 dispatcher.on('end', () => {
                     console.log("dispatcher ended");
                     voiceChannel.leave();
