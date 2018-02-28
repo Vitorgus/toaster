@@ -74,7 +74,7 @@ bot.on('message', message => {
 });
 
 bot.on('guildMemberAdd', member => {
-      member.guild.channels.get("testing").send(`"${member.user.username}" Test`);
+      member.guild.channels.find("name", "testing").send(`${member.user} Test`);
 });
 
 process.on('unhandledRejection', console.error);    // ...I guess this line is important, but I don't know why
