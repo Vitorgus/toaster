@@ -74,7 +74,7 @@ bot.on('message', message => {
 });
 
 bot.on('guildMemberAdd', member => {
-      member.guild.channels.find("name", "testing").send(`${member.user} Test`);
+      member.guild.channels.find("name", "testing").send(`${member.user} https://cdn.discordapp.com/attachments/330405008451305472/409841777554751500/Screenshot_20171128-155001.png`);
 });
 
 process.on('unhandledRejection', console.error);    // ...I guess this line is important, but I don't know why
