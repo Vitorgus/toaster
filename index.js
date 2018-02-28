@@ -78,7 +78,8 @@ bot.on('guildMemberAdd', member => {
     Code for when a new member joins the chat.
     It gets the general server, and send GF's greetings, while taggin the new user
     */
-    member.guild.channels.find("name", "general").send(`${member.user} https://cdn.discordapp.com/attachments/330405008451305472/409841777554751500/Screenshot_20171128-155001.png`);
+    member.guild.channels.find("name", "testing").send(`${member.user} https://cdn.discordapp.com/attachments/330405008451305472/409841777554751500/Screenshot_20171128-155001.png`);
+    member.addRole('375630012423995392');
 });
 
 process.on('unhandledRejection', console.error);    // ...I guess this line is important, but I don't know why
