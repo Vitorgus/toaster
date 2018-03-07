@@ -31,30 +31,26 @@ module.exports = class playCommand extends Command {
         });
     }
 
-    run(msg, args) {
+    run(msg, { url }) {
 
         function play(song) {
-            voiceChannel.join()
+            channel = msg.member.voiceChannel;
+            channel.join()
             .then(connnection => {
                 console.log(song);
                 const stream = yt(song, {filter: 'audioonly'}, 1);
                 const dispatcher = connnection.playStream(stream);
                 dispatcher.on('end', () => {
                     console.log("dispatcher ended");
-                    voiceChannel.leave();
+                    channel.leave();
                 });
                 return msg.say("Now Playing " + song + " for " + msg.author);
             });
         }
 
-        const { url } = args;
-
-        var final_url = url;
-
-          const voiceChannel = msg.member.voiceChannel;
-          if (!voiceChannel) {
-              return msg.reply(`Please be in a voice channel first!`);
-          }
+        if (!msg.member.voiceChannel) {
+            return msg.reply(`Please be in a voice channel first!`);
+        }
 
         if(!url.startsWith("http://") && !url.startsWith("https://")){
             youtube.search(url, 1, function(error, result) {
@@ -73,13 +69,13 @@ module.exports = class playCommand extends Command {
                     console.log("Result items: " + result.items);
                     console.log("Result items length " + result.items.length);
                 } else {
-                    final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
+                    var final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
                     return play(final_url);
                 }
             });
         }
         else {
-            return play(final_url);
+            return play(url);
         }
     }
 };
