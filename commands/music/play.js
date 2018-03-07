@@ -22,6 +22,7 @@ module.exports = class playCommand extends Command {
             memberName: 'play',
             description: 'Plays the given video.',
             examples: [';play'],
+            guildOnly: true,
             args: [{
             key: 'url',
             prompt: 'What is the URL/tags of the video you would like to play?',
