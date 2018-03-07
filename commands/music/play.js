@@ -37,7 +37,7 @@ module.exports = class playCommand extends Command {
             voiceChannel.join()
             .then(connnection => {
                 console.log(song);
-                const stream = yt(song, {filter: 'audioonly'});
+                const stream = yt(song, {filter: 'audioonly'}, 1);
                 const dispatcher = connnection.playStream(stream);
                 dispatcher.on('end', () => {
                     console.log("dispatcher ended");
