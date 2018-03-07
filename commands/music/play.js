@@ -34,7 +34,7 @@ module.exports = class playCommand extends Command {
     run(msg, { url }) {
 
         function play(song) {
-            channel = msg.member.voiceChannel;
+            var channel = msg.member.voiceChannel;
             channel.join()
             .then(connnection => {
                 console.log(song);
