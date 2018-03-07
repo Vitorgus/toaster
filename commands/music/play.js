@@ -34,7 +34,7 @@ module.exports = class playCommand extends Command {
     run(msg, { url }) {
 
         function play(song) {
-            var channel = msg.member.voiceChannel;
+            let channel = msg.member.voiceChannel;
             channel.join()
             .then(connnection => {
                 console.log(song);
@@ -71,7 +71,7 @@ module.exports = class playCommand extends Command {
                 console.log("Result items: " + result.items);
                 console.log("Result items length " + result.items.length);
             } else {
-                var final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
+                let final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
                 return play(final_url);
             }
         });
