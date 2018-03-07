@@ -8,6 +8,7 @@ module.exports = class TrollCommand extends Command {
             memberName: 'troll',
             description: 'trolls the mentioned user',
             examples: [';troll \@bob'],
+            guildOnly: true,
             args: [{
               key: 'user1',
               prompt: 'Which user do you want to troll?',
