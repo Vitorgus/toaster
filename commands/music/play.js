@@ -52,30 +52,28 @@ module.exports = class playCommand extends Command {
             return msg.reply(`Please be in a voice channel first!`);
         }
 
-        if(!url.startsWith("http://") && !url.startsWith("https://")){
-            youtube.search(url, 1, function(error, result) {
-                if (error) {
-                    return msg.say("Error while searching for the video. " + error);
-                    /*
-                    console.log("ERROR_PLAY1");
-                    console.log("Error: " + error);
-                    console.log("Result: " + result);
-                    */
-                }
-                if (!result || !result.items || result.items.length < 1) {
-                    msg.say("Something that coudn't go wrong, went wrong. <@291235973717688321>, check the logs.");
-                    console.log("ERROR_PLAY2");
-                    console.log("Result: " + result);
-                    console.log("Result items: " + result.items);
-                    console.log("Result items length " + result.items.length);
-                } else {
-                    var final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
-                    return play(final_url);
-                }
-            });
-        }
-        else {
+        if(url.startsWith("http://") || url.startsWith("https://")){
             return play(url);
         }
+        youtube.search(url, 1, function(error, result) {
+            if (error) {
+                return msg.say("Error while searching for the video. " + error);
+                /*
+                console.log("ERROR_PLAY1");
+                console.log("Error: " + error);
+                console.log("Result: " + result);
+                */
+            }
+            if (!result || !result.items || result.items.length < 1) {
+                msg.say("Something that coudn't go wrong, went wrong. <@291235973717688321>, check the logs.");
+                console.log("ERROR_PLAY2");
+                console.log("Result: " + result);
+                console.log("Result items: " + result.items);
+                console.log("Result items length " + result.items.length);
+            } else {
+                var final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
+                return play(final_url);
+            }
+        });
     }
 };
