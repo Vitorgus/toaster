@@ -35,12 +35,12 @@ module.exports = class playCommand extends Command {
 
         function play(song) {
             yt.getInfo(song, (err, info) => {
-                if(err) return msg.channel.sendMessage('There was an error with the song. ' + err);
+                if(err) return msg.channel.sendMessage(err);
                 let channel = msg.member.voiceChannel;
                 channel.join()
                 .then(connnection => {
                     console.log(info.title + " - " + song);
-                    const stream = yt(song, {filter: 'audioonly'}, 1);
+                    const stream = yt(song, {filter: 'audioonly'});
                     const dispatcher = connnection.playStream(stream);
                     dispatcher.on('end', () => {
                         console.log("dispatcher ended");
@@ -58,11 +58,6 @@ module.exports = class playCommand extends Command {
         youtube.search(url, 1, function(error, result) {
             if (error) {
                 return msg.say("Error while searching for the video. " + error);
-                /*
-                console.log("ERROR_PLAY1");
-                console.log("Error: " + error);
-                console.log("Result: " + result);
-                */
             }
             if (!result || !result.items || result.items.length < 1) {
                 msg.say("Something that couldn't go wrong, went wrong. <@291235973717688321>, check the logs.");
