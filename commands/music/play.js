@@ -36,28 +36,25 @@ module.exports = class playCommand extends Command {
         function play(song) {
             yt.getInfo(url, (err, info) => {
                 if(err) return msg.channel.sendMessage('There was an error with the song. ' + err);
-            });
-            let channel = msg.member.voiceChannel;
-            channel.join()
-            .then(connnection => {
-                console.log(song);
-                const stream = yt(song, {filter: 'audioonly'}, 1);
-                const dispatcher = connnection.playStream(stream);
-                dispatcher.on('end', () => {
-                    console.log("dispatcher ended");
-                    channel.leave();
+                let channel = msg.member.voiceChannel;
+                channel.join()
+                .then(connnection => {
+                    console.log(info.title + " - " + song);
+                    const stream = yt(song, {filter: 'audioonly'}, 1);
+                    const dispatcher = connnection.playStream(stream);
+                    dispatcher.on('end', () => {
+                        console.log("dispatcher ended");
+                        channel.leave();
+                    });
+                    return msg.say("Now Playing " + song + " for " + msg.author);
                 });
-                return msg.say("Now Playing " + song + " for " + msg.author);
             });
         }
 
-        if (!msg.member.voiceChannel) {
-            return msg.reply(`Please be in a voice channel first!`);
-        }
+        if (!msg.member.voiceChannel) return msg.reply(`Please be in a voice channel first!`);
 
-        if(url.startsWith("http://") || url.startsWith("https://")){
-            return play(url);
-        }
+        if(url.startsWith("http://") || url.startsWith("https://")) return play(url);
+        
         youtube.search(url, 1, function(error, result) {
             if (error) {
                 return msg.say("Error while searching for the video. " + error);
