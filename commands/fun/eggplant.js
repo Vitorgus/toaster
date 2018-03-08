@@ -5,7 +5,7 @@ module.exports = class rollCommand extends Command {
     super(client, {
       name: 'eggplant',
       aliases: ['zorgplant'],
-      group: 'other',
+      group: 'fun',
       memberName: 'eggplant',
       description: 'toggles on/off if the bot should eggplant every Zorg message',
       examples: ['jarvis eggplant'],

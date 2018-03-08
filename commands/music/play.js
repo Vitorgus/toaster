@@ -60,7 +60,7 @@ module.exports = class playCommand extends Command {
                 return msg.say("Error while searching for the video. " + error);
             }
             if (!result || !result.items || result.items.length < 1) {
-                msg.say("Something that couldn't go wrong, went wrong. <@291235973717688321>, check the logs.");
+                msg.say(`Something that couldn't go wrong, went wrong. ${this.client.owners[0]}, check the logs.`);
                 console.log("ERROR_PLAY2");
                 console.log("Result: " + result);
                 console.log("Result items: " + result.items);

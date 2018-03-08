@@ -16,16 +16,18 @@ Code that will be executed when the bot is initialized.
 It mostly just set some things and logs that the bot is online
 */
 bot.on('ready', () => {
-    //bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');                                // Sets the avatar image. Disabled cause Discord complains when setting the image too many times.
-    package = require('./package.json');                                                    // Gets the package.json file
-    bot.user.setStatus("online");                                                           // Sets bot status
+    //bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');            // Sets the avatar image. Disabled cause Discord complains when setting the image too many times.
+    package = require('./package.json');                                // Gets the package.json file
+    console.log(`Starting ${package.name} v${package.version}...`);     // Outputs in the log that the bot has started
+    bot.user.setStatus("online");                                       // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
-    bot.user.setGame("Type 'jarvis help' for commands");                                    // Sets bot game
-    bot.generaldb = new Enmap();                                                            // Sets the database in the bot, so it can be accessed inside the functions
-    bot.generaldb.set("eggplant", false);                                                   // Sets initial eggplant vallue to false
-    bot.generaldb.set("victim", "Zorg");
-    console.log("Starting " + package.name + " " + package.version + "...\nLogged in!");    // Outputs in the log that the bot has started
-    console.log("type " + bot.commandPrefix + "help in Discord for a commands list.");          // Same as above
+    bot.user.setGame("Type 'jarvis help' for commands");                // Sets bot game
+    bot.generaldb = new Enmap();                                        // Sets the database in the bot, so it can be accessed inside the functions
+    bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
+    bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
+    bot.playing = false;                                                // Sets variable to check is the bot is playing music
+    bot.queue = [];                                                     // Sets the music queue
+    console.log("Logged in!")
 });
 
 /*
