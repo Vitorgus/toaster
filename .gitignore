@@ -45,3 +45,4 @@ messagebox.json
 config.json
 token.js
 serverconfigs.json
+secret.json
