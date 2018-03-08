@@ -33,41 +33,61 @@ module.exports = class playCommand extends Command {
 
     run(msg, { url }) {
 
-        function play(song) {
-            yt.getInfo(song, (err, info) => {
+        function queue(link) {
+            yt.getInfo(link, (err, info) => {
                 if(err) return msg.channel.sendMessage(`Whoops. Something went wrong with the song: \`${err}\``);
-                let channel = msg.member.voiceChannel;
-                channel.join()
-                .then(connnection => {
-                    console.log(info.title + " - " + song);
-                    const stream = yt(song, {filter: 'audioonly'});
-                    const dispatcher = connnection.playStream(stream);
-                    dispatcher.on('end', () => {
-                        console.log("dispatcher ended");
-                        channel.leave();
-                    });
-                    return msg.say("Now Playing " + song + " for " + msg.author);
+                let song = {url: link, title: info.title, user: msg.author.id};
+                if (!this.client.playing) {
+                    //this.client.playing = true;
+                    return play(song);
+                }
+                return msg.reply("a music is already playing!");
+                /*
+                this.client.queue.push(song);
+                return msg.say(`Added \`${info.title}\` to the queue for \`${msg.author.username}\``);
+                */
+            });
+        }
+
+        function play(song) {
+            let channel = msg.member.voiceChannel;
+            /*
+            if (!song) {
+                channel.leave();
+                console.log("Queue is empty!");
+                return;
+            }
+            */
+            channel.join()
+            .then(connnection => {
+                console.log(song.title + " - " + song.url);
+                const stream = yt(song.url, {filter: 'audioonly'});
+                const dispatcher = connnection.playStream(stream);
+                dispatcher.on('end', () => {
+                    //play(this.client.queue.shift());
+                    console.log("dispatcher ended");
+                    channel.leave();
                 });
+                return msg.say(`Now playing ${song.url} for <@${song.user}>`);
             });
         }
 
         if (!msg.member.voiceChannel) return msg.reply(`Please be in a voice channel first!`);
 
-        if(url.startsWith("http://") || url.startsWith("https://")) return play(url);
+        if(url.startsWith("http://") || url.startsWith("https://")) return queue(url);
 
         youtube.search(url, 1, function(error, result) {
-            if (error) {
-                return msg.say("Error while searching for the video. " + error);
-            }
+            if (error)  return msg.say(`Error while searching for the video:  \`${error}\``);
+
             if (!result || !result.items || result.items.length < 1) {
-                msg.say(`Something that couldn't go wrong, went wrong. ${this.client.owners[0]}, check the logs.`);
                 console.log("ERROR_PLAY2");
                 console.log("Result: " + result);
                 console.log("Result items: " + result.items);
                 console.log("Result items length " + result.items.length);
+                return msg.say(`Something that couldn't go wrong, went wrong. ${this.client.owners[0]}, check the logs.`);
             } else {
                 let final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
-                return play(final_url);
+                return queue(final_url);
             }
         });
     }
