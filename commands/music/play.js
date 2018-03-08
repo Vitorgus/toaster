@@ -36,7 +36,7 @@ module.exports = class playCommand extends Command {
         function play(song) {
             yt.getInfo(url, (err, info) => {
                 if(err) return msg.channel.sendMessage('There was an error with the song. ' + err);
-            }
+            });
             let channel = msg.member.voiceChannel;
             channel.join()
             .then(connnection => {
