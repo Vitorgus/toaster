@@ -37,10 +37,10 @@ module.exports = class playCommand extends Command {
             yt.getInfo(link, (err, info) => {
                 if(err) return msg.channel.sendMessage(`Whoops. Something went wrong with the song: \`${err}\``);
                 let song = {url: link, title: info.title, user: msg.author.id};
-                if (!this.client.playing) {
+                //if (!this.client.playing) {
                     //this.client.playing = true;
                     return play(song);
-                }
+                //}
                 return msg.reply("a music is already playing!");
                 /*
                 this.client.queue.push(song);
