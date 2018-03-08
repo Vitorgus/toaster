@@ -25,7 +25,7 @@ bot.on('ready', () => {
     bot.generaldb.set("eggplant", false);                                                   // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");
     console.log("Starting " + package.name + " " + package.version + "...\nLogged in!");    // Outputs in the log that the bot has started
-    console.log("type "+bot.commandPrefix+"help in Discord for a commands list.");          // Same as above
+    console.log("type " + bot.commandPrefix + "help in Discord for a commands list.");          // Same as above
 });
 
 /*
