@@ -37,9 +37,7 @@ module.exports = class playCommand extends Command {
 
         if(url.startsWith("http://") || url.startsWith("https://")) return this.queue(url, msg);
 
-        let a = await youtube.search(url, 1);//, function(error, result) {
-        console.log(a);
-            /*
+        youtube.search(url, 1, function(error, result) {
             if (error)  return msg.say(`Error while searching for the video:  \`${error}\``);
 
             if (!result || !result.items || result.items.length < 1) {
@@ -50,10 +48,9 @@ module.exports = class playCommand extends Command {
                 return msg.say(`Something that couldn't go wrong, went wrong. ${this.client.owners[0]}, check the logs.`);
             } else {
                 let final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
-                console.log(this);
-                return this.queue(final_url, msg);
+                return queue(final_url, msg);
             }
-        });*/
+        });
     }
 
     queue(link, msg) {
