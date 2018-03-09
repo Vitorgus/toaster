@@ -32,7 +32,6 @@ module.exports = class playCommand extends Command {
     }
 
     run(msg, { url }) {
-        console.log(this);
 
         if (!msg.member.voiceChannel) return msg.reply(`Please be in a voice channel first!`);
 
@@ -49,6 +48,7 @@ module.exports = class playCommand extends Command {
                 return msg.say(`Something that couldn't go wrong, went wrong. ${this.client.owners[0]}, check the logs.`);
             } else {
                 let final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
+                console.log(this);
                 return this.queue(final_url, msg);
             }
         });
