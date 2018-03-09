@@ -82,7 +82,6 @@ module.exports = class playCommand extends Command {
         if(url.startsWith("http://") || url.startsWith("https://")) return queue(url);
 
         youtube.search(url, 1, {type: "video"}, function(error, result) {
-            console.log(result.items[0].id);
             if (error)  return msg.say(`Error while searching for the video:  \`${error}\``);
 
             if (!result || !result.items || result.items.length < 1) {
