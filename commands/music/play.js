@@ -69,7 +69,7 @@ module.exports = class playCommand extends Command {
                 const stream = yt(song.url, {filter: 'audioonly'});
                 const dispatcher = connnection.playStream(stream);
                 dispatcher.on('end', () => {
-                    play(anchor.client.music.queue.shift(), msg);
+                    play(anchor.client.music.queue.shift());
                     console.log("dispatcher ended");
                     channel.leave();
                 });
