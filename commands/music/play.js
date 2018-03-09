@@ -37,7 +37,6 @@ module.exports = class playCommand extends Command {
 
         function queue(link) {
             yt.getInfo(link, (err, info) => {
-                console.log(link);
                 if(err) return msg.channel.sendMessage(`Whoops. Something went wrong with the song: \`${err}\``);
                 let song = {
                     url: link,
@@ -83,6 +82,7 @@ module.exports = class playCommand extends Command {
         if(url.startsWith("http://") || url.startsWith("https://")) return queue(url);
 
         youtube.search(url, 1, function(error, result) {
+            console.log(result);
             if (error)  return msg.say(`Error while searching for the video:  \`${error}\``);
 
             if (!result || !result.items || result.items.length < 1) {
