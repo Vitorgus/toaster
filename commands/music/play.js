@@ -32,6 +32,7 @@ module.exports = class playCommand extends Command {
     }
 
     run(msg, { url }) {
+        console.log(this);
 
         if (!msg.member.voiceChannel) return msg.reply(`Please be in a voice channel first!`);
 
