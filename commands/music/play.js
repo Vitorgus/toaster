@@ -35,7 +35,7 @@ module.exports = class playCommand extends Command {
 
         if (!msg.member.voiceChannel) return msg.reply(`Please be in a voice channel first!`);
 
-        if(url.startsWith("http://") || url.startsWith("https://")) return queue(url, msg);
+        if(url.startsWith("http://") || url.startsWith("https://")) return this.queue(url, msg);
 
         youtube.search(url, 1, function(error, result) {
             if (error)  return msg.say(`Error while searching for the video:  \`${error}\``);
@@ -48,7 +48,7 @@ module.exports = class playCommand extends Command {
                 return msg.say(`Something that couldn't go wrong, went wrong. ${this.client.owners[0]}, check the logs.`);
             } else {
                 let final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
-                return queue(final_url, msg);
+                return this.queue(final_url, msg);
             }
         });
     }
@@ -63,7 +63,7 @@ module.exports = class playCommand extends Command {
             };
             if (!this.client.music.playing) {       //TODO find out why this is undefined
                 this.client.music.playing = true;
-                return play(song, msg);
+                return this.play(song, msg);
             }
             return msg.reply("a music is already playing!");
             /*
@@ -87,7 +87,7 @@ module.exports = class playCommand extends Command {
             const stream = yt(song.url, {filter: 'audioonly'});
             const dispatcher = connnection.playStream(stream);
             dispatcher.on('end', () => {
-                play(this.client.music.queue.shift(), msg);
+                this.play(this.client.music.queue.shift(), msg);
                 console.log("dispatcher ended");
                 channel.leave();
             });
