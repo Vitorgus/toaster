@@ -22,12 +22,15 @@ bot.on('ready', () => {
     bot.user.setStatus("online");                                       // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setGame("Type 'jarvis help' for commands");                // Sets bot game
-    bot.generaldb = new Enmap();                                        // Sets the database in the bot, so it can be accessed inside the functions
+    bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
-    bot.playing = false;                                                // Sets variable to check is the bot is playing music
-    bot.queue = [];                                                     // Sets the music queue
-    console.log("Logged in!")
+    bot.music = {
+        playing: false,
+        queue: [],
+        dispatcher: null
+    };
+    console.log("Logged in!");
 });
 
 /*

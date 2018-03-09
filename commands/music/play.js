@@ -29,6 +29,7 @@ module.exports = class playCommand extends Command {
                 type: 'string'
             }]
         });
+        this.music = this.client.music;
     }
 
     run(msg, { url }) {
@@ -36,8 +37,12 @@ module.exports = class playCommand extends Command {
         function queue(link) {
             yt.getInfo(link, (err, info) => {
                 if(err) return msg.channel.sendMessage(`Whoops. Something went wrong with the song: \`${err}\``);
-                let song = {url: link, title: info.title, user: msg.author.id};
-                //if (!this.client.playing) {
+                let song = {
+                    url: link,
+                    title: info.title,
+                    user: msg.author.id
+                };
+                //if (!this.client.playing) {       //TODO find out why this is undefined
                     //this.client.playing = true;
                     return play(song);
                 //}
