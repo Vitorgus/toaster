@@ -31,13 +31,15 @@ module.exports = class playCommand extends Command {
         });
     }
 
-    run(msg, { url }) {
+    async run(msg, { url }) {
 
         if (!msg.member.voiceChannel) return msg.reply(`Please be in a voice channel first!`);
 
         if(url.startsWith("http://") || url.startsWith("https://")) return this.queue(url, msg);
 
-        youtube.search(url, 1, function(error, result) {
+        let a = await youtube.search(url, 1);//, function(error, result) {
+        console.log(a);
+            /*
             if (error)  return msg.say(`Error while searching for the video:  \`${error}\``);
 
             if (!result || !result.items || result.items.length < 1) {
@@ -51,7 +53,7 @@ module.exports = class playCommand extends Command {
                 console.log(this);
                 return this.queue(final_url, msg);
             }
-        });
+        });*/
     }
 
     queue(link, msg) {
