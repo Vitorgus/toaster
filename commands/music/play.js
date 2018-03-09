@@ -53,7 +53,7 @@ module.exports = class playCommand extends Command {
         });
     }
 
-    function queue(link, msg) {
+    queue(link, msg) {
         yt.getInfo(link, (err, info) => {
             if(err) return msg.channel.sendMessage(`Whoops. Something went wrong with the song: \`${err}\``);
             let song = {
@@ -73,7 +73,7 @@ module.exports = class playCommand extends Command {
         });
     }
 
-    function play(song, msg) {
+    play(song, msg) {
         let channel = msg.member.voiceChannel;
         if (!song) {
             channel.leave();
