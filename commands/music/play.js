@@ -72,13 +72,14 @@ module.exports = class playCommand extends Command {
             channel.join()
             .then(connnection => {
                 console.log(song.title + " - " + song.url);
-                const stream = yt(song.url, {filter: 'audioonly'});
-                const dispatcher = connnection.playStream(stream);
-                dispatcher.on('end', () => {
+                let stream = yt(song.url, {filter: 'audioonly'});
+                let disp = connnection.playStream(stream);
+                disp.on('end', () => {
                     play(music[msg.guild.id].queue.shift());
                     console.log("dispatcher ended");
                     //channel.leave();
                 });
+                music[msg.guild.id].dispatcher = disp;
                 return msg.say(`Now playing ${song.url} for <@${song.user}>`);
             });
         }
