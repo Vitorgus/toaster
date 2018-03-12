@@ -23,9 +23,3 @@ module.exports = class stopCommand extends Command {
         console.log('Skipped!');
     }
 };
-
-
-
-
-
-
