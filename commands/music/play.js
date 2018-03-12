@@ -38,7 +38,7 @@ module.exports = class playCommand extends Command {
 
         function queue(link) {
             yt.getInfo(link, (err, info) => {
-                if(err) return msg.channel.sendMessage(`Whoops. Something went wrong with the song: \`${err}\``);
+                if(err) return msg.say(`Whoops. Something went wrong with the song: \`${err}\``);
                 let song = {
                     url: link,
                     title: info.title,
