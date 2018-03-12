@@ -34,6 +34,7 @@ module.exports = class playCommand extends Command {
     async run(msg, { url }) {
 
         const anchor = this;
+        let music = this.client.music; //const?
 
         function queue(link) {
             yt.getInfo(link, (err, info) => {
@@ -43,23 +44,28 @@ module.exports = class playCommand extends Command {
                     title: info.title,
                     user: msg.author.id
                 };
-                if (!anchor.client.music.playing) {       //TODO find out why this is undefined
-                    anchor.client.music.playing = true;
+                if (!music.hasOwnProperty(msg.guild.id))
+                    music[msg.guild.id] = {
+                        playing: false,
+                        queue: [],
+                        dispatcher: null
+                    }
+                if (!music[msg.guild.id].playing) {       //TODO find out why this is undefined
+                    music[msg.guild.id].playing = true;
                     return play(song);
                 }
-                return msg.reply("a music is already playing!");
-                /*
-                this.client.queue.push(song);
-                return msg.say(`Added \`${info.title}\` to the queue for \`${msg.author.username}\``);
-                */
+                else {
+                    music[msg.guild.id].push(song);
+                    return msg.say(`Added \`${info.title}\` to the queue for \`${msg.author.username}\``);
+                }
             });
         }
 
         function play(song) {
             let channel = msg.member.voiceChannel;
             if (!song) {
-                channel.leave();
-                anchor.client.music.playing = false;
+                msg.guild.voiceConnection.disconnect();//channel.leave();
+                music[msg.guild.id].playing = false;
                 console.log("Queue is empty!");
                 return;
             }
@@ -69,7 +75,7 @@ module.exports = class playCommand extends Command {
                 const stream = yt(song.url, {filter: 'audioonly'});
                 const dispatcher = connnection.playStream(stream);
                 dispatcher.on('end', () => {
-                    play(anchor.client.music.queue.shift());
+                    play(music[msg.guild.id].queue.shift());
                     console.log("dispatcher ended");
                     channel.leave();
                 });

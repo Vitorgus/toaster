@@ -3,15 +3,13 @@ const { Command } = require('discord.js-commando');
 module.exports = class stopCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'stop',
+            name: 'skip',
             aliases: [
-                'stfu',
-                'stahp',
-                'disconnect'
+                'next'
             ],
             group: 'music',
-            memberName: 'stop',
-            description: 'Disconnects JARVIS from voice connection on the server',
+            memberName: 'skip',
+            description: 'Skips the current song',
             examples: [';stop'],
             guildOnly: true
         });
@@ -21,9 +19,7 @@ module.exports = class stopCommand extends Command {
         let music = this.client.music;
         if(!msg.guild.voiceConnection) return msg.say("I'm not connected to a Voice Channel!");
         if (!!music.hasOwnProperty(msg.guild.id) || !music[msg.guild.id].playing || !music[msg.guild.id].dispatcher) return msg.say("No music is playing!");
-        music[msg.guild.id].queue = [];
         music[msg.guild.id].dispatcher.end();
-        console.log('Disconnected!');
-        return msg.say("Disconnected!");
+        console.log('Skipped!');
     }
 };

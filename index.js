@@ -25,11 +25,7 @@ bot.on('ready', () => {
     bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
-    bot.music = {
-        playing: false,
-        queue: [],
-        dispatcher: null
-    };
+    bot.music = {};
     console.log("Logged in!");
 });
 
