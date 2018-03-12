@@ -55,7 +55,7 @@ module.exports = class playCommand extends Command {
                     return play(song);
                 }
                 else {
-                    music[msg.guild.id].push(song);
+                    music[msg.guild.id].queue.push(song);
                     return msg.say(`Added \`${info.title}\` to the queue for \`${msg.author.username}\``);
                 }
             });
