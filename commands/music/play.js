@@ -77,7 +77,7 @@ module.exports = class playCommand extends Command {
                 dispatcher.on('end', () => {
                     play(music[msg.guild.id].queue.shift());
                     console.log("dispatcher ended");
-                    channel.leave();
+                    //channel.leave();
                 });
                 return msg.say(`Now playing ${song.url} for <@${song.user}>`);
             });
