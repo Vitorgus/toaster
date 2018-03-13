@@ -20,7 +20,7 @@ module.exports = class stopCommand extends Command {
     run(msg, args) {
         let music = this.client.music;
         if(!msg.guild.voiceConnection) return msg.say("I'm not connected to a Voice Channel!");
-        if (!music.hasOwnProperty(msg.guild.id) || !music[msg.guild.id].playing) return msg.say("No music is playing!");
+        if (!music[msg.guild.id] || !music[msg.guild.id].playing) return msg.say("No music is playing!");
         music[msg.guild.id].queue = [];
         msg.guild.voiceConnection.dispatcher.end();
         console.log('Disconnected!');

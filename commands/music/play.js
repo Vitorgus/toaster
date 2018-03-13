@@ -44,7 +44,7 @@ module.exports = class playCommand extends Command {
                     title: info.title,
                     user: msg.author.id
                 };
-                if (!music.hasOwnProperty(msg.guild.id))
+                if (!music[msg.guild.id])
                     music[msg.guild.id] = {
                         playing: false,
                         queue: [],
