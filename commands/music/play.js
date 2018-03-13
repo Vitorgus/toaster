@@ -48,7 +48,6 @@ module.exports = class playCommand extends Command {
                     music[msg.guild.id] = {
                         playing: false,
                         queue: [],
-                        dispatcher: null
                     }
                 if (!music[msg.guild.id].playing) {       //TODO find out why this is undefined
                     music[msg.guild.id].playing = true;
@@ -79,7 +78,6 @@ module.exports = class playCommand extends Command {
                     reason ? console.log(reason) : console.log("dispatcher ended");
                     //channel.leave();
                 });
-                music[msg.guild.id].dispatcher = disp;
                 return msg.say(`Now playing ${song.url} for <@${song.user}>`);
             });
         }
