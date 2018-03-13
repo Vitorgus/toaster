@@ -66,6 +66,7 @@ module.exports = class playCommand extends Command {
                 msg.guild.voiceConnection.disconnect();//channel.leave();
                 music[msg.guild.id].playing = false;
                 console.log("Queue is empty!");
+                msg.say("Ended!");
                 return;
             }
             channel.join()
@@ -74,9 +75,11 @@ module.exports = class playCommand extends Command {
                 let stream = yt(song.url, {filter: 'audioonly'});
                 let disp = connnection.playStream(stream);
                 disp.on('end', reason => {
-                    play(music[msg.guild.id].queue.shift());
-                    reason ? console.log(reason) : console.log("dispatcher ended");
-                    //channel.leave();
+                    setTimeout(() => {
+                        reason ? console.log(reason) : console.log("Dispatcher ended");
+                        play(music[msg.guild.id].queue.shift());
+                        //channel.leave();
+                    }, 1000);
                 });
                 return msg.say(`Now playing ${song.url} for <@${song.user}>`);
             });
