@@ -69,11 +69,11 @@ module.exports = class playCommand extends Command {
                 msg.say("Ended!");
                 return;
             }
-            connection = await channel.join();
-            //.then(connnection => {
+            let connection = await channel.join();
+            //.then(connection => {
             console.log(song.title + " - " + song.url);
             let stream = yt(song.url, {filter: 'audioonly'});
-            let disp = connnection.playStream(stream);
+            let disp = connection.playStream(stream);
             disp.on('end', reason => {
                 reason ? console.log(reason) : console.log("Dispatcher ended");
                 setTimeout(() => {
