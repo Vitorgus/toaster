@@ -19,7 +19,7 @@ module.exports = class stopCommand extends Command {
         let music = this.client.music;
         if(!msg.guild.voiceConnection) return msg.say("I'm not connected to a Voice Channel!");
         if (!music.hasOwnProperty(msg.guild.id) || !music[msg.guild.id].playing || !music[msg.guild.id].dispatcher) return msg.say("No music is playing!");
-        music[msg.guild.id].dispatcher.end();
-        console.log('Skipped!');
+        music[msg.guild.id].dispatcher.end("Skipped!");
+        //console.log('Skipped!');
     }
 };
