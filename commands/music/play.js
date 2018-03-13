@@ -60,7 +60,7 @@ module.exports = class playCommand extends Command {
             });
         }
 
-        function play(song) {
+        async function play(song) {
             let channel = msg.member.voiceChannel;
             if (!song) {
                 msg.guild.voiceConnection.disconnect();//channel.leave();
@@ -69,20 +69,19 @@ module.exports = class playCommand extends Command {
                 msg.say("Ended!");
                 return;
             }
-            channel.join()
-            .then(connnection => {
-                console.log(song.title + " - " + song.url);
-                let stream = yt(song.url, {filter: 'audioonly'});
-                let disp = connnection.playStream(stream);
-                disp.on('end', reason => {
-                    setTimeout(() => {
-                        reason ? console.log(reason) : console.log("Dispatcher ended");
-                        play(music[msg.guild.id].queue.shift());
-                        //channel.leave();
-                    }, 1000);
-                });
-                return msg.say(`Now playing ${song.url} for <@${song.user}>`);
+            connection = await channel.join();
+            //.then(connnection => {
+            console.log(song.title + " - " + song.url);
+            let stream = yt(song.url, {filter: 'audioonly'});
+            let disp = connnection.playStream(stream);
+            disp.on('end', reason => {
+                reason ? console.log(reason) : console.log("Dispatcher ended");
+                setTimeout(() => {
+                    play(music[msg.guild.id].queue.shift());
+                }, 1000);
             });
+            return msg.say(`Now playing ${song.url} for <@${song.user}>`);
+            //});
         }
 
         if (!msg.member.voiceChannel) return msg.reply(`Please be in a voice channel first!`);
