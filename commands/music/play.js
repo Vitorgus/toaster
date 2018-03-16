@@ -39,6 +39,7 @@ module.exports = class playCommand extends Command {
         function queue(link) {
             yt.getInfo(link, (err, info) => {
                 if(err) return msg.say(`Whoops. Something went wrong with the song: \`${err}\``);
+                //TODO check somewhere in the code if the links starts with http://, cuz if not, add it in the beginning of it.
                 let song = {
                     url: link,
                     title: info.title,
@@ -69,6 +70,7 @@ module.exports = class playCommand extends Command {
                 msg.say("Ended!");
                 return;
             }
+            //TODO check if is not already connected to voiceChannel
             let connection = await channel.join();
             //.then(connection => {
             console.log(song.title + " - " + song.url);
@@ -86,6 +88,7 @@ module.exports = class playCommand extends Command {
 
         if (!msg.member.voiceChannel) return msg.reply(`Please be in a voice channel first!`);
 
+        //TODO replace the line below with regExp (Note: the link doesn't need http(s):// in front of it)
         if(url.startsWith("http://") || url.startsWith("https://")) return queue(url);
 
         youtube.search(url, 1, {type: "video"}, function(error, result) {
