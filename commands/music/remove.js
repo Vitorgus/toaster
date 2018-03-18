@@ -17,7 +17,7 @@ module.exports = class stopCommand extends Command {
         if(!msg.guild.voiceConnection) return msg.say("I'm not connected to a Voice Channel!");
         if (!music || !music.playing) return msg.say("No music is playing!");
         if (!music.queue.length) return msg.say("There's no music in the queue!");
-        for (i = music.queue.length - 1; i > 0; i--) {
+        for (let i = music.queue.length - 1; i > 0; i--) {
             if (music.queue[i].user === msg.author.id) {
                 let name = music.queue[i].title;
                 music.queue.splice(i, 1);
