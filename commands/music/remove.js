@@ -18,7 +18,9 @@ module.exports = class stopCommand extends Command {
         if (!music || !music.playing) return msg.say("No music is playing!");
         if (!music.queue.length) return msg.say("There's no music in the queue!");
         for (let i = music.queue.length - 1; i > 0; i--) {
+            console.log("Loop: " + i);
             if (music.queue[i].user === msg.author.id) {
+                console.log("Found!");
                 let name = music.queue[i].title;
                 music.queue.splice(i, 1);
                 console.log("Removed song: " + name);
