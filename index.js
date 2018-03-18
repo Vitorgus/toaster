@@ -71,8 +71,9 @@ bot.on('guildMemberAdd', member => {
     It gets the general server, and send GF's greetings, while taggin the new user
     In the second line, it adds the role of the Sinner to the newcomer
     */
+    if (msg.guild.id != process.env.SHILOH_CHAT) return;
     member.guild.channels.find("name", "general").send(`${member.user} https://cdn.discordapp.com/attachments/330405008451305472/409841777554751500/Screenshot_20171128-155001.png`);
-    member.addRole('331925500333129739');
+    member.addRole(process.env.SINNER_ROLE);
 });
 
 process.on('unhandledRejection', console.error);    // ...I guess this line is important, but I don't know why
