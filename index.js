@@ -11,10 +11,6 @@ const bot = new Commando.Client({
     unknownCommandResponse: false   // Disable the default unknown command response, So that it can reply with a random custom emoji later on the code
 });
 
-/*
-Code that will be executed when the bot is initialized.
-It mostly just set some things and logs that the bot is online
-*/
 bot.on('ready', () => {
     //bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');            // Sets the avatar image. Disabled cause Discord complains when setting the image too many times.
     package = require('./package.json');                                // Gets the package.json file
@@ -29,29 +25,17 @@ bot.on('ready', () => {
     console.log("Logged in!");
 });
 
-/*
-Code that will be executed when jarvis gets a command that doesn't exists.
-First, it will check if it is one of the commands to activate or deactivate eggplant mode.
-If not, he will reply with a random custom emoji.
-NOTE: If there's no custom emoji, he does nothing.
-*/
 bot.on('unknownCommand', message => {
+    //Check is it's possible to send an emoji
     if (message.editedAt || !message.guild || !message.guild.available || !message.guild.emojis.size) return;
     emoji = message.guild.emojis.random();      // Gets a random custom emoji
     message.say(emoji.toString());              // Says the emoji in the chat
     /* THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
-    // Send an emoji:
     const emoji = guild.emojis.first();
     msg.reply(`Hello! ${emoji}`);
     */
 });
 
-
-/*
-Coda that will be executed when a message is send.
-It happens for every message that appears in a server the bot is in.
-This just serves to eggplant zorg if the eggplant mode is active.
-*/
 bot.on('message', message => {
     /* THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
     if (message.content == "alo") {
@@ -66,14 +50,10 @@ bot.on('message', message => {
 });
 
 bot.on('guildMemberAdd', member => {
-    /*
-    Code for when a new member joins the chat.
-    It gets the general server, and send GF's greetings, while taggin the new user
-    In the second line, it adds the role of the Sinner to the newcomer
-    */
-    if (msg.guild.id != process.env.SHILOH_CHAT) return;
+    if (msg.guild.id != process.env.SHILOH_CHAT) return; //Checks if it's the Shiloh server
+    //Greeting message
     member.guild.channels.find("name", "general").send(`${member.user} https://cdn.discordapp.com/attachments/330405008451305472/409841777554751500/Screenshot_20171128-155001.png`);
-    member.addRole(process.env.SINNER_ROLE);
+    member.addRole(process.env.SINNER_ROLE);    //Gives the newcomer the sinners role
 });
 
 process.on('unhandledRejection', console.error);    // ...I guess this line is important, but I don't know why
