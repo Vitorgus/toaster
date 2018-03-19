@@ -50,7 +50,7 @@ bot.on('message', message => {
 });
 
 bot.on('guildMemberAdd', member => {
-    if (msg.guild.id != process.env.SHILOH_CHAT) return; //Checks if it's the Shiloh server
+    if (member.guild.id != process.env.SHILOH_CHAT) return; //Checks if it's the Shiloh server
     //Greeting message
     member.guild.channels.find("name", "general").send(`${member.user} https://cdn.discordapp.com/attachments/330405008451305472/409841777554751500/Screenshot_20171128-155001.png`);
     member.addRole(process.env.SINNER_ROLE);    //Gives the newcomer the sinners role
