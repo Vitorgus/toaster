@@ -9,7 +9,6 @@ module.exports = class rollCommand extends Command {
       memberName: 'eggplant',
       description: 'toggles on/off if the bot should eggplant every Zorg message',
       examples: ['jarvis eggplant'],
-      guildOnly: true,
       args: [{
         key: 'toggle',
         prompt: 'Should I activate or deactivate the eggplant mode?',
