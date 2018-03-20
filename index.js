@@ -54,10 +54,16 @@ bot.on('guildMemberAdd', member => {
     if (member.guild.id != process.env.SHILOH_CHAT) return; //Checks if it's the Shiloh server
     //Greeting message
     member.guild.channels.find("name", "general").send(`${member.user} ${welcome[Math.floor(Math.random() * welcome.length)]}`);
-    member.addRole(process.env.SINNER_ROLE);    //Gives the newcomer the sinners role
+    member.addRole(process.env.SINNER_ROLE)     //Gives the newcomer the sinners role
+        .catch(error => {
+            console.log(error);
+            member.guild.channels.find("name", "general").send(`Whoops. Couldn't give you the sinners role. Sorry.`);
+        });
 });
 
-process.on('unhandledRejection', console.error);    // ...I guess this line is important, but I don't know why
+process.on('unhandledRejection', (reason, p) => {               // ...I guess this line is important, but I don't know why
+  console.log('Unhandled Rejection at:', p, 'reason:', reason);
+});
 
 // Registers the commands for the bot and divide them in their categories
 bot.registry
