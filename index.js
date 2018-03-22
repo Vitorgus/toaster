@@ -23,6 +23,7 @@ bot.on('ready', () => {
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
     bot.music = {};
+    setInterval(checkStream, 10000); //30000
     console.log("Logged in!");
 });
 
@@ -60,6 +61,42 @@ bot.on('guildMemberAdd', member => {
             member.guild.channels.find("name", "general").send(`Whoops. Couldn't give you the sinners role. Sorry.`);
         });
 });
+
+function checkStream() {
+    http.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
+        const { statusCode } = res;
+        const contentType = res.headers['content-type'];
+
+        let error;
+        if (statusCode !== 200) {
+            error = new Error('Request Failed.\n' +
+            `Status Code: ${statusCode}`);
+        } else if (!/^application\/json/.test(contentType)) {
+            error = new Error('Invalid content-type.\n' +
+            `Expected application/json but received ${contentType}`);
+        }
+        if (error) {
+            console.error("Error with GET request: " + error.message);
+            // consume response data to free up memory
+            res.resume();
+            return;
+        }
+
+        res.setEncoding('utf8');
+        let rawData = '';
+        res.on('data', (chunk) => { rawData += chunk; });
+        res.on('end', () => {
+            try {
+                const parsedData = JSON.parse(rawData);
+                console.log(parsedData);
+            } catch (e) {
+                console.error("Error while parsing JSON: " + e.message);
+            }
+            });
+        }).on('error', (e) => {
+            console.error(`Error with GET response: ${e.message}`);
+        });
+}
 
 process.on('unhandledRejection', (reason, p) => {               // ...I guess this line is important, but I don't know why
   console.log('Unhandled Rejection at:', p, 'reason:', reason);
