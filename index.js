@@ -105,7 +105,7 @@ function checkStream(offline) {
                         .send("Stream is on! https://picarto.tv/REDnFLYNN");
                     return;
                 }
-                clearinterval(bot.stream_timer);
+                clearInterval(bot.stream_timer);
                 setTimeout(checkStream.bind(null, true), 60000); //300000
                 //console.log(rnf);
             } catch (e) {
