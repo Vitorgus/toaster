@@ -2,7 +2,7 @@ const path = require('path');                       //Gets the system path
 const Commando = require('discord.js-commando');    //Gets the commando library
 const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const Enmap = require('enmap');                     //Gets the enmap. Basically a simple database.
-const http = require('http');
+const https = require('https');
 const welcome = require('./welcome.json');
 
 //Initializing bot
@@ -64,7 +64,7 @@ bot.on('guildMemberAdd', member => {
 });
 
 function checkStream() {
-    http.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
+    https.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
         const { statusCode } = res;
         const contentType = res.headers['content-type'];
 
