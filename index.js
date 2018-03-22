@@ -24,7 +24,8 @@ bot.on('ready', () => {
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
     bot.music = {};
-    setInterval(checkStream, 10000); //30000
+    bot.stream_status = false;
+    bot.stream_timer = setInterval(checkStream, 30000); //30000
     console.log("Logged in!");
 });
 
@@ -63,7 +64,8 @@ bot.on('guildMemberAdd', member => {
         });
 });
 
-function checkStream() {
+function checkStream(offline) {
+    console.log("Offline var = " + offline);
     https.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
         const { statusCode } = res;
         const contentType = res.headers['content-type'];
@@ -88,8 +90,24 @@ function checkStream() {
         res.on('data', (chunk) => { rawData += chunk; });
         res.on('end', () => {
             try {
-                const parsedData = JSON.parse(rawData);
-                console.log(parsedData);
+                const rnf = JSON.parse(rawData);
+                if (offline && !rnf.online) {
+                    bot.stream_status = false;
+                    bot.stream_timer = setInterval(checkStream, 30000);
+                    console.log("Stream is off");
+                    return;
+                }
+                if (bot.stream_status === rnf.online) return;
+                if (rnf.online) {
+                    bot.stream_status = true;
+                    bot.guilds.get(process.env.GUILD_TEST)
+                        .channels.get(process.env.CHANNEL_TEST)
+                        .send("Stream is on! https://picarto.tv/REDnFLYNN");
+                    return;
+                }
+                clearinterval(stream_timer);
+                setTimeout(checkStream.bind(null, true), 60000); //300000
+                //console.log(rnf);
             } catch (e) {
                 console.error("Error while parsing JSON: " + e.message);
             }
