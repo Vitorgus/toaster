@@ -2,6 +2,7 @@ const path = require('path');                       //Gets the system path
 const Commando = require('discord.js-commando');    //Gets the commando library
 const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const Enmap = require('enmap');                     //Gets the enmap. Basically a simple database.
+const http = require('http');
 const welcome = require('./welcome.json');
 
 //Initializing bot
