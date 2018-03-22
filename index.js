@@ -65,7 +65,6 @@ bot.on('guildMemberAdd', member => {
 });
 
 function checkStream(offline) {
-    console.log("Offline var = " + offline);
     https.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
         const { statusCode } = res;
         const contentType = res.headers['content-type'];
@@ -106,8 +105,7 @@ function checkStream(offline) {
                     return;
                 }
                 clearInterval(bot.stream_timer);
-                setTimeout(checkStream.bind(null, true), 60000); //300000
-                //console.log(rnf);
+                setTimeout(checkStream.bind(null, true), 300000); //300000
             } catch (e) {
                 console.error("Error while parsing JSON: " + e.message);
             }
