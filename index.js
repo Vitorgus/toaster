@@ -3,7 +3,9 @@ const Commando = require('discord.js-commando');    //Gets the commando library
 const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const Enmap = require('enmap');                     //Gets the enmap. Basically a simple database.
 const https = require('https');
-const welcome = require('./welcome.json');
+const messages = require('./messages.json');
+const welcome = messages.welcome; //require('./welcome.json');
+const stream = messages.stream;
 
 //Initializing bot
 const bot = new Commando.Client({
@@ -99,9 +101,9 @@ function checkStream(offline) {
                 if (bot.stream_status === rnf.online) return;
                 if (rnf.online) {
                     bot.stream_status = true;
-                    bot.guilds.get(process.env.GUILD_TEST)
-                        .channels.get(process.env.CHANNEL_TEST)
-                        .send("Stream is on! https://picarto.tv/REDnFLYNN");
+                    bot.guilds.get(process.env.SHILOH_CHAT)
+                        .channels.get(process.env.SHILOH_GENERAL)
+                        .send(`${stream[Math.floor(Math.random() * stream.length)]} https://picarto.tv/REDnFLYNN`);
                     return;
                 }
                 clearInterval(bot.stream_timer);
