@@ -92,10 +92,10 @@ function checkStream(offline) {
         res.on('end', () => {
             try {
                 const rnf = JSON.parse(rawData);
-                if (offline && !rnf.online) {
-                    bot.stream_status = false;
+                if (offline) {
+                    bot.stream_status = rnf.online;
                     bot.stream_timer = setInterval(checkStream, 30000);
-                    console.log("Stream is off");
+                    if (!rnf.online) console.log("Stream is off");
                     return;
                 }
                 if (bot.stream_status === rnf.online) return;
