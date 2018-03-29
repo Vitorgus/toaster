@@ -121,6 +121,10 @@ process.on('unhandledRejection', (reason, p) => {               // ...I guess th
   console.log('Unhandled Rejection at:', p, 'reason:', reason);
 });
 
+process.on('exit', (code) => {
+  console.log(`About to exit with code: ${code}`);
+});
+
 // Registers the commands for the bot and divide them in their categories
 bot.registry
     .registerDefaultTypes()
