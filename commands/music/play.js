@@ -21,7 +21,7 @@ module.exports = class playCommand extends Command {
             group: 'music',
             memberName: 'play',
             description: 'Plays the given video.',
-            examples: [';play'],
+            examples: ['jarvis play the sound of silence', 'jarvis play ptx', 'jarvis play http://www.youtube.com/watch?v=jvipPYFebWc'],
             guildOnly: true,
             args: [{
                 key: 'url',

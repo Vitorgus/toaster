@@ -12,7 +12,7 @@ module.exports = class youtubeCommand extends Command {
             group: 'search',
             memberName: 'youtube',
             description: 'gets youtube video matching the tags stated by the user',
-            examples: [';youtube'],
+            examples: ['jarvis youtube mirror haus', 'jarvis youtube adventure of a lifetime'],
             args: [{
                 key: 'tags',
                 prompt: 'What tags would you like to search for?',

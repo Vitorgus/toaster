@@ -12,7 +12,7 @@ module.exports = class stopCommand extends Command {
             group: 'music',
             memberName: 'stop',
             description: 'Disconnects JARVIS from voice connection on the server',
-            examples: [';stop'],
+            examples: ['jarvis stop', 'jarvis stahp', 'jarvis disconnect', 'jarvis stfu'],
             guildOnly: true
         });
     }

@@ -7,7 +7,7 @@ module.exports = class myidCommand extends Command {
             group: 'other',
             memberName: 'myid',
             description: 'returns the user id of the sender',
-            examples: [';myid']
+            examples: ['jarvis myid']
         });
     }
 

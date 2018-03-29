@@ -1,13 +1,13 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class stopCommand extends Command {
+module.exports = class removeCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'remove',
             group: 'music',
             memberName: 'remove',
             description: 'Removes the last song the user added to the queue',
-            examples: [';remove'],
+            examples: ['jarvis remove'],
             guildOnly: true
         });
     }
