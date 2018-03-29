@@ -121,8 +121,10 @@ process.on('unhandledRejection', (reason, p) => {               // ...I guess th
   console.log('Unhandled Rejection at:', p, 'reason:', reason);
 });
 
-process.on('SIGTERM', smthing => {
-    console.log(`SIGTERM shutdown imminent! Param: ${smthing}`);
+process.on('SIGTERM', () => {
+    console.log(`SIGTERM shutdown imminent! Exit code: ${process.exitCode}`);
+    bot.user.setStatus("dnd");
+    bot.user.setGame("Updating...");
 });
 
 // Registers the commands for the bot and divide them in their categories
