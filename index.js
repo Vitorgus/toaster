@@ -121,6 +121,10 @@ process.on('unhandledRejection', (reason, p) => {               // ...I guess th
   console.log('Unhandled Rejection at:', p, 'reason:', reason);
 });
 
+process.on('SIGTERM', smthing => {
+    console.log(`SIGTERM shutdown imminent! Param: ${smthing}`);
+});
+
 // Registers the commands for the bot and divide them in their categories
 bot.registry
     .registerDefaultTypes()
