@@ -34,8 +34,13 @@ bot.on('ready', () => {
 bot.on('unknownCommand', message => {
     //Check is it's possible to send an emoji
     if (message.editedAt || !message.guild || !message.guild.available || !message.guild.emojis.size) return;
-    emoji = message.guild.emojis.random();      // Gets a random custom emoji
-    message.say(emoji.toString());              // Says the emoji in the chat
+    message.channel.startTyping();
+    setTimeout(() => {
+        emoji = message.guild.emojis.random();      // Gets a random custom emoji
+        message.channel.stopTyping();
+        message.say(emoji.toString());              // Says the emoji in the chat
+}, 30000);
+    
     /* THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
     const emoji = guild.emojis.first();
     msg.reply(`Hello! ${emoji}`);
