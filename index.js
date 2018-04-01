@@ -39,7 +39,7 @@ bot.on('unknownCommand', message => {
         emoji = message.guild.emojis.random();      // Gets a random custom emoji
         message.channel.stopTyping();
         message.say(emoji.toString());              // Says the emoji in the chat
-}, 30000);
+}, 500);
     
     /* THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
     const emoji = guild.emojis.first();
