@@ -23,6 +23,11 @@ module.exports = class sayCommand extends Command {
     }
 
     run(msg, { text }) {
-        return msg.say(text);
+        msg.channel.startTyping();
+        //msg.channel.stopTyping();
+        setTimeout(() => {
+            msg.channel.stopTyping();
+            return msg.say(text);
+        }, 500);
     }
 };

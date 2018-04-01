@@ -19,6 +19,8 @@ module.exports = class urbanCommand extends Command {
     }
 
     run(msg, { text }) {
+        msg.channel.startTyping();
+        //msg.channel.stopTyping();
         var targetWord = text == "" ? urban.random() : urban(text);
         targetWord.first(function(json) {
             if (json) {
@@ -26,8 +28,10 @@ module.exports = class urbanCommand extends Command {
                 if (json.example) {
                     message = message + "\n\n__Example__:\n" + json.example;
                 }
+                msg.channel.stopTyping();
                 msg.channel.send( message);
             } else {
+                msg.channel.stopTyping();
                 msg.channel.send( "No matches found");
             }
     });

@@ -17,9 +17,12 @@ module.exports = class twitchCommand extends Command {
     }
 
     run(msg, { text } ) {
+        msg.channel.startTyping();
+        //msg.channel.stopTyping();
         require("request")("https://api.twitch.tv/kraken/streams/"+text,
         function(err,res,body){
             var stream = JSON.parse(body);
+            msg.channel.stopTyping();
             if(stream.stream){
                 msg.channel.send( suffix
                     +" is online, playing "

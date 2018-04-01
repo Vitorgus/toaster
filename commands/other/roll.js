@@ -17,7 +17,12 @@ module.exports = class rollCommand extends Command {
     }
 
     run(msg, { num }) {
-        var result = Math.floor((Math.random() * num));
-        return msg.say(msg.author + " rolled a " + result);
+        msg.channel.startTyping();
+        //msg.channel.stopTyping();
+        setTimeout(() => {
+            var result = Math.floor((Math.random() * num));
+            msg.channel.stopTyping();
+            return msg.say(msg.author + " rolled a " + result);
+        }, 500);
     }
 };

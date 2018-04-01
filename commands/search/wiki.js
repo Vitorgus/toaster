@@ -17,6 +17,9 @@ module.exports = class wikiCommand extends Command {
     }
 
     run(msg, { text }) {
+        msg.channel.startTyping();
+        //msg.channel.stopTyping();
+
         var query = text;
         var Wiki = require("wikijs").default;
 
@@ -24,6 +27,7 @@ module.exports = class wikiCommand extends Command {
             Wiki().page(data.results[0]).then(page => {
                 page.summary().then(summary => {
                     var sumText = summary.toString().split('\n');
+                    msg.channel.stopTyping();
                     var continuation = function() {
                         var paragraph = sumText.shift();
                         if(paragraph){

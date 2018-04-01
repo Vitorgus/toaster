@@ -17,6 +17,11 @@ module.exports = class announceCommand extends Command {
     }
 
     run(msg, { text }) {
-        msg.say(text,{tts:true});
+        msg.channel.startTyping();
+        //msg.channel.stopTyping();
+        setTimeout(() => {
+            msg.channel.stopTyping();
+            return msg.say(text,{tts:true});
+        }, 500);
     }
 };
