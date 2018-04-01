@@ -63,12 +63,17 @@ bot.on('message', message => {
 bot.on('guildMemberAdd', member => {
     if (member.guild.id != process.env.SHILOH_CHAT) return; //Checks if it's the Shiloh server
     //Greeting message
-    member.guild.channels.find("name", "general").send(`${member.user} ${welcome[Math.floor(Math.random() * welcome.length)]}`);
-    member.addRole(process.env.SINNER_ROLE)     //Gives the newcomer the sinners role
-        .catch(error => {
-            console.log(error);
-            member.guild.channels.find("name", "general").send(`Whoops. Couldn't give you the sinners role. Sorry.`);
-        });
+    message.channel.startTyping();
+    setTimeout(() => {
+        message.channel.stopTyping();
+        member.guild.channels.find("name", "general").send(`${member.user} ${welcome[Math.floor(Math.random() * welcome.length)]}`);
+        member.addRole(process.env.SINNER_ROLE)     //Gives the newcomer the sinners role
+            .catch(error => {
+                console.log(error);
+                member.guild.channels.find("name", "general").send(`Whoops. Couldn't give you the sinners role. Sorry.`);
+            });
+}, 500);
+    
 });
 
 function checkStream(offline) {
