@@ -12,11 +12,6 @@ module.exports = class myidCommand extends Command {
     }
 
     run(msg, args) {
-        msg.channel.startTyping();
-        //msg.channel.stopTyping();
-        setTimeout(() => {
-            msg.channel.stopTyping();
-            return msg.say(msg.author.id);
-        }, 500);
+        return msg.say(msg.author.id);
     }
 };

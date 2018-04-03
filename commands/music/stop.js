@@ -18,17 +18,12 @@ module.exports = class stopCommand extends Command {
     }
 
     run(msg, args) {
-        msg.channel.startTyping();
-        //msg.channel.stopTyping();
         let music = this.client.music[msg.guild.id] ;
-        setTimeout(() => {
-            msg.channel.stopTyping();
-            if(!msg.guild.voiceConnection) return msg.say("I'm not connected to a Voice Channel!");
-            if (!music || !music.playing) return msg.say("No music is playing!");
-            music.queue.splice(0, music.queue.length);
-            msg.guild.voiceConnection.dispatcher.end("Stopped!");
-            console.log('Disconnected!');
-        }, 500);
+        if(!msg.guild.voiceConnection) return msg.say("I'm not connected to a Voice Channel!");
+        if (!music || !music.playing) return msg.say("No music is playing!");
+        music.queue.splice(0, music.queue.length);
+        msg.guild.voiceConnection.dispatcher.end("Stopped!");
+        console.log('Disconnected!');
         
     }
 };

@@ -23,17 +23,15 @@ module.exports = class urbanCommand extends Command {
         //msg.channel.stopTyping();
         var targetWord = text == "" ? urban.random() : urban(text);
         targetWord.first(function(json) {
+            msg.channel.stopTyping();
             if (json) {
                 var message = "Urban Dictionary: **" +json.word + "**\n\n" + json.definition;
                 if (json.example) {
                     message = message + "\n\n__Example__:\n" + json.example;
                 }
-                msg.channel.stopTyping();
-                msg.channel.send( message);
-            } else {
-                msg.channel.stopTyping();
-                msg.channel.send( "No matches found");
+                msg.channel.send(message);
             }
-    });
+            else msg.channel.send("No matches found");
+        });
     }
 };

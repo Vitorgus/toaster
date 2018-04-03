@@ -17,9 +17,9 @@ module.exports = class yesnoCommand extends Command {
         superagent
         .get('https://yesno.wtf/api')
         .end(function(err, res){
-            if (err) {console.log(err)};
-            if (res) {msg.say(res.body.image)};
-            msg.channel.stopTyping();
+            if (err) console.log(err);
+            if (res) msg.say(res.body.image);
+            return msg.channel.stopTyping();
         });
     }
 };

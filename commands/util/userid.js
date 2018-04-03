@@ -17,11 +17,6 @@ module.exports = class useridCommand extends Command {
     }
 
     run(msg, { user }) {
-        msg.channel.startTyping();
-        //msg.channel.stopTyping();
-        setTimeout(() => {
-            msg.channel.stopTyping();
-            msg.channel.send( "The id of " + user.username + " is " + user.id);
-        }, 500);
+        return msg.channel.send( "The id of " + user.username + " is " + user.id);
     }
 };

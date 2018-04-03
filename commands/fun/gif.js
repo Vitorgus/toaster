@@ -65,13 +65,13 @@ module.exports = class gifCommand extends Command {
         msg.channel.startTyping();
         var tags1 = tags.split(" ");
         get_gif(tags1, function(id) {
+             msg.channel.stopTyping();
             if (typeof id !== "undefined") {
                 return msg.channel.send( "http://media.giphy.com/media/" + id + "/giphy.gif [Tags: " + (tags ? tags : "Random GIF") + "]");
             }
             else {
                 return msg.channel.send( "Invalid tags, try something different. [Tags: " + (tags ? tags : "Random GIF") + "]");
             }
-            msg.channel.stopTyping();
         });
     }
 };
