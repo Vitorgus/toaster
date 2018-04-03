@@ -134,14 +134,14 @@ process.on('unhandledRejection', (reason, p) => {               // ...I guess th
 process.on('SIGTERM', () => {
     console.log(`SIGTERM shutdown imminent!`);
     bot.user.setStatus("dnd");
-    bot.user.setGame("Updating...");
+    //bot.user.setGame("Updating...");
     process.exit();
 });
-
+/*
 process.on('exit', code => {
   console.log(`About to exit with code: ${code}`);
 });
-
+*/
 // Registers the commands for the bot and divide them in their categories
 bot.registry
     .registerDefaultTypes()
