@@ -1,13 +1,13 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class userimageCommand extends Command {
+module.exports = class profilepicCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'userimage',
+            name: 'profilepic',
             group: 'util',
-            memberName: 'userimage',
+            memberName: 'profilepic',
             description: 'Returns the profile image of the user.',
-            examples: ['jarvis userimage @<username>'],
+            examples: ['jarvis profilepic @<username>'],
             args: [{
                 key: 'user',
                 prompt: 'Which user do you want to get the image of?',
