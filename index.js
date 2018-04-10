@@ -25,10 +25,25 @@ bot.on('ready', () => {
     bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
+    bot.generaldb.set("emo", true);
+    bot.red_status = bot.users.find("username", "RED").presence.status;
     bot.music = {};
     bot.stream_status = false;
     bot.stream_timer = setInterval(checkStream, 30000); //30000
     console.log("Logged in!");
+    bot.edgy_handler = setInterval(() => {
+        if (!bot.generaldb.set("emo")) {
+            clearInterval(bot.edgy_handler);
+            return;
+        }
+        let status = bot.users.find("username", "RED").presence.status;
+        if (status == bot.red_status) return;
+        if (bot.red_status == "invisible" && status != "invisible");
+            bot.guilds.get(process.env.SHILOH_CHAT)
+                .channels.get(process.env.SHILOH_GENERAL)
+                .send("Crawling up from the pits of deep introspection, wise, yet broken because wisdom of one's own dark, charred soul makes one break down in tears, as deep and depressing as a linkin park song ... IT IS RED. THE EDGIEST BOLSHEVIK.");
+        bot.red_status = status;
+    }, 5000);
 });
 
 bot.on('unknownCommand', message => {
