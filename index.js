@@ -38,10 +38,10 @@ bot.on('ready', () => {
             return;
         }
         let status = bot.users.find("username", edgelord).presence.status;
-        console.log("Status = " + status);
-        console.log("REd status = " + bot.red_status);
+        console.log("Status = " + status);          //OFF
+        console.log("REd status = " + bot.red_status);//ON
         if (status == bot.red_status) return;
-        if (bot.red_status == "invisible" && status != "invisible");
+        if (bot.red_status == "invisible" && status != "invisible")
         /*
             bot.guilds.get(process.env.SHILOH_CHAT)
                 .channels.get(process.env.SHILOH_GENERAL)
