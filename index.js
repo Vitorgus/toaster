@@ -41,7 +41,7 @@ bot.on('ready', () => {
         console.log("Status = " + status);          //OFF
         console.log("REd status = " + bot.red_status);//ON
         if (status == bot.red_status) return;
-        if (bot.red_status == "invisible" && status != "invisible")
+        if (bot.red_status == "offline" && status != "offline")
         /*
             bot.guilds.get(process.env.SHILOH_CHAT)
                 .channels.get(process.env.SHILOH_GENERAL)
