@@ -6,7 +6,7 @@ const https = require('https');
 const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const stream = messages.stream;
-const edgelord = "Vitorgus";//"RED";
+const edgelord = "RED";
 
 //Initializing bot
 const bot = new Commando.Client({
@@ -38,18 +38,15 @@ bot.on('ready', () => {
             return;
         }
         let status = bot.users.find("username", edgelord).presence.status;
+        /*
         console.log("Status = " + status);          //OFF
         console.log("REd status = " + bot.red_status);//ON
+        */
         if (status == bot.red_status) return;
         if (bot.red_status == "offline" && status != "offline")
-        /*
             bot.guilds.get(process.env.SHILOH_CHAT)
                 .channels.get(process.env.SHILOH_GENERAL)
                 .send("Crawling up from the pits of deep introspection, wise, yet broken because wisdom of one's own dark, charred soul makes one break down in tears, as deep and depressing as a linkin park song ... IT IS RED. THE EDGIEST BOLSHEVIK.");
-        */
-            bot.guilds.get(process.env.TEST_CHAT)
-                .channels.get(process.env.TEST_CHANNEL)
-                .send("Teste");
         bot.red_status = status;
     }, 5000);
 });
