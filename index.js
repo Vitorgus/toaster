@@ -26,14 +26,14 @@ bot.on('ready', () => {
     bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
-    bot.generaldb.set("emo", true);
+    bot.generaldb.set("emo", false);
     bot.red_status = bot.users.find("username", edgelord).presence.status;
     bot.music = {};
     bot.stream_status = false;
     bot.stream_timer = setInterval(checkStream, 30000); //30000
     console.log("Logged in!");
     bot.edgy_handler = setInterval(() => {
-        if (!bot.generaldb.set("emo")) {
+        if (!bot.generaldb.get("emo")) {
             clearInterval(bot.edgy_handler);
             return;
         }
