@@ -22,11 +22,11 @@ module.exports = class youtubeCommand extends Command {
     }
 
     run(msg, { tags }) {
-        msg.channel.startTyping();
+        //msg.channel.startTyping();
         //msg.channel.stopTyping();
 
         youtube.search(tags, 1, {type: "video"}, function(error, result) {
-            msg.channel.stopTyping();
+            //msg.channel.stopTyping();
             if (error) return msg.say(`Error while searching for the video:  \`${error}\``);
 
             if (!result || !result.items || result.items.length < 1) {
