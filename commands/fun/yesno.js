@@ -13,13 +13,13 @@ module.exports = class yesnoCommand extends Command {
     }
 
     run(msg, args) {
-        msg.channel.startTyping();
+        //msg.channel.startTyping();
         superagent
         .get('https://yesno.wtf/api')
         .end(function(err, res){
             if (err) console.log(err);
             if (res) msg.say(res.body.image);
-            return msg.channel.stopTyping();
+            //return msg.channel.stopTyping();
         });
     }
 };
