@@ -62,10 +62,10 @@ module.exports = class gifCommand extends Command {
     }
 
     run(msg, { tags }) {
-        msg.channel.startTyping();
+        //msg.channel.startTyping();
         var tags1 = tags.split(" ");
         get_gif(tags1, function(id) {
-             msg.channel.stopTyping();
+             //msg.channel.stopTyping();
             if (typeof id !== "undefined") {
                 return msg.channel.send( "http://media.giphy.com/media/" + id + "/giphy.gif [Tags: " + (tags ? tags : "Random GIF") + "]");
             }
