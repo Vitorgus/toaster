@@ -32,7 +32,7 @@ module.exports = class playCommand extends Command {
     }
 
     async run(msg, { url }) {
-        msg.channel.startTyping();
+        //msg.channel.startTyping();
         
         const anchor = this;
         let music = this.client.music; //const?
@@ -40,7 +40,7 @@ module.exports = class playCommand extends Command {
         function queue(link) {
             yt.getInfo(link, (err, info) => {
                 if(err) {
-                    msg.channel.stopTyping();
+                    //msg.channel.stopTyping();
                     return msg.say(`Whoops. Something went wrong with the song: \`${err}\``);
                 }
                 //TODO check somewhere in the code if the links starts with http://, cuz if not, add it in the beginning of it.
@@ -60,7 +60,7 @@ module.exports = class playCommand extends Command {
                 }
                 else {
                     music[msg.guild.id].queue.push(song);
-                    msg.channel.stopTyping();
+                    //msg.channel.stopTyping();
                     return msg.say(`Added \`${info.title}\` to the queue for \`${msg.author.username}\``);
                 }
             });
@@ -72,7 +72,7 @@ module.exports = class playCommand extends Command {
                 msg.guild.voiceConnection.disconnect();//channel.leave();
                 music[msg.guild.id].playing = false;
                 console.log("Queue is empty!");
-                msg.channel.stopTyping();
+                //msg.channel.stopTyping();
                 msg.say("Ended!");
                 return;
             }
@@ -84,18 +84,18 @@ module.exports = class playCommand extends Command {
             let disp = connection.playStream(stream);
             disp.on('end', reason => {
                 reason ? console.log(reason) : console.log("Dispatcher ended");
-                msg.channel.startTyping();
+                //msg.channel.startTyping();
                 setTimeout(() => {
                     play(music[msg.guild.id].queue.shift());
                 }, 1000);
             });
-            msg.channel.stopTyping();
+            //msg.channel.stopTyping();
             return msg.say(`Now playing ${song.url} for <@${song.user}>`);
             //});
         }
 
         if (!msg.member.voiceChannel) {
-            msg.channel.stopTyping();
+            //msg.channel.stopTyping();
             return msg.reply(`Please be in a voice channel first!`);
         }
 
@@ -104,7 +104,7 @@ module.exports = class playCommand extends Command {
 
         youtube.search(url, 1, {type: "video"}, function(error, result) {
             if (error)  {
-                msg.channel.stopTyping();
+                //msg.channel.stopTyping();
                 return msg.say(`Error while searching for the video:  \`${error}\``);
             }
 
@@ -113,7 +113,7 @@ module.exports = class playCommand extends Command {
                 console.log("Result: " + result);
                 console.log("Result items: " + result.items);
                 console.log("Result items length " + result.items.length);
-                msg.channel.stopTyping();
+                //msg.channel.stopTyping();
                 return msg.say(`Something that couldn't go wrong, went wrong. ${anchor.client.owners[0]}, check the logs.`);
             } else {
                 let final_url = "http://www.youtube.com/watch?v=" + result.items[0].id.videoId;
