@@ -19,11 +19,11 @@ module.exports = class urbanCommand extends Command {
     }
 
     run(msg, { text }) {
-        msg.channel.startTyping();
+        //msg.channel.startTyping();
         //msg.channel.stopTyping();
         var targetWord = text == "" ? urban.random() : urban(text);
         targetWord.first(function(json) {
-            msg.channel.stopTyping();
+            //msg.channel.stopTyping();
             if (json) {
                 var message = "Urban Dictionary: **" +json.word + "**\n\n" + json.definition;
                 if (json.example) {
