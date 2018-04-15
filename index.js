@@ -29,7 +29,7 @@ bot.on('ready', () => {
     bot.generaldb.set("emo", false);
     bot.red_status = bot.users.find("username", edgelord).presence.status;
     bot.music = {};
-    bot.stream_status = false;
+    bot.stream_status = null;
     bot.stream_timer = setInterval(checkStream, 30000); //30000
     console.log("Logged in!");
     bot.edgy_handler = setInterval(() => {
@@ -114,6 +114,11 @@ function checkStream(offline) {
         res.on('end', () => {
             try {
                 const rnf = JSON.parse(rawData);
+                if (bot.stream_status === null) {
+                    bot.stream_status = rnf.online;
+                    console.log("Stream status initialized as " + bot.stream_status);
+                    return;
+                }
                 if (offline) {
                     bot.stream_status = rnf.online;
                     bot.stream_timer = setInterval(checkStream, 30000);
