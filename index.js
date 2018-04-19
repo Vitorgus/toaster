@@ -27,7 +27,7 @@ bot.on('ready', () => {
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
     bot.generaldb.set("tomato", false);                                 // Sets initial tomato vallue to false
-    bot.generaldb.set("victim", "RED");                                 // Sets the name of the tomato vicim. Love ya, Red.
+    bot.generaldb.set("victim2", "RED");                                 // Sets the name of the tomato vicim. Love ya, Red.
     bot.generaldb.set("emo", true);
     bot.red_status = bot.users.find("username", edgelord).presence.status;
     bot.music = {};
@@ -80,7 +80,7 @@ bot.on('message', message => {
         }
     }
     if (tomato) {
-        let name = bot.generaldb.get("victim");         // Gets the name of the tomato victim
+        let name = bot.generaldb.get("victim2");         // Gets the name of the tomato victim
         if (message.author.username == name){           // If it gets here, then it is activated, so it checks if the sender os the message is Red
             message.react("🍅");                         // If yes, the reacts with a tomato
         }
