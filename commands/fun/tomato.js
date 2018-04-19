@@ -24,7 +24,7 @@ module.exports = class tomatoCommand extends Command {
 			return msg.say("Activated 🍅");                // Sends a message confirming the activation
 		}
 		else if (toggle === "deactivate" || toggle === "off"){  // If the command is to deactivate eggplant mode
-			let name = this.client.generaldb.get("victim2');     // Gets vicitm name
+			let name = this.client.generaldb.get("victim2");     // Gets vicitm name
 			if (msg.author.username == name)
 				return msg.say(msg.guild.emojis.find("name", "cliffsmug"));
 			this.client.generaldb.set("tomato", false); 		// Sets the eggplant to false
