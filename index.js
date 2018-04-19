@@ -26,6 +26,8 @@ bot.on('ready', () => {
     bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
+    bot.generaldb.set("tomato", false);                                 // Sets initial tomato vallue to false
+    bot.generaldb.set("victim", "RED");                                 // Sets the name of the tomato vicim. Love ya, Red.
     bot.generaldb.set("emo", true);
     bot.red_status = bot.users.find("username", edgelord).presence.status;
     bot.music = {};
@@ -70,10 +72,18 @@ bot.on('message', message => {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
     let eggplant = bot.generaldb.get("eggplant")    // Gets the state from de DB
-    if (!eggplant) return;                          // If the mode is deactivated, stop
-    let name = bot.generaldb.get("victim");         // Gets the name of the eggplant victim
-    if (message.author.username == name){           // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
-        message.react("🍆");                         // If yes, the reacts with an eggplant
+    let tomato = bot.generaldb.get("tomato")
+    if (eggplant) {
+        let name = bot.generaldb.get("victim");         // Gets the name of the eggplant victim
+        if (message.author.username == name){           // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
+            message.react("🍆");                         // If yes, the reacts with an eggplant
+        }
+    }
+    if (tomato) {
+        let name = bot.generaldb.get("victim");         // Gets the name of the tomato victim
+        if (message.author.username == name){           // If it gets here, then it is activated, so it checks if the sender os the message is Red
+            message.react("🍅");                         // If yes, the reacts with a tomato
+        }
     }
 });
 
