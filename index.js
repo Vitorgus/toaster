@@ -26,7 +26,7 @@ bot.on('ready', () => {
     bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
-    bot.generaldb.set("emo", false);
+    bot.generaldb.set("emo", true);
     bot.red_status = bot.users.find("username", edgelord).presence.status;
     bot.music = {};
     bot.stream_status = null;
@@ -46,7 +46,8 @@ bot.on('ready', () => {
         if (bot.red_status == "offline" && status != "offline")
             bot.guilds.get(process.env.SHILOH_CHAT)
                 .channels.get(process.env.SHILOH_GENERAL)
-                .send("Crawling up from the pits of deep introspection, wise, yet broken because wisdom of one's own dark, charred soul makes one break down in tears, as deep and depressing as a linkin park song ... IT IS RED. THE EDGIEST BOLSHEVIK.");
+                .send("https://cdn.discordapp.com/attachments/330405008451305472/434818684620374026/unknown.png");
+                //.send("Crawling up from the pits of deep introspection, wise, yet broken because wisdom of one's own dark, charred soul makes one break down in tears, as deep and depressing as a linkin park song ... IT IS RED. THE EDGIEST BOLSHEVIK.");
         bot.red_status = status;
     }, 5000);
 });
