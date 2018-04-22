@@ -48,7 +48,8 @@ bot.on('ready', () => {
         if (bot.red_status == "offline" && status != "offline")
             bot.guilds.get(process.env.SHILOH_CHAT)
                 .channels.get(process.env.SHILOH_GENERAL)
-                .send("https://pre00.deviantart.net/0503/th/pre/i/2011/072/0/7/sexy_tomato_by_edome-d3bj8vd.png");
+                .send("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRStal-Dz8WGJxbY-TG37yHbRbEJ_YkckmfKLK6zS0ymm8ddnlogf8a0oN3");
+                //.send("https://pre00.deviantart.net/0503/th/pre/i/2011/072/0/7/sexy_tomato_by_edome-d3bj8vd.png");
                 //.send("https://cdn.discordapp.com/attachments/330405008451305472/434818684620374026/unknown.png");
                 //.send("Crawling up from the pits of deep introspection, wise, yet broken because wisdom of one's own dark, charred soul makes one break down in tears, as deep and depressing as a linkin park song ... IT IS RED. THE EDGIEST BOLSHEVIK.");
         bot.red_status = status;
