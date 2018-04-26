@@ -18,6 +18,7 @@ module.exports = class tomatoCommand extends Command {
 	}
 
 	run(msg, { toggle }) {
+		return msg.say("Not today!");
 		if (toggle === "activate" || toggle === "on"){  // If the command is to activate eggplant mode
 			this.client.generaldb.set("tomato", true);  // Sets true in the database
 			console.log("Tomato mode activated!");      // Logs it
