@@ -28,7 +28,7 @@ bot.on('ready', () => {
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
     bot.generaldb.set("tomato", false);                                 // Sets initial tomato vallue to false
     bot.generaldb.set("victim2", "RED");                                 // Sets the name of the tomato vicim. Love ya, Red.
-    bot.generaldb.set("emo", true);
+    bot.generaldb.set("emo", false);
     bot.red_status = bot.users.find("username", edgelord).presence.status;
     bot.music = {};
     bot.stream_status = null;
