@@ -5,7 +5,7 @@ module.exports = class tomatoCommand extends Command {
         super(client, {
             name: 'apple',
             group: 'fun',
-            memberName: 'apple'
+            memberName: 'apple',
             description: 'toggles on/off if the bot should apple every Red message',
             examples: ['jarvis apple activate', 'jarvis apple deactivate', 'jarvis apple on', 'jarvis apple off'],
             args: [{
