@@ -3,7 +3,7 @@ const { Command } = require('discord.js-commando');
 module.exports = class tomatoCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'apple,'
+            name: 'apple',
             group: 'fun',
             memberName: 'apple'
             description: 'toggles on/off if the bot should apple every Red message',
