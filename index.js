@@ -7,6 +7,7 @@ const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const stream = messages.stream;
 const edgelord = "RED";
+const quotes = require('./quotes.json');
 
 //Initializing bot
 const bot = new Commando.Client({
@@ -26,9 +27,9 @@ bot.on('ready', () => {
     bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
-    bot.generaldb.set("apple", false);                                 // Sets initial tomato vallue to false
-    bot.generaldb.set("victim2", "RED");                                 // Sets the name of the tomato vicim. Love ya, Red.
-    bot.generaldb.set("emo", false);
+    bot.generaldb.set("apple", false);                                  // Sets initial tomato vallue to false
+    bot.generaldb.set("victim2", "RED");                                // Sets the name of the tomato vicim. Love ya, Red.
+    bot.generaldb.set("emo", true);
     bot.red_status = bot.users.find("username", edgelord).presence.status;
     bot.music = {};
     bot.stream_status = null;
@@ -48,7 +49,8 @@ bot.on('ready', () => {
         if (bot.red_status == "offline" && status != "offline")
             bot.guilds.get(process.env.SHILOH_CHAT)
                 .channels.get(process.env.SHILOH_GENERAL)
-                .send("May Shiloh (cat) give you a lot of snuggles\nMay you don't get kidnapped (at least today)\nMay everything goes smoothly in your workplace\nMay your bones don't break due to old age\nMay Shiloh (comic) always attract new readers\nMay all this and much more good stuff happens to you, because I ran out of creativity on what to say\nYou are awesome\n\nHAPPY BIRTHDAY RED!!\n\n https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRMZGJ5Kqr0jaNQ5QCej58t73Tr3jPdM1yH2cTUbMbe9ecs-YTvgT0UbYVx");
+                .send(quotes["red"][Math.floor(Math.random() * quotes["red"].length)]); // Sends a random red quote
+                //.send("May Shiloh (cat) give you a lot of snuggles\nMay you don't get kidnapped (at least today)\nMay everything goes smoothly in your workplace\nMay your bones don't break due to old age\nMay Shiloh (comic) always attract new readers\nMay all this and much more good stuff happens to you, because I ran out of creativity on what to say\nYou are awesome\n\nHAPPY BIRTHDAY RED!!\n\n https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRMZGJ5Kqr0jaNQ5QCej58t73Tr3jPdM1yH2cTUbMbe9ecs-YTvgT0UbYVx");
                 //.send("https://cdn.discordapp.com/attachments/330405008451305472/437787256749686784/cuddle_puddle_time_with_fam.png"); // cuddle puddle
                 //.send("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRStal-Dz8WGJxbY-TG37yHbRbEJ_YkckmfKLK6zS0ymm8ddnlogf8a0oN3"); // prinkled donut
                 //.send("https://pre00.deviantart.net/0503/th/pre/i/2011/072/0/7/sexy_tomato_by_edome-d3bj8vd.png"); // sexy tomato
