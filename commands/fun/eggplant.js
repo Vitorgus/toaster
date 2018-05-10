@@ -26,8 +26,10 @@ module.exports = class eggplantCommand extends Command {
 		}
 		else if (toggle === "deactivate" || toggle === "off"){  // If the command is to deactivate eggplant mode
 			let name = this.client.generaldb.get("victim");     // Gets vicitm name
+			/*
 			if (msg.author.username == name)
 				return msg.say(msg.guild.emojis.find("name", "cliffsmug"));
+			*/
 			this.client.generaldb.set("eggplant", false); 		// Sets the eggplant to false
 			console.log("Eggplant mode deactivated!");    		// Logs it
 			return msg.say("Deactivated 🍆");              		// Sends a message confirming it
