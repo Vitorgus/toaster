@@ -15,7 +15,7 @@ module.exports = class redquoteCommand extends Command {
     }
 
     run(msg, args) {
-        if (msg.guild != process.env.SHILOH_CHAT) return;
+        //if (msg.guild != process.env.SHILOH_CHAT) return;
         quotes = this.client.quotes["red"];
         msg.reply(quotes[Math.floor(Math.random() * quotes.length)]);
     }
