@@ -7,7 +7,6 @@ const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const stream = messages.stream;
 const edgelord = "RED";
-const quotes = require('./quotes.json');
 
 //Initializing bot
 const bot = new Commando.Client({
@@ -19,11 +18,12 @@ const bot = new Commando.Client({
 
 bot.on('ready', () => {
     //bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');            // Sets the avatar image. Disabled cause Discord complains when setting the image too many times.
-    package = require('./package.json');                                // Gets the package.json file
+    bot.package = require('./package.json');                            // Gets the package.json file
     console.log(`Starting ${package.name} v${package.version}...`);     // Outputs in the log that the bot has started
     bot.user.setStatus("online");                                       // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setGame("Type 'jarvis help' for commands");                // Sets bot game
+    bot.quotes = require('./quotes.json');								// Load quotes
     bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
@@ -49,7 +49,7 @@ bot.on('ready', () => {
         if (bot.red_status == "offline" && status != "offline")
             bot.guilds.get(process.env.SHILOH_CHAT)
                 .channels.get(process.env.SHILOH_GENERAL)
-                .send(quotes["red"][Math.floor(Math.random() * quotes["red"].length)]); // Sends a random red quote
+                .send(bot.quotes["red"][Math.floor(Math.random() * bot.quotes["red"].length)]); // Sends a random red quote
                 //.send("May Shiloh (cat) give you a lot of snuggles\nMay you don't get kidnapped (at least today)\nMay everything goes smoothly in your workplace\nMay your bones don't break due to old age\nMay Shiloh (comic) always attract new readers\nMay all this and much more good stuff happens to you, because I ran out of creativity on what to say\nYou are awesome\n\nHAPPY BIRTHDAY RED!!\n\n https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRMZGJ5Kqr0jaNQ5QCej58t73Tr3jPdM1yH2cTUbMbe9ecs-YTvgT0UbYVx");
                 //.send("https://cdn.discordapp.com/attachments/330405008451305472/437787256749686784/cuddle_puddle_time_with_fam.png"); // cuddle puddle
                 //.send("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRStal-Dz8WGJxbY-TG37yHbRbEJ_YkckmfKLK6zS0ymm8ddnlogf8a0oN3"); // prinkled donut
