@@ -19,7 +19,7 @@ const bot = new Commando.Client({
 bot.on('ready', () => {
     //bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');            // Sets the avatar image. Disabled cause Discord complains when setting the image too many times.
     bot.package = require('./package.json');                            // Gets the package.json file
-    console.log(`Starting ${package.name} v${package.version}...`);     // Outputs in the log that the bot has started
+    console.log(`Starting ${bot.package.name} v${bot.package.version}...`);     // Outputs in the log that the bot has started
     bot.user.setStatus("online");                                       // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setGame("Type 'jarvis help' for commands");                // Sets bot game
