@@ -20,7 +20,7 @@ module.exports = class redquoteCommand extends Command {
         user = user.toLowerCase();
         let quotes_array = this.client.quotes_array;
         if (user == "status") {
-            let text = `Number of quoted users: ${quotes_array.length}\n`;
+            let text = `\nNumber of quoted users: ${quotes_array.length}\n`;
             quotes_array.forEach(person => {
                 text += `\t- ${person['name']}: ${person['quotes'].length} quotes\n`;
             });
