@@ -17,7 +17,7 @@ module.exports = class redquoteCommand extends Command {
     }
 
     async run(msg, { user }) {
-        //user = user.toLowerCase();
+        user = user.toLowerCase();
         let quotes_array = this.client.quotes_array;
         if (user == "status") {
             let text = `Number of quoted users: \`${quotes_array.length}\`\n`;
@@ -26,10 +26,11 @@ module.exports = class redquoteCommand extends Command {
             });
             return msg.reply(text);
         }
-        await quotes_array.forEach(person => {
+        for (let i in quotes_array) {
+            let person = quotes_array[i];
             if (person['name'] == user) 
                 return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
-        });
+        }
         return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
         //if (!quotes[user]) return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
         // return msg.reply(quotes[user][Math.floor(Math.random() * quotes[user].length)]);
