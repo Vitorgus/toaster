@@ -28,7 +28,7 @@ module.exports = class redquoteCommand extends Command {
         }
         quotes_array.forEach(person => {
             if (person['name'] == user) 
-                return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
+                return await msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
         });
         return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
         //if (!quotes[user]) return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
