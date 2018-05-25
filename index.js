@@ -19,11 +19,11 @@ const bot = new Commando.Client({
 bot.on('ready', () => {
     //bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');            // Sets the avatar image. Disabled cause Discord complains when setting the image too many times.
     bot.package = require('./package.json');                            // Gets the package.json file
-    console.log(`Starting ${bot.package.name} v${bot.package.version}...`);     // Outputs in the log that the bot has started
+    console.log(`Starting ${bot.package.name} v${bot.package.version}...`);// Outputs in the log that the bot has started
     bot.user.setStatus("online");                                       // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setGame("Type 'jarvis help' for commands");                // Sets bot game
-    bot.quotes = require('./quotes.json');								// Load quotes
+    bot.quotes_array = require('./quotes.json');						// Load quotes
     bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.

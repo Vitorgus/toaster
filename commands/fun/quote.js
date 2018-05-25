@@ -17,16 +17,21 @@ module.exports = class redquoteCommand extends Command {
     }
 
     run(msg, { user }) {
-        user = user.toLowerCase();
-        let quotes = this.client.quotes;
+        //user = user.toLowerCase();
+        let quotes_array = this.client.quotes_array;
         if (user == "status") {
-            let text = `Number of quoted users: \`${Object.keys(quotes).length}\`\n`;
-            for (let person in quotes) {
-                text += `\t ${person} : \t${quotes[person].length} quotes\n`;
-            }
+            let text = `Number of quoted users: \`${quotes_array.length}\`\n`;
+            quotes.array.forEach(person => {
+                text += `\t ${person['name']} : \t${person['quotes'].length} quotes\n`;
+            });
             return msg.reply(text);
         }
-        if (!quotes[user]) return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
-        return msg.reply(quotes[user][Math.floor(Math.random() * quotes[user].length)]);
+        quotes.array.forEach(person => {
+            if (person['name'] == user) 
+                return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
+        });
+        return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
+        //if (!quotes[user]) return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
+        // return msg.reply(quotes[user][Math.floor(Math.random() * quotes[user].length)]);
     }
 };
