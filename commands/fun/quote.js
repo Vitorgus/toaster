@@ -16,7 +16,7 @@ module.exports = class redquoteCommand extends Command {
         });
     }
 
-    run(msg, { user }) {
+    async run(msg, { user }) {
         //user = user.toLowerCase();
         let quotes_array = this.client.quotes_array;
         if (user == "status") {
