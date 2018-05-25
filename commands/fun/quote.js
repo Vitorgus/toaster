@@ -9,7 +9,7 @@ module.exports = class redquoteCommand extends Command {
             description: 'Gives a random quote from the specified user',
             examples: ['jarvis quote red', 'jarvis quote steam', 'jarvis quote zorg'],
             args: [{
-                key: 'text',
+                key: 'user',
                 prompt: 'From who do you want a quote from?',
                 type: 'string'
             }]
@@ -18,7 +18,7 @@ module.exports = class redquoteCommand extends Command {
 
     run(msg, { user }) {
         let quotes = this.client.quotes;
-        if (!quotes[user]) return msg.reply(`sorry, but I have no quotes on ${user}. Have you typoed their name?`);
+        if (!quotes[user]) return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
         return msg.reply(quotes[user][Math.floor(Math.random() * quotes[user].length)]);
     }
 };
