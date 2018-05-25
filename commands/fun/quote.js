@@ -17,7 +17,15 @@ module.exports = class redquoteCommand extends Command {
     }
 
     run(msg, { user }) {
+        user = user.toLowerCase();
         let quotes = this.client.quotes;
+        if (user == "status") {
+            let text = `Number of quoted users: \`${Object.keys(quotes).length}\`\n`;
+            for (people in quotes) {
+                text += `\t ${user} : ${quotes[user].length} quotes`;
+            }
+            return msg.reply(text);
+        }
         if (!quotes[user]) return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
         return msg.reply(quotes[user][Math.floor(Math.random() * quotes[user].length)]);
     }
