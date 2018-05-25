@@ -21,7 +21,7 @@ module.exports = class redquoteCommand extends Command {
         let quotes = this.client.quotes;
         if (user == "status") {
             let text = `Number of quoted users: \`${Object.keys(quotes).length}\`\n`;
-            for (people in quotes) {
+            for (let people in quotes) {
                 text += `\t ${user} : ${quotes[user].length} quotes`;
             }
             return msg.reply(text);
