@@ -10,7 +10,7 @@ module.exports = class redquoteCommand extends Command {
             examples: ['jarvis quote red', 'jarvis quote steam', 'jarvis quote zorg'],
             args: [{
                 key: 'user',
-                prompt: 'From who do you want a quote from?',
+                prompt: 'From who do you want a quote from? Or type \'status\' to check how many quotes are there.',
                 type: 'string'
             }]
         });
@@ -21,8 +21,8 @@ module.exports = class redquoteCommand extends Command {
         let quotes = this.client.quotes;
         if (user == "status") {
             let text = `Number of quoted users: \`${Object.keys(quotes).length}\`\n`;
-            for (let people in quotes) {
-                text += `\t ${user} : ${quotes[user].length} quotes`;
+            for (let person in quotes) {
+                text += `\t ${person} : ${quotes[person].length} quotes`;
             }
             return msg.reply(text);
         }
