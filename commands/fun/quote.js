@@ -22,7 +22,7 @@ module.exports = class redquoteCommand extends Command {
         if (user == "status") {
             let text = `Number of quoted users: \`${Object.keys(quotes).length}\`\n`;
             for (let person in quotes) {
-                text += `\t ${person} : ${quotes[person].length} quotes`;
+                text += `\t ${person} : ${quotes[person].length} quotes\n`;
             }
             return msg.reply(text);
         }
