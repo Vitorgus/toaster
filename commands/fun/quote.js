@@ -21,12 +21,12 @@ module.exports = class redquoteCommand extends Command {
         let quotes_array = this.client.quotes_array;
         if (user == "status") {
             let text = `Number of quoted users: \`${quotes_array.length}\`\n`;
-            quotes.array.forEach(person => {
+            quotes_array.forEach(person => {
                 text += `\t ${person['name']} : \t${person['quotes'].length} quotes\n`;
             });
             return msg.reply(text);
         }
-        quotes.array.forEach(person => {
+        quotes_array.forEach(person => {
             if (person['name'] == user) 
                 return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
         });
