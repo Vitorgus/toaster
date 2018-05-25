@@ -26,9 +26,9 @@ module.exports = class redquoteCommand extends Command {
             });
             return msg.reply(text);
         }
-        quotes_array.forEach(person => {
+        await quotes_array.forEach(person => {
             if (person['name'] == user) 
-                return await msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
+                return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
         });
         return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
         //if (!quotes[user]) return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
