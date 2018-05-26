@@ -31,11 +31,6 @@ module.exports = class redquoteCommand extends Command {
         });
         if (person)
             return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
-        /*for (let i in quotes_array) {
-            let person = quotes_array[i];
-            if (person['name'] == user) 
-                return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
-        }*/
         return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
     }
 };
