@@ -19,18 +19,23 @@ module.exports = class redquoteCommand extends Command {
     async run(msg, { user }) {
         user = user.toLowerCase();
         let quotes_array = this.client.quotes_array;
-        if (user == "status") {
+        if (user === "status") {
             let text = `\nNumber of quoted users: ${quotes_array.length}\n`;
             quotes_array.forEach(person => {
                 text += `\t- ${person['name']}: ${person['quotes'].length} quotes\n`;
             });
             return msg.reply(text);
         }
-        for (let i in quotes_array) {
+        let person = quotes_array.find(obj => {
+            return obj['name'] === user;
+        });
+        if (person)
+            return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
+        /*for (let i in quotes_array) {
             let person = quotes_array[i];
             if (person['name'] == user) 
                 return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
-        }
+        }*/
         return msg.reply(`sorry but I have no quotes on \`${user}\`. Have you typoed their name?`);
     }
 };
