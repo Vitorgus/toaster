@@ -47,7 +47,7 @@ bot.on('ready', () => {
         */
         if (status == bot.red_status) return;
         if (bot.red_status == "offline" && status != "offline"){
-        	let red = quotes_array.find(obj => {
+        	let red = bot.quotes_array.find(obj => {
         		return obj['name'] === "red";
         	});
             bot.guilds.get(process.env.SHILOH_CHAT)
