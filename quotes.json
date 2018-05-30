@@ -75,7 +75,9 @@
             "https://cdn.discordapp.com/attachments/342036566065020929/449365513110552577/redleaves.png",
             "https://cdn.discordapp.com/attachments/342036566065020929/449365515786256386/redtieszorg.png",
             "https://cdn.discordapp.com/attachments/342036566065020929/449365795609247765/redisneverokay.png",
-            "https://cdn.discordapp.com/attachments/342036566065020929/449366732310839318/glynn.jpg"
+            "https://cdn.discordapp.com/attachments/342036566065020929/449366732310839318/glynn.jpg",
+            "https://cdn.discordapp.com/attachments/450067107913269258/451118451080167434/unknown.png",
+            "https://cdn.discordapp.com/attachments/450067107913269258/451118610321244181/unknown.png"
         ]
     },
     {
@@ -99,12 +101,20 @@
         ]
     },
     {
-        "name": "flynn",
+        "name": "nick",
         "quotes": [
-            "https://cdn.discordapp.com/attachments/332277411674849280/445386014366892045/ushit.png",
-            "https://cdn.discordapp.com/attachments/330405008451305472/445385682400313366/unknown.png",
-            "https://cdn.discordapp.com/attachments/342036566065020929/449366615465918465/buttnutflynn.png",
-            "https://cdn.discordapp.com/attachments/342036566065020929/449366716212969472/flynnandredbutts.png"
+            "https://cdn.discordapp.com/attachments/332277411674849280/440957985456652311/IMG_20180501_162820.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/443561081839812608/IMG_20180506_124336.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/443561081839812611/IMG_20180506_124711.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/444988926944608278/IMG_20180512_185421.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/444988927695257610/IMG_20180512_185456.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/445386008469700628/ass.png",
+            "https://cdn.discordapp.com/attachments/332277411674849280/446738756557471755/IMG_20180517_145828.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/451121536129040394/IMG_20180524_092028.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/451121536129040395/IMG_20180524_093312.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/451121535110086666/IMG_20180527_112646.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/451121535110086669/IMG_20180523_160528.jpg",
+            "https://cdn.discordapp.com/attachments/330405008451305472/451159278980562955/IMG_20180529_200549.jpg"
         ]
     },
     {
@@ -113,14 +123,34 @@
             "https://cdn.discordapp.com/attachments/342036566065020929/449366752477052948/missing_meat_zorg.png",
             "https://cdn.discordapp.com/attachments/342036566065020929/449366839986749460/steamisgud.png",
             "https://cdn.discordapp.com/attachments/342036566065020929/449366904340086834/tiem.png",
-            "https://cdn.discordapp.com/attachments/390255491747545098/445239825986093058/unknown.png"
+            "https://cdn.discordapp.com/attachments/390255491747545098/445239825986093058/unknown.png",
+            "https://cdn.discordapp.com/attachments/450067107913269258/451117019790573578/Zorg_quote_1.png",
+            "https://cdn.discordapp.com/attachments/450067107913269258/451117276213542912/unknown.png",
+            "https://cdn.discordapp.com/attachments/450067107913269258/451117551397765123/Quote_Zorg.PNG",
+            "https://cdn.discordapp.com/attachments/450067107913269258/451117831011172382/unknown.png",
+            "https://cdn.discordapp.com/attachments/450067107913269258/451118864735141888/unknown.png",
+            "https://cdn.discordapp.com/attachments/330405008451305472/451160156508651520/unknown.png"
+        ]
+    },
+    {
+        "name": "flynn",
+        "quotes": [
+            "https://cdn.discordapp.com/attachments/332277411674849280/445386014366892045/ushit.png",
+            "https://cdn.discordapp.com/attachments/330405008451305472/445385682400313366/unknown.png",
+            "https://cdn.discordapp.com/attachments/342036566065020929/449366615465918465/buttnutflynn.png",
+            "https://cdn.discordapp.com/attachments/342036566065020929/449366716212969472/flynnandredbutts.png",
+            "https://cdn.discordapp.com/attachments/332277411674849280/411303970645082123/nekd.png",
+            "https://cdn.discordapp.com/attachments/332277411674849280/386895364583718923/IMG_20171125_163824.jpg",
+            "https://cdn.discordapp.com/attachments/450067107913269258/451120100368449536/unknown.png"
         ]
     },
     {
         "name": "fae",
         "quotes": [
             "https://cdn.discordapp.com/attachments/342036566065020929/449366653583753218/dickingthem.png",
-            "https://cdn.discordapp.com/attachments/342036566065020929/449366771200425994/slimasho.png"
+            "https://cdn.discordapp.com/attachments/342036566065020929/449366771200425994/slimasho.png",
+            "https://cdn.discordapp.com/attachments/332277411674849280/383844839604617227/IMG_20171125_015519.jpg",
+            "https://cdn.discordapp.com/attachments/332277411674849280/386895559987953665/IMG_20171124_000555.jpg"
         ]
     }
 ]
