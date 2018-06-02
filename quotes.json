@@ -153,7 +153,8 @@
             "https://cdn.discordapp.com/attachments/450067107913269258/451120100368449536/unknown.png",
             "https://cdn.discordapp.com/attachments/330405008451305472/451367524626464779/flynndugu.PNG",
             "https://cdn.discordapp.com/attachments/330405008451305472/451367724682313740/finishingsentences.PNG",
-            "https://cdn.discordapp.com/attachments/330405008451305472/451367915703369728/cad.PNG"
+            "https://cdn.discordapp.com/attachments/330405008451305472/451367915703369728/cad.PNG",
+            "https://cdn.discordapp.com/attachments/342036566065020929/452296886985162773/flynnmurderisfun.png"
         ]
     },
     {
@@ -174,17 +175,18 @@
         ]
     },
     {
+        "name": "rad",
+        "quotes": [
+            "https://cdn.discordapp.com/attachments/330405008451305472/452286484448280581/rabiccoon.png",
+            "https://cdn.discordapp.com/attachments/330405008451305472/452285953088946186/image.png",
+            "https://cdn.discordapp.com/attachments/342036566065020929/452296470587113482/rabidali.png"
+        ]
+    },
+    {
         "name": "mil",
         "quotes": [
             "https://cdn.discordapp.com/attachments/332277411674849280/436316939711807488/IMG_20180418_210735.jpg",
             "https://cdn.discordapp.com/attachments/330405008451305472/451582635484119050/IMG_20180531_000754.jpg"
-        ]
-    },
-    {
-        "name": "rad",
-        "quotes": [
-            "https://cdn.discordapp.com/attachments/330405008451305472/452286484448280581/rabiccoon.png",
-            "https://cdn.discordapp.com/attachments/330405008451305472/452285953088946186/image.png"
         ]
     },
     {
