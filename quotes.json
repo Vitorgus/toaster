@@ -119,7 +119,8 @@
             "https://cdn.discordapp.com/attachments/332277411674849280/451121535110086669/IMG_20180523_160528.jpg",
             "https://cdn.discordapp.com/attachments/330405008451305472/451159278980562955/IMG_20180529_200549.jpg",
             "https://cdn.discordapp.com/attachments/390255491747545098/451515680831963146/nickdonteatpeople.PNG",
-            "https://cdn.discordapp.com/attachments/390255491747545098/451516307251134475/nicknevereatyou.PNG"
+            "https://cdn.discordapp.com/attachments/390255491747545098/451516307251134475/nicknevereatyou.PNG",
+            "https://cdn.discordapp.com/attachments/332277411674849280/451121535705546763/IMG_20180527_112700.jpg"
         ]
     },
     {
@@ -136,7 +137,8 @@
             "https://cdn.discordapp.com/attachments/450067107913269258/451118864735141888/unknown.png",
             "https://cdn.discordapp.com/attachments/330405008451305472/451160156508651520/unknown.png",
             "https://cdn.discordapp.com/attachments/330405008451305472/451368161544241153/lewdzorg.PNG",
-            "https://cdn.discordapp.com/attachments/390255491747545098/451515146985144331/zorgdontwannachokeonme.PNG"
+            "https://cdn.discordapp.com/attachments/390255491747545098/451515146985144331/zorgdontwannachokeonme.PNG",
+            "https://cdn.discordapp.com/attachments/342036566065020929/452287966396678155/zorg_eats_ass.png"
         ]
     },
     {
@@ -178,9 +180,28 @@
         ]
     },
     {
+        "name": "rad",
+        "quotes": [
+            "https://cdn.discordapp.com/attachments/330405008451305472/452286484448280581/rabiccoon.png",
+            "https://cdn.discordapp.com/attachments/330405008451305472/452285953088946186/image.png"
+        ]
+    },
+    {
         "name": "henry",
         "quotes": [
             "https://cdn.discordapp.com/attachments/330405008451305472/451513831483637778/IMG_20180530_193431.jpg"
+        ]
+    },
+    {
+        "name": "bandit",
+        "quotes": [
+            "https://cdn.discordapp.com/attachments/342036566065020929/452291928759730176/everything_gon_kill_you.png"
+        ]
+    },
+    {
+        "name": "mys",
+        "quotes": [
+            "https://cdn.discordapp.com/attachments/342036566065020929/452288398565179404/ass_doughnuts.png"
         ]
     }
 ]
