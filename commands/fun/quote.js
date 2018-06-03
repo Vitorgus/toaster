@@ -25,7 +25,7 @@ module.exports = class redquoteCommand extends Command {
                 total_quotes += person['quotes'].length;
             });
             let text = `\nNumber of total quotes: ${total_quotes}\n`;
-            text += `\nNumber of quoted users: ${quotes_array.length}\n`;
+            text += `Number of quoted users: ${quotes_array.length}\n`;
             quotes_array.forEach(person => {
                 text += `\t- ${person['name']}: ${person['quotes'].length} quotes\n`;
             });
