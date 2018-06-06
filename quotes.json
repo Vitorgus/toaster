@@ -1,6 +1,8 @@
 [
     {
-        "name": "red",
+        "name": [
+            "red"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/330405008451305472/443565846904832020/really_unfortunate.PNG",
             "https://cdn.discordapp.com/attachments/330405008451305472/443565870543798282/ineedtoneverleaveyouguysalone.PNG",
@@ -93,7 +95,9 @@
         ]
     },
     {
-        "name": "zorg",
+        "name": [
+            "zorg"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/342036566065020929/449366752477052948/missing_meat_zorg.png",
             "https://cdn.discordapp.com/attachments/342036566065020929/449366839986749460/steamisgud.png",
@@ -122,7 +126,9 @@
         ]
     },
     {
-        "name": "nick",
+        "name": [
+            "nick"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/332277411674849280/440957985456652311/IMG_20180501_162820.jpg",
             "https://cdn.discordapp.com/attachments/332277411674849280/443561081839812608/IMG_20180506_124336.jpg",
@@ -151,7 +157,9 @@
         ]
     },
     {
-        "name": "steam",
+        "name": [
+            "steam"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/342036566065020929/449366600584265738/bad_people.png",
             "https://cdn.discordapp.com/attachments/342036566065020929/449366630682591262/CDCJ4074.jpg",
@@ -176,7 +184,9 @@
         ]
     },
     {
-        "name": "flynn",
+        "name": [
+            "flynn"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/332277411674849280/445386014366892045/ushit.png",
             "https://cdn.discordapp.com/attachments/330405008451305472/445385682400313366/unknown.png",
@@ -196,7 +206,9 @@
         ]
     },
     {
-        "name": "goodface",
+        "name": [
+            "goodface"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/330405008451305472/451368013036257280/doesflynnischeese.PNG",
             "https://cdn.discordapp.com/attachments/330405008451305472/451583593765142530/IMG_20180531_001153.jpg",
@@ -211,7 +223,9 @@
         ]
     },
     {
-        "name": "fae",
+        "name": [
+            "fae"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/342036566065020929/449366653583753218/dickingthem.png",
             "https://cdn.discordapp.com/attachments/342036566065020929/449366771200425994/slimasho.png",
@@ -222,7 +236,9 @@
         ]
     },
     {
-        "name": "rad",
+        "name": [
+            "rad"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/330405008451305472/452286484448280581/rabiccoon.png",
             "https://cdn.discordapp.com/attachments/330405008451305472/452285953088946186/image.png",
@@ -233,7 +249,9 @@
         ]
     },
     {
-        "name": "ele",
+        "name": [
+            "ele"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/452557827844734989/452558332490809346/EleLoves.png",
             "https://cdn.discordapp.com/attachments/337746759805566978/453246138930167828/Screen_Shot_2018-06-04_at_12.png",
@@ -244,7 +262,9 @@
         ]
     },
     {
-        "name": "cheeky",
+        "name": [
+            "cheeky"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/452557827844734989/452558326719447043/CheekySoBig.png",
             "https://cdn.discordapp.com/attachments/337746759805566978/453246187122982912/Screen_Shot_2018-06-04_at_12.png",
@@ -253,7 +273,9 @@
         ]
     },
     {
-        "name": "nugget",
+        "name": [
+            "nugget"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/452557827844734989/452558413692534806/NuggetAsBig.jpg",
             "https://cdn.discordapp.com/attachments/337746759805566978/453246609204183050/Screen_Shot_2018-05-10_at_7.png",
@@ -262,7 +284,9 @@
         ]
     },
     {
-        "name": "mil",
+        "name": [
+            "mil"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/332277411674849280/436316939711807488/IMG_20180418_210735.jpg",
             "https://cdn.discordapp.com/attachments/330405008451305472/451582635484119050/IMG_20180531_000754.jpg",
@@ -270,38 +294,50 @@
         ]
     },
     {
-        "name": "henry",
+        "name": [
+            "henry"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/330405008451305472/451513831483637778/IMG_20180530_193431.jpg",
             "https://cdn.discordapp.com/attachments/342036566065020929/452295990259613697/henryshake.png"
         ]
     },
     {
-        "name": "bandit",
+        "name": [
+            "bandit"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/342036566065020929/452291928759730176/everything_gon_kill_you.png"
         ]
     },
     {
-        "name": "mys",
+        "name": [
+            "mys"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/342036566065020929/452288398565179404/ass_doughnuts.png"
         ]
     },
     {
-        "name": "flik",
+        "name": [
+            "flik"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/452557827844734989/452558428842360832/shame.png"
         ]
     },
     {
-        "name": "goro",
+        "name": [
+            "goro"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/452557827844734989/452558438178750468/stabbystab.png"
         ]
     },
     {
-        "name": "azure",
+        "name": [
+            "azure"
+        ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/337746759805566978/453247246691991572/Screen_Shot_2018-03-30_at_9.png"
         ]

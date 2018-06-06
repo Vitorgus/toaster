@@ -27,12 +27,12 @@ module.exports = class redquoteCommand extends Command {
             let text = `\nNumber of total quotes: ${total_quotes}\n`;
             text += `Number of quoted users: ${quotes_array.length}\n`;
             quotes_array.forEach(person => {
-                text += `\t- ${person['name']}: ${person['quotes'].length} quotes\n`;
+                text += `\t- ${person['name'][0]}: ${person['quotes'].length} quotes\n`;
             });
             return msg.reply(text);
         }
         let person = quotes_array.find(obj => {
-            return obj['name'] === user;
+            return obj['name'].includes(user);
         });
         if (person)
             return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);

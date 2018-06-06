@@ -48,7 +48,7 @@ bot.on('ready', () => {
         if (status == bot.red_status) return;
         if (bot.red_status == "offline" && status != "offline"){
         	let red = bot.quotes_array.find(obj => {
-        		return obj['name'] === "red";
+        		return obj['name'].includes("red");
         	});
             bot.guilds.get(process.env.SHILOH_CHAT)
                 .channels.get(process.env.SHILOH_GENERAL)
