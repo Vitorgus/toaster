@@ -158,7 +158,8 @@
     },
     {
         "name": [
-            "steam"
+            "steam",
+            "steamplow"
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/342036566065020929/449366600584265738/bad_people.png",
@@ -238,7 +239,8 @@
     },
     {
         "name": [
-            "rad"
+            "rad",
+            "ali"
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/330405008451305472/452286484448280581/rabiccoon.png",
@@ -251,7 +253,8 @@
     },
     {
         "name": [
-            "ele"
+            "ele",
+            "eleiinium"
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/452557827844734989/452558332490809346/EleLoves.png",
@@ -264,7 +267,8 @@
     },
     {
         "name": [
-            "cheeky"
+            "cheeky",
+            "sheeps"
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/452557827844734989/452558326719447043/CheekySoBig.png",
@@ -275,7 +279,8 @@
     },
     {
         "name": [
-            "nugget"
+            "nugget",
+            "nuggs"
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/452557827844734989/452558413692534806/NuggetAsBig.jpg",
@@ -286,7 +291,8 @@
     },
     {
         "name": [
-            "mil"
+            "mil",
+            "millie"
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/332277411674849280/436316939711807488/IMG_20180418_210735.jpg",
@@ -296,7 +302,8 @@
     },
     {
         "name": [
-            "henry"
+            "henry",
+            "jm"
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/330405008451305472/451513831483637778/IMG_20180530_193431.jpg",
@@ -329,7 +336,9 @@
     },
     {
         "name": [
-            "goro"
+            "goro",
+            "lord gorogok",
+            "gorogok"
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/452557827844734989/452558438178750468/stabbystab.png"
@@ -337,7 +346,8 @@
     },
     {
         "name": [
-            "azure"
+            "azure",
+            "az"
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/337746759805566978/453247246691991572/Screen_Shot_2018-03-30_at_9.png"
