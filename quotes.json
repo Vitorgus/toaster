@@ -400,6 +400,16 @@
     },
     {
         "name": [
+            "goat",
+            "gay goat"
+        ],
+        "quotes": [
+            "https://cdn.discordapp.com/attachments/446118279220690954/446118384724344853/icansmelltheshitthroughmyscreen.PNG",
+            "https://cdn.discordapp.com/attachments/393543523208527884/455384481784791081/IMG_20180610_115507.jpg"
+        ]
+    },
+    {
+        "name": [
             "bandit"
         ],
         "quotes": [
@@ -430,15 +440,6 @@
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/446116811231199232/446117533116923905/rememberkidsdontshoverandomthingsupyourass.PNG"
-        ]
-    },
-    {
-        "name": [
-            "goat",
-            "gay goat"
-        ],
-        "quotes": [
-            "https://cdn.discordapp.com/attachments/446118279220690954/446118384724344853/icansmelltheshitthroughmyscreen.PNG"
         ]
     }
 ]
