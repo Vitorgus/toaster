@@ -32,8 +32,8 @@ module.exports = class redquoteCommand extends Command {
             return msg.reply(text);
         }
         if (user === "random") {
-            random = Math.floor(Math.random() * quotes_array.length);
-            person = quotes_array[random];
+            let random = Math.floor(Math.random() * quotes_array.length);
+            let person = quotes_array[random];
             return msg.reply(person['quotes'][Math.floor(Math.random() * person['quotes'].length)]);
         }
         let person = quotes_array.find(obj => {
