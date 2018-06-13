@@ -28,8 +28,8 @@ bot.on('ready', () => {
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
     bot.generaldb.set("apple", false);                                  // Sets initial tomato vallue to false
-    bot.generaldb.set("victim2", "RED");                                // Sets the name of the tomato vicim. Love ya, Red.
-    bot.generaldb.set("emo", false);
+    bot.generaldb.set("victim2", "GoodFace");                           // Sets the name of the tomato vicim. Love ya, Red.
+    bot.generaldb.set("emo", true);
     bot.red_status = bot.users.find("username", edgelord).presence.status;
     bot.music = {};
     bot.stream_status = null;
@@ -47,12 +47,13 @@ bot.on('ready', () => {
         */
         if (status == bot.red_status) return;
         if (bot.red_status == "offline" && status != "offline"){
-        	let red = bot.quotes_array.find(obj => {
+        	/*let red = bot.quotes_array.find(obj => {
         		return obj['name'].includes("red");
-        	});
+        	});*/
             bot.guilds.get(process.env.SHILOH_CHAT)
                 .channels.get(process.env.SHILOH_GENERAL)
-                .send(red["quotes"][Math.floor(Math.random() * red["quotes"].length)]); // Sends a random red quote
+                .send("https://cdn.discordapp.com/attachments/450067107913269258/456571650146566174/goosface.png"); //Goose image for GoodFace
+                //.send(red["quotes"][Math.floor(Math.random() * red["quotes"].length)]); // Sends a random red quote
                 //.send("May Shiloh (cat) give you a lot of snuggles\nMay you don't get kidnapped (at least today)\nMay everything goes smoothly in your workplace\nMay your bones don't break due to old age\nMay Shiloh (comic) always attract new readers\nMay all this and much more good stuff happens to you, because I ran out of creativity on what to say\nYou are awesome\n\nHAPPY BIRTHDAY RED!!\n\n https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRMZGJ5Kqr0jaNQ5QCej58t73Tr3jPdM1yH2cTUbMbe9ecs-YTvgT0UbYVx");
                 //.send("https://cdn.discordapp.com/attachments/330405008451305472/437787256749686784/cuddle_puddle_time_with_fam.png"); // cuddle puddle
                 //.send("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRStal-Dz8WGJxbY-TG37yHbRbEJ_YkckmfKLK6zS0ymm8ddnlogf8a0oN3"); // prinkled donut
