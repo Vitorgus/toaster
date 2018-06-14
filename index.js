@@ -6,7 +6,7 @@ const https = require('https');
 const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const stream = messages.stream;
-const edgelord = "RED";
+const edgelord = process.env.GOODFACE;
 
 //Initializing bot
 const bot = new Commando.Client({
@@ -28,7 +28,7 @@ bot.on('ready', () => {
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
     bot.generaldb.set("apple", false);                                  // Sets initial tomato vallue to false
-    bot.generaldb.set("victim2", "GoodFace");                           // Sets the name of the tomato vicim. Love ya, Red.
+    bot.generaldb.set("victim2", "RED");                           // Sets the name of the tomato vicim. Love ya, Red.
     bot.generaldb.set("emo", true);
     bot.red_status = bot.users.find("username", edgelord).presence.status;
     bot.music = {};
@@ -40,7 +40,7 @@ bot.on('ready', () => {
             clearInterval(bot.edgy_handler);
             return;
         }
-        let status = bot.users.find("username", edgelord).presence.status;
+        let status = bot.users.find("id", edgelord).presence.status;
         /*
         console.log("Status = " + status);          //OFF
         console.log("REd status = " + bot.red_status);//ON
