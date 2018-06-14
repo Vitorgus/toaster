@@ -30,7 +30,8 @@ bot.on('ready', () => {
     bot.generaldb.set("apple", false);                                  // Sets initial tomato vallue to false
     bot.generaldb.set("victim2", "RED");                           // Sets the name of the tomato vicim. Love ya, Red.
     bot.generaldb.set("emo", true);
-    bot.red_status = bot.users.find("username", edgelord).presence.status;
+    bot.red_status = bot.guilds.get(process.env.SHILOH_CHAT)
+        .members.get(edgelord).presence.status;
     bot.music = {};
     bot.stream_status = null;
     bot.stream_timer = setInterval(checkStream, 30000); //30000
