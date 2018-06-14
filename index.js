@@ -40,7 +40,8 @@ bot.on('ready', () => {
             clearInterval(bot.edgy_handler);
             return;
         }
-        let status = bot.users.find("id", edgelord).presence.status;
+        let guild = bot.guilds.get(process.env.SHILOH_CHAT);
+        let status = guild.members.get(edgelord).presence.status;
         /*
         console.log("Status = " + status);          //OFF
         console.log("REd status = " + bot.red_status);//ON
@@ -50,8 +51,7 @@ bot.on('ready', () => {
         	/*let red = bot.quotes_array.find(obj => {
         		return obj['name'].includes("red");
         	});*/
-            bot.guilds.get(process.env.SHILOH_CHAT)
-                .channels.get(process.env.SHILOH_GENERAL)
+            guild.channels.get(process.env.SHILOH_GENERAL)
                 .send("https://cdn.discordapp.com/attachments/450067107913269258/456571650146566174/goosface.png"); //Goose image for GoodFace
                 //.send(red["quotes"][Math.floor(Math.random() * red["quotes"].length)]); // Sends a random red quote
                 //.send("May Shiloh (cat) give you a lot of snuggles\nMay you don't get kidnapped (at least today)\nMay everything goes smoothly in your workplace\nMay your bones don't break due to old age\nMay Shiloh (comic) always attract new readers\nMay all this and much more good stuff happens to you, because I ran out of creativity on what to say\nYou are awesome\n\nHAPPY BIRTHDAY RED!!\n\n https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRMZGJ5Kqr0jaNQ5QCej58t73Tr3jPdM1yH2cTUbMbe9ecs-YTvgT0UbYVx");
