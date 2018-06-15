@@ -197,7 +197,7 @@ function checkFullMoon(offline) {
         res.on('end', () => {
             try {
                 const moon = JSON.parse(rawData);
-                if (moon.isitfullmoon.status)
+                if (moon.isitfullmoon.status === "Yes")
                     bot.fullMoon = true;
                 else
                     bot.fullMoon = false;
