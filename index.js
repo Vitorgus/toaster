@@ -36,6 +36,7 @@ bot.on('ready', () => {
     bot.stream_status = null;
     bot.stream_timer = setInterval(checkStream, 30000); //30000
     bot.fullMoon = null;
+    checkFullMoon();
     bot.edgy_handler = setInterval(() => {
         if (!bot.generaldb.get("emo")) {
             clearInterval(bot.edgy_handler);
@@ -199,7 +200,7 @@ function checkFullMoon(offline) {
                     bot.fullMoon = true;
                 else
                     bot.fullMoon = false;
-                console.log("Full moon variable initialized as " + bot.fullMoon)
+                console.log("Full moon variable initialized as " + bot.fullMoon);
             } catch (e) {
                 console.error("Error while parsing full moon JSON: " + e.message);
             }
