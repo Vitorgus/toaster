@@ -180,9 +180,9 @@ function checkFullMoon(offline) {
         if (statusCode !== 200) {
             error = new Error('IsitFullMoon API: Request Failed.\n' +
             `Status Code: ${statusCode}`);
-        } else if (!/^application\/json/.test(contentType)) {
+        } else if (!/^text\/javascript/.test(contentType)) {
             error = new Error('IsitFullMoon API: Invalid content-type.\n' +
-            `Expected application/json but received ${contentType}`);
+            `Expected text/javascript but received ${contentType}`);
         }
         if (error) {
             console.error("Error with full moon GET request 01: " + error.message);
