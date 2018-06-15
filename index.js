@@ -35,7 +35,7 @@ bot.on('ready', () => {
     bot.music = {};
     bot.stream_status = null;
     bot.stream_timer = setInterval(checkStream, 30000); //30000
-    console.log("Logged in!");
+    bot.fullMoon = null;
     bot.edgy_handler = setInterval(() => {
         if (!bot.generaldb.get("emo")) {
             clearInterval(bot.edgy_handler);
@@ -64,6 +64,7 @@ bot.on('ready', () => {
         }
         bot.red_status = status;
     }, 5000);
+    console.log("Ready!");
 });
 
 bot.on('unknownCommand', message => {
@@ -119,14 +120,14 @@ function checkStream(offline) {
 
         let error;
         if (statusCode !== 200) {
-            error = new Error('Request Failed.\n' +
+            error = new Error('Picarto API: Request Failed.\n' +
             `Status Code: ${statusCode}`);
         } else if (!/^application\/json/.test(contentType)) {
-            error = new Error('Invalid content-type.\n' +
+            error = new Error('Picarto API: Invalid content-type.\n' +
             `Expected application/json but received ${contentType}`);
         }
         if (error) {
-            console.error("Error with GET request: " + error.message);
+            console.error("Error with stream GET request 01: " + error.message);
             // consume response data to free up memory
             res.resume();
             return;
@@ -160,11 +161,51 @@ function checkStream(offline) {
                 clearInterval(bot.stream_timer);
                 setTimeout(checkStream.bind(null, true), 300000); //300000
             } catch (e) {
-                console.error("Error while parsing JSON: " + e.message);
+                console.error("Error while parsing stream JSON: " + e.message);
             }
             });
         }).on('error', (e) => {
-            console.error(`Error with GET response: ${e.message}`);
+            console.error(`Error with stream GET response 02: ${e.message}`);
+        });
+}
+
+function checkFullMoon(offline) {
+    https.get('http://isitfullmoon.com/api.php?format=json', res => {
+        const { statusCode } = res;
+        const contentType = res.headers['content-type'];
+
+        let error;
+        if (statusCode !== 200) {
+            error = new Error('IsitFullMoon API: Request Failed.\n' +
+            `Status Code: ${statusCode}`);
+        } else if (!/^application\/json/.test(contentType)) {
+            error = new Error('IsitFullMoon API: Invalid content-type.\n' +
+            `Expected application/json but received ${contentType}`);
+        }
+        if (error) {
+            console.error("Error with full moon GET request 01: " + error.message);
+            // consume response data to free up memory
+            res.resume();
+            return;
+        }
+
+        res.setEncoding('utf8');
+        let rawData = '';
+        res.on('data', (chunk) => { rawData += chunk; });
+        res.on('end', () => {
+            try {
+                const moon = JSON.parse(rawData);
+                if (moon.isitfullmoon.status)
+                    bot.fullMoon = true;
+                else
+                    bot.fullMoon = false;
+                console.log("Full moon variable initialized as " + bot.fullMoon)
+            } catch (e) {
+                console.error("Error while parsing full moon JSON: " + e.message);
+            }
+            });
+        }).on('error', (e) => {
+            console.error(`Error with full moon GET response 02: ${e.message}`);
         });
 }
 
