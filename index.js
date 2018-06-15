@@ -66,7 +66,7 @@ bot.on('ready', () => {
         }
         bot.red_status = status;
     }, 5000);
-    console.log("Ready!");
+    console.log("All set! Ready to roll!");
 });
 
 bot.on('unknownCommand', message => {
