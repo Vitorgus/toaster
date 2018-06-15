@@ -3,6 +3,7 @@ const Commando = require('discord.js-commando');    //Gets the commando library
 const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const Enmap = require('enmap');                     //Gets the enmap. Basically a simple database.
 const https = require('https');
+const http = require('http');
 const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const stream = messages.stream;
@@ -171,7 +172,7 @@ function checkStream(offline) {
 }
 
 function checkFullMoon(offline) {
-    https.get('http://isitfullmoon.com/api.php?format=json', res => {
+    http.get('http://isitfullmoon.com/api.php?format=json', res => {
         const { statusCode } = res;
         const contentType = res.headers['content-type'];
 
