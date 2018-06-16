@@ -36,8 +36,8 @@ bot.on('ready', () => {
     bot.music = {};
     bot.stream_status = null;
     bot.stream_timer = setInterval(checkStream, 30000); //30000
-    bot.fullMoon = null;
-    checkFullMoon();
+    bot.moon = null;
+    checkMoon();
     bot.edgy_handler = setInterval(() => {
         if (!bot.generaldb.get("emo")) {
             clearInterval(bot.edgy_handler);
@@ -171,7 +171,7 @@ function checkStream(offline) {
         });
 }
 
-function checkFullMoon(offline) {
+function checkMoon(offline) {
     http.get('http://isitfullmoon.com/api.php?format=json', res => {
         const { statusCode } = res;
         const contentType = res.headers['content-type'];
@@ -197,11 +197,16 @@ function checkFullMoon(offline) {
         res.on('end', () => {
             try {
                 const moon = JSON.parse(rawData);
+                bot.moon = {
+                    isFull: null,
+                    nextFullMoon: null
+                };
+                bot.moon.nextFullMoon = new Date(moon.isitfullmoon.next);
                 if (moon.isitfullmoon.status === "Yes")
-                    bot.fullMoon = true;
+                    bot.moon.isFull = true;
                 else
-                    bot.fullMoon = false;
-                console.log("Full moon variable initialized as " + bot.fullMoon);
+                    bot.moon.isFull = false;
+                console.log("Full moon variable initialized as\n" + bot.moon + "\n");
             } catch (e) {
                 console.error("Error while parsing full moon JSON: " + e.message);
             }
