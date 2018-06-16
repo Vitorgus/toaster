@@ -201,9 +201,7 @@ function checkMoon(offline) {
                     isFull: null,
                     nextFullMoon: null
                 };
-                console.log(moon.isitfullmoon.next);
                 bot.moon.nextFullMoon = new Date(moon.isitfullmoon.next * 1000);
-                console.log(bot.moon.nextFullMoon.getTime());
                 if (moon.isitfullmoon.status === "Yes")
                     bot.moon.isFull = true;
                 else
