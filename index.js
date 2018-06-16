@@ -129,7 +129,7 @@ function checkStream(offline) {
             `Expected application/json but received ${contentType}`);
         }
         if (error) {
-            console.error("Error with stream GET request 01: " + error.message);
+            console.error("Error with stream GET request: " + error.message);
             // consume response data to free up memory
             res.resume();
             return;
@@ -167,7 +167,7 @@ function checkStream(offline) {
             }
             });
         }).on('error', (e) => {
-            console.error(`Error with stream GET response 02: ${e.message}`);
+            console.error(`Error with stream GET response: ${e.message}`);
         });
 }
 
@@ -185,7 +185,7 @@ function checkMoon(offline) {
             `Expected text/javascript but received ${contentType}`);
         }
         if (error) {
-            console.error("Error with full moon GET request 01: " + error.message);
+            console.error("Error with full moon GET request: " + error.message);
             // consume response data to free up memory
             res.resume();
             return;
@@ -206,13 +206,13 @@ function checkMoon(offline) {
                     bot.moon.isFull = true;
                 else
                     bot.moon.isFull = false;
-                console.log("Full moon variable initialized as\n" + bot.moon + "\n");
+                console.log("Full moon variable initialized as\n" + bot.moon.isFull + "\n");
             } catch (e) {
                 console.error("Error while parsing full moon JSON: " + e.message);
             }
             });
         }).on('error', (e) => {
-            console.error(`Error with full moon GET response 02: ${e.message}`);
+            console.error(`Error with full moon GET response: ${e.message}`);
         });
 }
 
