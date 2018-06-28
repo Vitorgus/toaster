@@ -139,7 +139,8 @@
             "https://cdn.discordapp.com/attachments/419674303844450304/459497481802219531/peeledtato.JPG",
             "https://cdn.discordapp.com/attachments/419674303844450304/459506716384428032/milkwizardnick.jpg",
             "https://cdn.discordapp.com/attachments/459263931110653963/459503616206569493/Screenshot_2018-06-22-11-39-19-1.png",
-            "https://cdn.discordapp.com/attachments/450067107913269258/460067957062762507/unknown.png"
+            "https://cdn.discordapp.com/attachments/450067107913269258/460067957062762507/unknown.png",
+            "https://cdn.discordapp.com/attachments/330405008451305472/461687805383409686/unknown.png"
         ]
     },
     {
@@ -207,7 +208,8 @@
             "https://cdn.discordapp.com/attachments/446116983151525890/446118708734328833/ihaveaproblem.PNG",
             "https://cdn.discordapp.com/attachments/446116983151525890/446118722629795840/squelchingmoistness.PNG",
             "https://cdn.discordapp.com/attachments/393543523208527884/456426550200369153/IMG_20180613_085558.jpg",
-            "https://cdn.discordapp.com/attachments/330405008451305472/459385963479826442/IMG_20180621_125527.jpg"
+            "https://cdn.discordapp.com/attachments/330405008451305472/459385963479826442/IMG_20180621_125527.jpg",
+            "https://cdn.discordapp.com/attachments/330405008451305472/461956625805213696/unknown.png"
         ]
     },
     {
@@ -428,6 +430,16 @@
     },
     {
         "name": [
+            "vito",
+            "vitorgus"
+        ],
+        "quotes": [
+            "https://cdn.discordapp.com/attachments/330405008451305472/459138383516532746/unknown.png",
+            "https://cdn.discordapp.com/attachments/330405008451305472/461956369202020352/IMG_20180628_150936.jpg"
+        ]
+    },
+    {
+        "name": [
             "bandit"
         ],
         "quotes": [
@@ -467,15 +479,6 @@
         ],
         "quotes": [
             "https://cdn.discordapp.com/attachments/330405008451305472/456562725783339008/Clock.PNG"
-        ]
-    },
-    {
-        "name": [
-            "vito",
-            "vitorgus"
-        ],
-        "quotes": [
-            "https://cdn.discordapp.com/attachments/330405008451305472/459138383516532746/unknown.png"
         ]
     },
     {
