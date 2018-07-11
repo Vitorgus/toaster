@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const { Discord } = require('discord.js');
 
 module.exports = class eggplantCommand extends Command {
 	constructor(client) {
@@ -20,9 +19,10 @@ module.exports = class eggplantCommand extends Command {
 	}
 
 	run(msg, { toggle }) {
-		if (msg.channel instanceof Discord.GroupDMChannel ||
-			(msg.channel instanceof Discord.TextChannel && msg.guild.id != process.env.SHILOH_CHAT) ||
-			(msg.channel instanceof Discord.DMChannel && !this.client.isOwner(msg.author))) return;
+		let discord = require('discord.js');
+		if (msg.channel instanceof discord.GroupDMChannel ||
+			(msg.channel instanceof discord.TextChannel && msg.guild.id != process.env.SHILOH_CHAT) ||
+			(msg.channel instanceof discord.DMChannel && !this.client.isOwner(msg.author))) return;
 		if (toggle === "activate" || toggle === "on"){  // If the command is to activate eggplant mode
 			this.client.generaldb.set("eggplant", true);  // Sets true in the database
 			console.log("Eggplant mode activated!");      // Logs it
