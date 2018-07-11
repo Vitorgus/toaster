@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { Discord } = require('discord.js');
 
 module.exports = class tomatoCommand extends Command {
     constructor(client) {
