@@ -17,6 +17,9 @@ module.exports = class redquoteCommand extends Command {
     }
 
     async run(msg, { user }) {
+        if (msg.channel instanceof Discord.GroupDMChannel ||
+            (msg.channel instanceof Discord.TextChannel && msg.guild.id != process.env.SHILOH_CHAT) ||
+            (msg.channel instanceof Discord.DMChannel && !this.client.isOwner(msg.author))) return;
         user = user.toLowerCase();
         let quotes_array = this.client.quotes_array;
         if (user === "status") {
