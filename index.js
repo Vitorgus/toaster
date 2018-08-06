@@ -207,7 +207,7 @@ function checkMoon() {
                     bot.moon.isFull = true;
                 else
                     bot.moon.isFull = false;
-                console.log("Full moon variable initialized as\n" + bot.moon.isFull + "\n");
+                console.log("Full moon variable initialized as " + bot.moon.isFull + "\n");
             } catch (e) {
                 console.error("Error while parsing full moon JSON: " + e.message);
             }
