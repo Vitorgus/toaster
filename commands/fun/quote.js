@@ -23,6 +23,7 @@ module.exports = class redquoteCommand extends Command {
             (msg.channel instanceof discord.DMChannel && !this.client.isOwner(msg.author))) return;
         user = user.toLowerCase();
         let quotes_array = this.client.quotes_array;
+        if (!quotes_array) return;
         if (user === "status") {
             let total_quotes = 0;
             quotes_array.forEach(person => {

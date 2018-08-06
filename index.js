@@ -24,7 +24,9 @@ bot.on('ready', () => {
     bot.user.setStatus("online");                                       // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setGame("Type 'jarvis help' for commands");                // Sets bot game
-    bot.quotes_array = require('./quotes.json');						// Load quotes
+    bot.GetQuotes = getQuotes;                                          // I have no idea if this will work
+    bot.GetQuotes();                                                    // Also have no idea if it will work
+    //bot.quotes_array = require('./quotes.json');						// Load quotes
     bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
@@ -38,7 +40,7 @@ bot.on('ready', () => {
     bot.stream_timer = setInterval(checkStream, 30000); //30000
     bot.moon = null;
     checkMoon();
-    getQuotes();
+    //getQuotes();
     bot.edgy_handler = setInterval(() => {
         if (!bot.generaldb.get("emo")) {
             clearInterval(bot.edgy_handler);
@@ -242,6 +244,7 @@ function getQuotes() {
             console.error("Error with JSONbin GET request: " + error.message);
             // consume response data to free up memory
             res.resume();
+            this.quotes_array = null;
             return;
         }
 
@@ -251,13 +254,15 @@ function getQuotes() {
         res.on('end', () => {
             try {
                 const parsedData = JSON.parse(rawData);
-                console.log(parsedData);
+                this.quotes_array = parsedData;
             } catch (e) {
                 console.error("Error while parsing stream JSON: " + e.message);
+                this.quotes_array = null;
             }
         });
     }).on('error', (e) => {
         console.error(`Error with stream GET response: ${e.message}`);
+        this.quotes_array = null;
     });
 }
 
