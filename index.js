@@ -207,7 +207,7 @@ function checkMoon() {
                     bot.moon.isFull = true;
                 else
                     bot.moon.isFull = false;
-                console.log("Full moon variable initialized as " + bot.moon.isFull + "\n");
+                console.log("Full moon variable initialized as " + bot.moon.isFull);
             } catch (e) {
                 console.error("Error while parsing full moon JSON: " + e.message);
             }
@@ -220,7 +220,7 @@ function checkMoon() {
 function getQuotes() {
     let options = {
         hostname: 'api.jsonbin.io',
-        path: '/b/' + process.env.QUOTES_ID,
+        path: '/b/' + process.env.QUOTES_ID + '/latest',
         headers: {
             'secret-key': process.env.QUOTES_KEY
         }
