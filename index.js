@@ -245,6 +245,7 @@ function getQuotes() {
             // consume response data to free up memory
             res.resume();
             this.quotes_array = null;
+            console.log("Quotes initialized!");
             return;
         }
 
