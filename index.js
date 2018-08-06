@@ -38,6 +38,7 @@ bot.on('ready', () => {
     bot.stream_timer = setInterval(checkStream, 30000); //30000
     bot.moon = null;
     checkMoon();
+    getQuotes();
     bot.edgy_handler = setInterval(() => {
         if (!bot.generaldb.get("emo")) {
             clearInterval(bot.edgy_handler);
@@ -171,7 +172,7 @@ function checkStream(offline) {
     });
 }
 
-function checkMoon(offline) {
+function checkMoon() {
     http.get('http://isitfullmoon.com/api.php?format=json', res => {
         const { statusCode } = res;
         const contentType = res.headers['content-type'];
@@ -221,7 +222,7 @@ function getQuotes() {
         hostname: 'api.jsonbin.io',
         path: '/b/' + process.env.QUOTES_ID,
         headers: {
-            'secret-key': process;env.QUOTES_KEY
+            'secret-key': process.env.QUOTES_KEY
         }
     };
 
