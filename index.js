@@ -245,7 +245,6 @@ function getQuotes() {
             // consume response data to free up memory
             res.resume();
             this.quotes_array = null;
-            console.log("Quotes initialized!");
             return;
         }
 
@@ -256,6 +255,7 @@ function getQuotes() {
             try {
                 const parsedData = JSON.parse(rawData);
                 this.quotes_array = parsedData;
+                console.log("Quotes initialized!");
             } catch (e) {
                 console.error("Error while parsing stream JSON: " + e.message);
                 this.quotes_array = null;
