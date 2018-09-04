@@ -22,6 +22,7 @@ module.exports = class urbanCommand extends Command {
         //msg.channel.startTyping();
         //msg.channel.stopTyping();
         var targetWord = text == "" ? urban.random() : urban(text);
+        console.log("Searching on urban for "+ targetWord);
         targetWord.first(function(json) {
             //msg.channel.stopTyping();
             if (json) {
