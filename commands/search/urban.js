@@ -24,9 +24,7 @@ module.exports = class urbanCommand extends Command {
         var targetWord = text == "" ? urban.random() : urban(text);
         targetWord.first(function(json) {
             //msg.channel.stopTyping();
-            console.log("Entered function");
             if (json) {
-                console.log(json.word);
                 var message = "Urban Dictionary: **" +json.word + "**\n\n" + json.definition;
                 if (json.example) {
                     message = message + "\n\n__Example__:\n" + json.example;
