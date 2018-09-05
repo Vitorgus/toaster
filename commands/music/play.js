@@ -14,6 +14,8 @@ https://youtu.be/pSwD5vZ04iU
 https://youtu.be/65BAeDpwzGY
 */
 
+// TODO checar detalhes de atribuição de variável em JS e node.js, pois isso pode explicar o porque do bug de música undefined 
+
 module.exports = class playCommand extends Command {
     constructor(client) {
         super(client, {
