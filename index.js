@@ -31,7 +31,9 @@ bot.on('ready', () => {
     bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
     bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
     bot.generaldb.set("apple", false);                                  // Sets initial tomato vallue to false
-    bot.generaldb.set("victim2", "RED");                           // Sets the name of the tomato vicim. Love ya, Red.
+    bot.generaldb.set("victim2", "RED");                                // Sets the name of the tomato vicim. Love ya, Red.
+    bot.generaldb.set("ladybug", false);                                // Sets initial ladybug vallue to false
+    bot.generaldb.set("victim3", "RED");                                // Sets the name of the ladybug vicim. YOu literally asked for this, Red.
     bot.generaldb.set("emo", false);
     bot.red_status = bot.guilds.get(process.env.SHILOH_CHAT)
         .members.get(edgelord).presence.status;
@@ -90,18 +92,25 @@ bot.on('message', message => {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
     if (message.channel.id == process.env.MOD_CHAT) return;
-    let eggplant = bot.generaldb.get("eggplant")    // Gets the state from de DB
-    let apple = bot.generaldb.get("apple")
+    let eggplant = bot.generaldb.get("eggplant");   // Gets the state from de DB
+    let apple = bot.generaldb.get("apple");
+    let ladybug = bot.generaldb.get("ladybug");
     if (eggplant) {
         let name = bot.generaldb.get("victim");         // Gets the name of the eggplant victim
         if (message.author.username == name){           // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
-            message.react("🍆");                         // If yes, the reacts with an eggplant
+            message.react("🍆");                        // If yes, the reacts with an eggplant
         }
     }
     if (apple) {
         let name = bot.generaldb.get("victim2");         // Gets the name of the apple victim
-        if (message.author.username == name){           // If it gets here, then it is activated, so it checks if the sender os the message is Red
+        if (message.author.username == name){            // If it gets here, then it is activated, so it checks if the sender os the message is Red
             message.react("🍎");                         // If yes, the reacts with a apple
+        }
+    }
+    if (ladybug) {
+        let name = bot.generaldb.get("victim3");         // Gets the name of the apple victim
+        if (message.author.username == name){            // If it gets here, then it is activated, so it checks if the sender os the message is Red
+            message.react("🐞");                         // If yes, the reacts with a ladybug
         }
     }
 });
