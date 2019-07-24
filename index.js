@@ -122,7 +122,7 @@ bot.on('guildMemberAdd', member => {
     member.addRole(process.env.SINNER_ROLE)     //Gives the newcomer the sinners role
         .catch(error => {
             console.log(error);
-            member.guild.channels.find("name", "general").send(`Whoops. Couldn't give you the sinners role. Sorry.`);
+            member.guild.channels.find("name", "general").send(`Whoops. Couldn't give you the readers role. Sorry.`);
         });
     
 });
