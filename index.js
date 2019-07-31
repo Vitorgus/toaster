@@ -10,7 +10,7 @@ const stream = messages.stream;
 const edgelord = process.env.GOODFACE;
 
 //Initializing bot
-const bot = new Commando.Client({
+const bot = new Commando.CommandoClient({
     owner: '291235973717688321',    // Setting myself as the owner. That's my Discord ID.
     commandPrefix: 'jarvis ',       // Setting the prefix
     disableEveryone: true,          // Allows the bot to use @everyone and @here
