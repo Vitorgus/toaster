@@ -18,6 +18,6 @@ module.exports = class logCommand extends Command {
     }
 
     run(msg, { text }) {
-        console.log(text);
+        console.log("Log command: "+ text);
     }
 };

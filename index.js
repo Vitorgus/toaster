@@ -23,7 +23,7 @@ bot.on('ready', () => {
     console.log(`Starting ${bot.package.name} v${bot.package.version}...`);// Outputs in the log that the bot has started
     bot.user.setStatus("online");                                       // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
-    bot.user.setGame("Type 'jarvis help' for commands");                // Sets bot game
+    bot.user.setActivity("Type 'jarvis help' for commands", { type: 'PLAYING' }); // Sets bot game
     bot.GetQuotes = getQuotes;                                          // I have no idea if this will work
     bot.GetQuotes();                                                    // Also have no idea if it will work
     //bot.quotes_array = require('./quotes.json');						// Load quotes
