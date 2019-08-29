@@ -35,6 +35,7 @@ class Client extends Commando.CommandoClient {
 	}
 
 	checkStream(offline) {
+		let self = this;
 	    https.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
 	        const { statusCode } = res;
 	        const contentType = res.headers['content-type'];
@@ -67,7 +68,7 @@ class Client extends Commando.CommandoClient {
 	                }
 	                if (offline) {
 	                    this.stream_status = rnf.online;
-	                    this.stream_timer = setInterval(this.checkStream, 30000);
+	                    this.stream_timer = setInterval(self.checkStream, 30000);
 	                    if (!rnf.online) console.log("Stream is off");
 	                    return;
 	                }
@@ -81,8 +82,8 @@ class Client extends Commando.CommandoClient {
 	                }
 	                clearInterval(this.stream_timer);
 	                console.log("CheckStream function");
-	                console.log(checkStream);
-	                setTimeout(this.checkStream, 300000, true);
+	                console.log(self.checkStream);
+	                setTimeout(self.checkStream, 300000, true);
 	            } catch (e) {
 	                console.error("Error while parsing stream JSON: " + e.message);
 	            }
