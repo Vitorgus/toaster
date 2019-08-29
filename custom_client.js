@@ -67,7 +67,7 @@ class Client extends Commando.CommandoClient {
 	                }
 	                if (offline) {
 	                    this.stream_status = rnf.online;
-	                    this.stream_timer = setInterval(checkStream, 30000);
+	                    this.stream_timer = setInterval(this.checkStream, 30000);
 	                    if (!rnf.online) console.log("Stream is off");
 	                    return;
 	                }
@@ -80,7 +80,7 @@ class Client extends Commando.CommandoClient {
 	                    return;
 	                }
 	                clearInterval(this.stream_timer);
-	                setTimeout(this.checkStream.bind(null, true), 300000);
+	                setTimeout(this.checkStream, 300000, true);
 	            } catch (e) {
 	                console.error("Error while parsing stream JSON: " + e.message);
 	            }
