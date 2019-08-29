@@ -1,12 +1,12 @@
 const path = require('path');                       //Gets the system path
-const Custom = require('./custom_client.js');    //Gets the commando library
+const CustomClient = require('./custom_client.js');    //Gets the commando library
 const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const edgelord = process.env.GOODFACE;
 
 //Initializing bot
-const bot = new Custom.Client({
+const bot = new CustomClient({
     owner: '291235973717688321',    // Setting myself as the owner. That's my Discord ID.
     commandPrefix: 'jarvis ',       // Setting the prefix
     disableEveryone: true,          // Allows the bot to use @everyone and @here
