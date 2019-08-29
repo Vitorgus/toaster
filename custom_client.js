@@ -29,7 +29,7 @@ class Client extends Commando.CommandoClient {
 	    this.moon = null;
 	    
 	    this.once('ready', () => {
-	    	this.stream_timer = setInterval(checkStream, 30000);
+	    	this.stream_timer = setInterval(this.checkStream, 30000);
 	    	this.checkMoon();
 	    })
 	}
