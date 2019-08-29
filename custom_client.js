@@ -10,7 +10,7 @@ class Client extends Commando.CommandoClient {
 	constructor(options = {}) {
 		super(options);
 
-	    this.GetQuotes();                                                    // Also have no idea if it will work
+	    this.getQuotes();                                                    // Also have no idea if it will work
 
 	    this.generaldb = new Enmap();                                        // Sets the "database" in the this, so it can be accessed inside the functions
 	    this.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
