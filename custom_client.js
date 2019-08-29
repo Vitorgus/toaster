@@ -80,7 +80,7 @@ class Client extends Commando.CommandoClient {
 	                    return;
 	                }
 	                clearInterval(this.stream_timer);
-	                setTimeout(checkStream.bind(null, true), 300000); //300000
+	                setTimeout(this.checkStream.bind(null, true), 300000);
 	            } catch (e) {
 	                console.error("Error while parsing stream JSON: " + e.message);
 	            }
