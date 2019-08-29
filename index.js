@@ -1,16 +1,12 @@
 const path = require('path');                       //Gets the system path
-const Commando = require('discord.js-commando');    //Gets the commando library
+const Custom = require('./custom_client');    //Gets the commando library
 const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
-const Enmap = require('enmap');                     //Gets the enmap. Basically a simple database.
-const https = require('https');
-const http = require('http');
 const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
-const stream = messages.stream;
 const edgelord = process.env.GOODFACE;
 
 //Initializing bot
-const bot = new Commando.CommandoClient({
+const bot = new Custom.Client({
     owner: '291235973717688321',    // Setting myself as the owner. That's my Discord ID.
     commandPrefix: 'jarvis ',       // Setting the prefix
     disableEveryone: true,          // Allows the bot to use @everyone and @here
@@ -24,25 +20,9 @@ bot.on('ready', () => {
     bot.user.setStatus("online");                                       // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setActivity("Type 'jarvis help' for commands", { type: 'PLAYING' }); // Sets bot game
-    bot.GetQuotes = getQuotes;                                          // I have no idea if this will work
-    bot.GetQuotes();                                                    // Also have no idea if it will work
-    //bot.quotes_array = require('./quotes.json');						// Load quotes
-    bot.generaldb = new Enmap();                                        // Sets the "database" in the bot, so it can be accessed inside the functions
-    bot.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
-    bot.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
-    bot.generaldb.set("apple", false);                                  // Sets initial tomato vallue to false
-    bot.generaldb.set("victim2", "RED");                                // Sets the name of the tomato vicim. Love ya, Red.
-    bot.generaldb.set("ladybug", false);                                // Sets initial ladybug vallue to false
-    bot.generaldb.set("victim3", "RED");                                // Sets the name of the ladybug vicim. YOu literally asked for this, Red.
-    bot.generaldb.set("emo", false);
+
     bot.red_status = bot.guilds.get(process.env.SHILOH_CHAT)
         .members.get(edgelord).presence.status;
-    bot.music = {};
-    bot.stream_status = null;
-    bot.stream_timer = setInterval(checkStream, 30000); //30000
-    bot.moon = null;
-    checkMoon();
-    //getQuotes();
     bot.edgy_handler = setInterval(() => {
         if (!bot.generaldb.get("emo")) {
             clearInterval(bot.edgy_handler);
@@ -71,6 +51,7 @@ bot.on('ready', () => {
         }
         bot.red_status = status;
     }, 5000);
+
     console.log("All set! Ready to roll!");
 });
 
@@ -126,155 +107,6 @@ bot.on('guildMemberAdd', member => {
         });
     
 });
-
-function checkStream(offline) {
-    https.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
-        const { statusCode } = res;
-        const contentType = res.headers['content-type'];
-
-        let error;
-        if (statusCode !== 200) {
-            error = new Error('Picarto API: Request Failed.\n' +
-            `Status Code: ${statusCode}`);
-        } else if (!/^application\/json/.test(contentType)) {
-            error = new Error('Picarto API: Invalid content-type.\n' +
-            `Expected application/json but received ${contentType}`);
-        }
-        if (error) {
-            console.error("Error with stream GET request: " + error.message);
-            // consume response data to free up memory
-            res.resume();
-            return;
-        }
-
-        res.setEncoding('utf8');
-        let rawData = '';
-        res.on('data', (chunk) => { rawData += chunk; });
-        res.on('end', () => {
-            try {
-                const rnf = JSON.parse(rawData);
-                if (bot.stream_status === null) {
-                    bot.stream_status = rnf.online;
-                    console.log("Stream status initialized as " + bot.stream_status);
-                    return;
-                }
-                if (offline) {
-                    bot.stream_status = rnf.online;
-                    bot.stream_timer = setInterval(checkStream, 30000);
-                    if (!rnf.online) console.log("Stream is off");
-                    return;
-                }
-                if (bot.stream_status === rnf.online) return;
-                if (rnf.online) {
-                    bot.stream_status = true;
-                    bot.guilds.get(process.env.SHILOH_CHAT)
-                        .channels.get(process.env.SHILOH_GENERAL)
-                        .send(`${stream[Math.floor(Math.random() * stream.length)]} https://picarto.tv/REDnFLYNN`);
-                    return;
-                }
-                clearInterval(bot.stream_timer);
-                setTimeout(checkStream.bind(null, true), 300000); //300000
-            } catch (e) {
-                console.error("Error while parsing stream JSON: " + e.message);
-            }
-        });
-    }).on('error', (e) => {
-        console.error(`Error with stream GET response: ${e.message}`);
-    });
-}
-
-function checkMoon() {
-    http.get('http://isitfullmoon.com/api.php?format=json', res => {
-        const { statusCode } = res;
-        const contentType = res.headers['content-type'];
-
-        let error;
-        if (statusCode !== 200) {
-            error = new Error('IsitFullMoon API: Request Failed.\n' +
-            `Status Code: ${statusCode}`);
-        } else if (!/^text\/javascript/.test(contentType)) {
-            error = new Error('IsitFullMoon API: Invalid content-type.\n' +
-            `Expected text/javascript but received ${contentType}`);
-        }
-        if (error) {
-            console.error("Error with full moon GET request: " + error.message);
-            // consume response data to free up memory
-            res.resume();
-            return;
-        }
-
-        res.setEncoding('utf8');
-        let rawData = '';
-        res.on('data', (chunk) => { rawData += chunk; });
-        res.on('end', () => {
-            try {
-                const moon = JSON.parse(rawData);
-                bot.moon = {
-                    isFull: null,
-                    nextFullMoon: null
-                };
-                bot.moon.nextFullMoon = new Date(moon.isitfullmoon.next * 1000);
-                if (moon.isitfullmoon.status === "Yes")
-                    bot.moon.isFull = true;
-                else
-                    bot.moon.isFull = false;
-                console.log("Full moon variable initialized as " + bot.moon.isFull);
-            } catch (e) {
-                console.error("Error while parsing full moon JSON: " + e.message);
-            }
-        });
-    }).on('error', (e) => {
-        console.error(`Error with full moon GET response: ${e.message}`);
-    });
-}
-
-function getQuotes() {
-    let options = {
-        hostname: 'api.jsonbin.io',
-        path: '/b/' + process.env.QUOTES_ID + '/latest',
-        headers: {
-            'secret-key': process.env.QUOTES_KEY
-        }
-    };
-
-    https.get(options, res => {
-        const { statusCode } = res;
-        const contentType = res.headers['content-type'];
-
-        let error;
-        if (statusCode !== 200) {
-            error = new Error('JSONbin API: Request Failed.\n' +
-            `Status Code: ${statusCode}`);
-        } else if (!/^application\/json/.test(contentType)) {
-            error = new Error('JSONbin API: Invalid content-type.\n' +
-            `Expected application/json but received ${contentType}`);
-        }
-        if (error) {
-            console.error("Error with JSONbin GET request: " + error.message);
-            // consume response data to free up memory
-            res.resume();
-            this.quotes_array = null;
-            return;
-        }
-
-        res.setEncoding('utf8');
-        let rawData = '';
-        res.on('data', (chunk) => { rawData += chunk; });
-        res.on('end', () => {
-            try {
-                const parsedData = JSON.parse(rawData);
-                this.quotes_array = parsedData;
-                console.log("Quotes initialized!");
-            } catch (e) {
-                console.error("Error while parsing stream JSON: " + e.message);
-                this.quotes_array = null;
-            }
-        });
-    }).on('error', (e) => {
-        console.error(`Error with stream GET response: ${e.message}`);
-        this.quotes_array = null;
-    });
-}
 
 process.on('unhandledRejection', (reason, p) => {               // ...I guess this line is important, but I don't know why
   console.log('Unhandled Rejection at:', p, 'reason:', reason);
