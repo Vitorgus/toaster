@@ -1,5 +1,5 @@
 const path = require('path');                       //Gets the system path
-const Custom = require('./custom_client');    //Gets the commando library
+const Custom = require('./custom_client.js');    //Gets the commando library
 const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
