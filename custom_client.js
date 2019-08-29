@@ -36,6 +36,8 @@ class Client extends Commando.CommandoClient {
 
 	checkStream(offline) {
 		let self = this;
+		console.log("Outher this");
+		console.log(this);
 	    https.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
 	        const { statusCode } = res;
 	        const contentType = res.headers['content-type'];
@@ -60,6 +62,8 @@ class Client extends Commando.CommandoClient {
 	        res.on('data', (chunk) => { rawData += chunk; });
 	        res.on('end', () => {
 	            try {
+	            	console.log("Inner this");
+	            	console.log(this);
 	                const rnf = JSON.parse(rawData);
 	                if (this.stream_status === null) {
 	                    this.stream_status = rnf.online;
