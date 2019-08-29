@@ -29,15 +29,12 @@ class Client extends Commando.CommandoClient {
 	    this.moon = null;
 	    
 	    this.once('ready', () => {
-	    	this.stream_timer = setInterval(this.checkStream, 30000);
+	    	this.stream_timer = setInterval(this.checkStream, 30000, this);
 	    	this.checkMoon();
 	    })
 	}
 
-	checkStream(offline) {
-		let self = this;
-		console.log("Outher this");
-		console.log(this);
+	checkStream(handler, offline) {
 	    https.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
 	        const { statusCode } = res;
 	        const contentType = res.headers['content-type'];
@@ -62,32 +59,30 @@ class Client extends Commando.CommandoClient {
 	        res.on('data', (chunk) => { rawData += chunk; });
 	        res.on('end', () => {
 	            try {
-	            	console.log("Inner this");
-	            	console.log(this);
 	                const rnf = JSON.parse(rawData);
-	                if (this.stream_status === null) {
-	                    this.stream_status = rnf.online;
-	                    console.log("Stream status initialized as " + this.stream_status);
+	                if (handler.stream_status === null) {
+	                    handler.stream_status = rnf.online;
+	                    console.log("Stream status initialized as " + handler.stream_status);
 	                    return;
 	                }
 	                if (offline) {
-	                    this.stream_status = rnf.online;
-	                    this.stream_timer = setInterval(self.checkStream, 30000);
+	                    handler.stream_status = rnf.online;
+	                    handler.stream_timer = setInterval(handler.checkStream, 30000);
 	                    if (!rnf.online) console.log("Stream is off");
 	                    return;
 	                }
-	                if (this.stream_status === rnf.online) return;
+	                if (handler.stream_status === rnf.online) return;
 	                if (rnf.online) {
-	                    this.stream_status = true;
-	                    this.guilds.get(process.env.SHILOH_CHAT)
+	                    handler.stream_status = true;
+	                    handler.guilds.get(process.env.SHILOH_CHAT)
 	                        .channels.get(process.env.SHILOH_GENERAL)
 	                        .send(`${stream[Math.floor(Math.random() * stream.length)]} https://picarto.tv/REDnFLYNN`);
 	                    return;
 	                }
-	                clearInterval(this.stream_timer);
+	                clearInterval(handler.stream_timer);
 	                console.log("CheckStream function");
-	                console.log(self.checkStream);
-	                setTimeout(self.checkStream, 300000, true);
+	                console.log(handler.checkStream);
+	                setTimeout(handler.checkStream, 300000, true);
 	            } catch (e) {
 	                console.error("Error while parsing stream JSON: " + e.message);
 	            }
