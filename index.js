@@ -21,7 +21,7 @@ bot.on('ready', () => {
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setActivity("Type 'jarvis help' for commands", { type: 'PLAYING' }); // Sets bot game
 
-    bot.red_status = bot.guilds.get(process.env.SHILOH_CHAT)
+    /*bot.red_status = bot.guilds.get(process.env.SHILOH_CHAT)
         .members.get(edgelord).presence.status;
     bot.edgy_handler = setInterval(() => {
         if (!bot.generaldb.get("emo")) {
@@ -30,15 +30,13 @@ bot.on('ready', () => {
         }
         let guild = bot.guilds.get(process.env.SHILOH_CHAT);
         let status = guild.members.get(edgelord).presence.status;
-        /*
-        console.log("Status = " + status);          //OFF
-        console.log("REd status = " + bot.red_status);//ON
-        */
+        // console.log("Status = " + status);          //OFF
+        // console.log("REd status = " + bot.red_status);//ON
         if (status == bot.red_status) return;
         if (bot.red_status == "offline" && status != "offline"){
-        	/*let red = bot.quotes_array.find(obj => {
-        		return obj['name'].includes("red");
-        	});*/
+        	// let red = bot.quotes_array.find(obj => {
+        	//	return obj['name'].includes("red");
+        	//});
             guild.channels.get(process.env.SHILOH_GENERAL)
                 .send("https://cdn.discordapp.com/attachments/450067107913269258/456571650146566174/goosface.png"); //Goose image for GoodFace
                 //.send(red["quotes"][Math.floor(Math.random() * red["quotes"].length)]); // Sends a random red quote
@@ -50,7 +48,7 @@ bot.on('ready', () => {
                 //.send("Crawling up from the pits of deep introspection, wise, yet broken because wisdom of one's own dark, charred soul makes one break down in tears, as deep and depressing as a linkin park song ... IT IS RED. THE EDGIEST BOLSHEVIK.");
         }
         bot.red_status = status;
-    }, 5000);
+    }, 5000);*/
 
     console.log("All set! Ready to roll!");
 });
