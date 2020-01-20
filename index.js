@@ -74,6 +74,7 @@ bot.on('message', message => {
     let eggplant = bot.generaldb.get("eggplant");   // Gets the state from de DB
     let apple = bot.generaldb.get("apple");
     let ladybug = bot.generaldb.get("ladybug");
+    let bird = bot.generaldb.get("bird");
     if (eggplant) {
         let name = bot.generaldb.get("victim");         // Gets the name of the eggplant victim
         if (message.author.username == name){           // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
@@ -90,6 +91,12 @@ bot.on('message', message => {
         let name = bot.generaldb.get("victim3");         // Gets the name of the apple victim
         if (message.author.username == name){            // If it gets here, then it is activated, so it checks if the sender os the message is Red
             message.react("🐞");                         // If yes, the reacts with a ladybug
+        }
+    }
+    if (bird) {
+        let id = bot.generaldb.get("victim4");           // Gets the name of the apple victim
+        if (message.author.id == id){                    // If it gets here, then it is activated, so it checks if the sender os the message is Az
+            message.react("🐦");                         // If yes, the reacts with a bird
         }
     }
 });
