@@ -5,7 +5,8 @@
   "maintainers": [],
   "author": "Vitorgus",
   "dependencies": {
-    "bufferutil": "^3.0.0",
+    "axios": "^0.19.1",
+    "bufferutil": "^4.0.0",
     "discord.js": "^11.5.1",
     "discord.js-commando": "^0.10.0",
     "enmap": "^0.4.6",
