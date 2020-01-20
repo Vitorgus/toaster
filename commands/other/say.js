@@ -23,6 +23,7 @@ module.exports = class sayCommand extends Command {
     }
 
     run(msg, { text }) {
+        console.log("Saying: " + text);
         return msg.say(text);
     }
 };
