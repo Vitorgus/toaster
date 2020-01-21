@@ -4,6 +4,7 @@ const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT 
 const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const edgelord = process.env.GOODFACE;
+const axios = require('axios');
 
 //Initializing bot
 const bot = new CustomClient({
@@ -21,14 +22,14 @@ bot.on('ready', () => {
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setActivity("Type 'jarvis help' for commands", { type: 'PLAYING' }); // Sets bot game
 
-    /*bot.red_status = bot.guilds.get(process.env.SHILOH_CHAT)
+    /*bot.red_status = bot.guilds.get(process.env.SHILOH_SERVER)
         .members.get(edgelord).presence.status;
     bot.edgy_handler = setInterval(() => {
         if (!bot.generaldb.get("emo")) {
             clearInterval(bot.edgy_handler);
             return;
         }
-        let guild = bot.guilds.get(process.env.SHILOH_CHAT);
+        let guild = bot.guilds.get(process.env.SHILOH_SERVER);
         let status = guild.members.get(edgelord).presence.status;
         // console.log("Status = " + status);          //OFF
         // console.log("REd status = " + bot.red_status);//ON
@@ -56,8 +57,32 @@ bot.on('ready', () => {
 bot.on('unknownCommand', message => {
     //Check is it's possible to send an emoji
     if (message.editedAt || !message.guild || !message.guild.available || !message.guild.emojis.size) return;
-    emoji = message.guild.emojis.random();      // Gets a random custom emoji
-    message.say(emoji.toString());              // Says the emoji in the chat
+    if (message.guild.id !== process.env.SHILOH_SERVER) {
+        console.log("NOT shiloh chat. Getting a random emoji.")
+        emoji = message.guild.emojis.random();      // Gets a random custom emoji
+        message.say(emoji.toString());              // Says the emoji in the 
+        return;
+    }
+    console.log("Shiloh! Going to send an IA calculated emoji! Message received: " + message.content);
+    let text = /jarvis ([\s\S]*)/.exec(message.content)[1];
+    let config = {
+        model: 'shiloh',
+        text: text
+    };
+    console.log("Request properties: " + JSON.stringify(config));
+    axios.post('http://thezorg.pythonanywhere.com/', config)
+    .then(res => {
+        console.log("Emoji requested sucessfull! Response = " + res.data);
+        let emoji_name = /\[':([\s\S]*):'\]/.exec(res.data)[1];
+        let emoji = message.guild.emojis.find("name", emoji_name);
+        message.say(emoji.toString());
+    })
+    .catch(error => {
+        console.log("Coudn't get emoji from server. Error: " + error.message);
+        console.log("Generating a random emoji instead.");
+        emoji = message.guild.emojis.random();      // Gets a random custom emoji
+        message.say(emoji.toString());              // Says the emoji in the chat
+    });
 
     /* THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
     const emoji = guild.emojis.first();
@@ -102,7 +127,7 @@ bot.on('message', message => {
 });
 
 bot.on('guildMemberAdd', member => {
-    if (member.guild.id != process.env.SHILOH_CHAT) return; //Checks if it's the Shiloh server
+    if (member.guild.id != process.env.SHILOH_SERVER) return; //Checks if it's the Shiloh server
     //Greeting message
     member.guild.channels.find(val => val.name == "general").send(`${member.user} ${welcome[Math.floor(Math.random() * welcome.length)]}`);
     member.addRole(process.env.SINNER_ROLE)     //Gives the newcomer the sinners role
