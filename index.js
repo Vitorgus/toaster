@@ -5,6 +5,7 @@ const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const edgelord = process.env.GOODFACE;
 const axios = require('axios');
+const escapeRegex = require('escape-string-regexp');
 
 //Initializing bot
 const bot = new CustomClient({
@@ -64,7 +65,8 @@ bot.on('unknownCommand', message => {
         return;
     }
     console.log("Shiloh! Going to send an IA calculated emoji! Message received: " + message.content);
-    let text = RegExp(`${this.commandPrefix}([\\s\\S]*)`, 'i').exec(message.content)[1];
+    const escapedPrefix = escapeRegex(bot.commandPrefix);
+    let text = RegExp(`^(<@!?${bot.user.id}>\\s+(?:${escapedPrefix}\\s*)?|${escapedPrefix}\\s*)([\\s\\S]*)`, 'i').exec(message.content)[2];
     let config = {
         model: 'shiloh',
         text: text
