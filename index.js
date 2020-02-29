@@ -66,7 +66,7 @@ bot.on('unknownCommand', message => {
     }
     console.log("Shiloh! Going to send an IA calculated emoji! Message received: " + message.content);
     const escapedPrefix = escapeRegex(bot.commandPrefix);
-    let text = RegExp(`^(<@!?${bot.user.id}>\\s+(?:${escapedPrefix}\\s*)?|${escapedPrefix}\\s*)([\\s\\S]*)`, 'i').exec(message.content)[2];
+    let text = RegExp(`^(<@!?${bot.user.id}>\\s+(?:${escapedPrefix},*\\s*)?|${escapedPrefix},*\\s*)([\\s\\S]*)`, 'i').exec(message.content)[2];
     let config = {
         model: 'shiloh',
         text: text
