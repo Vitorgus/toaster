@@ -3,6 +3,7 @@ const Enmap = require('enmap');                     //Gets the enmap. Basically 
 const https = require('https');
 const http = require('http');
 const messages = require('./messages.json');
+const escapeRegex = require('escape-string-regexp');
 const stream = messages.stream;
 
 class Client extends Commando.CommandoClient {
@@ -33,7 +34,17 @@ class Client extends Commando.CommandoClient {
 	    this.once('ready', () => {
 	    	this.stream_timer = setInterval(this.checkStream, 30000, this);
 	    	this.checkMoon();
-	    })
+		})
+
+		// Makes the bot answer if the first letter of thre prefix is upper or lower case
+		if (options.commandPrefix[0].match(/[/s]/i)) {
+			const escapedPrefix = escapeRegex(options.commandPrefix);
+			const firstLetterCaseInsensitive = `${escapedPrefix[0].toLowerCase}|${escapedPrefix[0].toUpperCase}]${escapedPrefix.slice(1)}`;
+		
+			this.dispatcher._commandPatterns[options.commandPrefix] = new RegExp(
+				`^(<@!?${this.user.id}>\\s+(?:[${firstLetterCaseInsensitive}\\s*)?|${firstLetterCaseInsensitive}\\s*)([^\\s]+)`, 'i'
+			);
+		}
 	}
 
 	checkStream(handler, offline) {
