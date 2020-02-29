@@ -64,7 +64,7 @@ bot.on('unknownCommand', message => {
         return;
     }
     console.log("Shiloh! Going to send an IA calculated emoji! Message received: " + message.content);
-    let text = /jarvis ([\s\S]*)/.exec(message.content)[1];
+    let text = RegExp(`${this.commandPrefix}([\\s\\S]*)`, 'i').exec(message.content)[1];
     let config = {
         model: 'shiloh',
         text: text
