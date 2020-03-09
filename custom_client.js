@@ -21,6 +21,8 @@ class Client extends Commando.CommandoClient {
 		this.generaldb.set("victim3", "RED");                                // Sets the name of the ladybug vicim. YOu literally asked for this, Red.
 		this.generaldb.set("bird", false);                               	 // Sets initial bird vallue to false
 		this.generaldb.set("victim4", process.env.AZURE);                	 // Sets the id of the bird vicim. Az, you smut. Love ya.
+		this.generaldb.set("egg", false);                               	 // Sets initial bird vallue to false
+		this.generaldb.set("victim5", process.env.MILL);                	 // Sets the id of the egg vicim. Mill ya dirty bird.
 	    this.generaldb.set("emo", false);
 
 	    this.music = {};
