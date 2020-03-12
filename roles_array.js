@@ -44,9 +44,9 @@ module.exports = [
         id: process.env.TEAM_GRANT,
         description: ''
     },
-    /*{
+    {
         names: ['team todd'],
         id: process.env.TEAM_TODD,
         description: ''
-    }*/
+    }
 ];
