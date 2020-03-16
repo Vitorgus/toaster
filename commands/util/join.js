@@ -44,7 +44,7 @@ module.exports = class joinCommand extends Command {
 
             console.log("Trying to find team with name = '" + team_name + "'");
 
-            const add_role_object = team_array.find(({ names }) => names.some(name => team_name === name || team_name === 'team' + name));
+            const add_role_object = team_array.find(({ names }) => names.some(name => team_name === name || team_name === 'team ' + name));
             if (!add_role_object) return msg.reply(`Coudn't find team with name '${team_name}'`);
 
             const add_role = msg.guild.roles.get(add_role_object.id);
