@@ -1,6 +1,6 @@
 module.exports = [
     {
-        names: ['ollie', 'thollie', 'mantis', 'olive garden'],
+        names: ['ollie', 'thotlie', 'mantis', 'olive garden'],
         id: process.env.TEAM_OLLIE
     },
     {
