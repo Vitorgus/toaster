@@ -8,7 +8,7 @@ module.exports = [
         id: process.env.TEAM_SAWYER
     },
     {
-        names: ['team calahan', 'team chloe', 'team best girl'],
+        names: ['team callahan', 'team chloe', 'team best girl'],
         id: process.env.TEAM_CALLAHAN
     },
     {
