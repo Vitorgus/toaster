@@ -32,7 +32,7 @@ module.exports = [
         id: process.env.TEAM_HIGHWAYMAN
     },
     {
-        names: ['grant', 'henry'],
+        names: ['grant', 'henry', 'donut'],
         id: process.env.TEAM_GRANT
     },
     {
