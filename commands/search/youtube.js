@@ -31,7 +31,6 @@ module.exports = class youtubeCommand extends Command {
                 console.log(error);
                 return msg.say(`Something went wrong while searching for the video.`);
             }
-
             if (!result || !result.items || result.items.length < 1) {
                 console.log("ERROR_PLAY2");
                 console.log("Result: " + result);
