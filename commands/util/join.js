@@ -72,7 +72,7 @@ module.exports = class joinCommand extends Command {
             }
 
             console.log(`Added ${msg.author.username} to role ${add_role.name}`);
-            answer += `Adedd to ${add_role.name}.`;
+            answer += `Added to ${add_role.name}.`;
             return msg.reply(answer);
 
         }
