@@ -37,14 +37,14 @@ module.exports = class joinCommand extends Command {
                 }
                 answer += names.slice(0, names.length -1).reduce((string, name) => string + `\`${name}\`` + ', ', role.name + ': ') + `\`${names[names.length - 1]}\`` + '\n';
             });
-            return msg.reply('to join a team, simply say `jarvis join <keyword>`, where `<keyword>` is one of the keywords for the team you wanna join. here\'s the list of all keywords:\n\n'
+            return msg.reply('to join a team, simply say `jarvis join team <keyword>`, or simply `jarvis join <keyword>`, where `<keyword>` is one of the keywords for the team you wanna join. Here\'s the list of all keywords:\n\n'
                 + (answer !== '' ? answer : `Strange... No team found.`));
 
         } else {
 
             console.log("Trying to find team with name = '" + team_name + "'");
 
-            const add_role_object = team_array.find(({ names }) => names.some(name => name === team_name));
+            const add_role_object = team_array.find(({ names }) => names.some(name => team_name === name || team_name === 'team' + name));
             if (!add_role_object) return msg.reply(`Coudn't find team with name '${team_name}'`);
 
             const add_role = msg.guild.roles.get(add_role_object.id);
