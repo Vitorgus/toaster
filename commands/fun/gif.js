@@ -3,7 +3,7 @@ const { Command } = require('discord.js-commando');
 var qs = require("querystring");
 
 var giphy_config = {
-    "api_key": process.env.GIPHY_API,
+    "api_key": process.env.TOKEN_GIPHY_API,
     "rating": "pg-13",
     "url": "http://api.giphy.com/v1/gifs/random",
     "permission": ["NORMAL"]

@@ -1,6 +1,5 @@
 const path = require('path');                       //Gets the system path
 const CustomClient = require('./custom_client.js');    //Gets the commando library
-const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const edgelord = process.env.GOODFACE;
@@ -178,7 +177,7 @@ bot.registry
     .registerCommandsIn(path.join(__dirname, 'commands'));
 
 //Login into discord. WHy is this line in the bottom of the code?
-bot.login(token);
+bot.login(process.env.TOKEN_DISCORD_LOGIN);
 
 /*
 PS: removed erlpack from package.json, but just in case the bot crashes, here it is

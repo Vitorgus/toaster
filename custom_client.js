@@ -144,9 +144,9 @@ class Client extends Commando.CommandoClient {
 	getQuotes() {
 	    let options = {
 	        hostname: 'api.jsonbin.io',
-	        path: '/b/' + process.env.QUOTES_ID + '/latest',
+	        path: '/b/' + process.env.TOKEN_QUOTES_ID + '/latest',
 	        headers: {
-	            'secret-key': process.env.QUOTES_KEY
+	            'secret-key': process.env.TOKEN_QUOTES_PASSWORD
 	        }
 	    };
 
