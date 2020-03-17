@@ -14,15 +14,15 @@ module.exports = class teamsCommand extends Command {
     run(msg, args) {
        if (msg.guild.id !== process.env.SHILOH_SERVER_ID && msg.guild.id !== process.env.TEST_SERVER_ID) return;
 
-       let roles_array = require('../../roles_array');
+       let teams_array = require('../../roles_array');
        let teams_size = [];
 
-       roles_array.forEach(object => {
-           let role = this.client.guilds.get(process.env.SHILOH_SERVER_ID).roles.get(object.id);
+       teams_array.forEach(team => {
+           let team_role = this.client.guilds.get(process.env.SHILOH_SERVER_ID).roles.get(team.id);
            //if (!role || role.deleted) return;
-           if (!role) console.log("Coudn't find team with id " + object.id);
-           else if (role.deleted) console.log(`Role ${role.name} with id ${object.id} is deleted, skipping`);
-           else teams_size.push({ name: role.name, size: role.members.size });
+           if (!team_role) console.log(`Coudn't find role for ${names[0]} with id ${id}`);
+           else if (team_role.deleted) console.log(`Role ${team_role.name} with id ${team.id} is deleted, skipping`);
+           else teams_size.push({ name: team_role.name, size: team_role.members.size });
        });
 
        if (teams_size.length === 0) return msg.say("Something went wrong. No roles found.");
