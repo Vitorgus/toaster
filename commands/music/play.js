@@ -3,7 +3,7 @@ const { Command } = require('discord.js-commando');
 const yt = require('ytdl-core');
 var youtube_node = require('youtube-node');
 youtube = new youtube_node();
-youtube.setKey(process.env.YOUTUBE_KEY);
+youtube.setKey(process.env.TOKEN_YOUTUBE_API);
 youtube.addParam('type', 'video');
 
 /*

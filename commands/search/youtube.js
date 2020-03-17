@@ -2,7 +2,7 @@ const { Command } = require('discord.js-commando');
 
 var youtube_node = require('youtube-node');
 youtube = new youtube_node();
-youtube.setKey(process.env.YOUTUBE_KEY);
+youtube.setKey(process.env.TOKEN_YOUTUBE_API);
 youtube.addParam('type', 'video');
 
 module.exports = class youtubeCommand extends Command {
@@ -27,8 +27,10 @@ module.exports = class youtubeCommand extends Command {
 
         youtube.search(tags, 1, {type: "video"}, function(error, result) {
             //msg.channel.stopTyping();
-            if (error) return msg.say(`Error while searching for the video:  \`${error}\``);
-
+            if (error) {
+                console.log(error);
+                return msg.say(`Something went wrong while searching for the video.`);
+            }
             if (!result || !result.items || result.items.length < 1) {
                 console.log("ERROR_PLAY2");
                 console.log("Result: " + result);

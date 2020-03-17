@@ -19,7 +19,7 @@ module.exports = class redquoteCommand extends Command {
     async run(msg, { user }) {
         let discord = require('discord.js');
         if (msg.channel instanceof discord.GroupDMChannel ||
-            (msg.channel instanceof discord.TextChannel && msg.guild.id != process.env.SHILOH_SERVER) ||
+            (msg.channel instanceof discord.TextChannel && msg.guild.id != process.env.SHILOH_SERVER_ID) ||
             (msg.channel instanceof discord.DMChannel && !this.client.isOwner(msg.author))) return;
         user = user.toLowerCase();
         let quotes_array = this.client.quotes_array;

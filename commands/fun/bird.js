@@ -20,7 +20,7 @@ module.exports = class birdCommand extends Command {
     run(msg, { toggle }) {
         let discord = require('discord.js');
         if (msg.channel instanceof discord.GroupDMChannel ||
-            (msg.channel instanceof discord.TextChannel && msg.guild.id != process.env.SHILOH_SERVER) ||
+            (msg.channel instanceof discord.TextChannel && msg.guild.id != process.env.SHILOH_SERVER_ID) ||
             (msg.channel instanceof discord.DMChannel && !this.client.isOwner(msg.author))) return;
         if (toggle === "activate" || toggle === "on"){  // If the command is to activate eggplant mode
             this.client.generaldb.set("bird", true);    // Sets true in the database

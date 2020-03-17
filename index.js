@@ -1,9 +1,8 @@
 const path = require('path');                       //Gets the system path
 const CustomClient = require('./custom_client.js');    //Gets the commando library
-const token = process.env.TOKEN;                    //Gets the SUPER SECRET BOT TOKEN from the hosting enviroment
 const messages = require('./messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
-const edgelord = process.env.GOODFACE;
+const edgelord = process.env.SHILOH_USER_GOODFACE;
 const axios = require('axios');
 const escapeRegex = require('escape-string-regexp');
 
@@ -23,14 +22,14 @@ bot.on('ready', () => {
     //bot.user.setGame("JARVIS | jarvis help");
     bot.user.setActivity("Type 'jarvis help' for commands", { type: 'PLAYING' }); // Sets bot game
 
-    /*bot.red_status = bot.guilds.get(process.env.SHILOH_SERVER)
+    /*bot.red_status = bot.guilds.get(process.env.SHILOH_SERVER_ID)
         .members.get(edgelord).presence.status;
     bot.edgy_handler = setInterval(() => {
         if (!bot.generaldb.get("emo")) {
             clearInterval(bot.edgy_handler);
             return;
         }
-        let guild = bot.guilds.get(process.env.SHILOH_SERVER);
+        let guild = bot.guilds.get(process.env.SHILOH_SERVER_ID);
         let status = guild.members.get(edgelord).presence.status;
         // console.log("Status = " + status);          //OFF
         // console.log("REd status = " + bot.red_status);//ON
@@ -39,7 +38,7 @@ bot.on('ready', () => {
         	// let red = bot.quotes_array.find(obj => {
         	//	return obj['name'].includes("red");
         	//});
-            guild.channels.get(process.env.SHILOH_GENERAL)
+            guild.channels.get(process.env.SHILOH_CHANNEL_GENERAL)
                 .send("https://cdn.discordapp.com/attachments/450067107913269258/456571650146566174/goosface.png"); //Goose image for GoodFace
                 //.send(red["quotes"][Math.floor(Math.random() * red["quotes"].length)]); // Sends a random red quote
                 //.send("May Shiloh (cat) give you a lot of snuggles\nMay you don't get kidnapped (at least today)\nMay everything goes smoothly in your workplace\nMay your bones don't break due to old age\nMay Shiloh (comic) always attract new readers\nMay all this and much more good stuff happens to you, because I ran out of creativity on what to say\nYou are awesome\n\nHAPPY BIRTHDAY RED!!\n\n https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRMZGJ5Kqr0jaNQ5QCej58t73Tr3jPdM1yH2cTUbMbe9ecs-YTvgT0UbYVx");
@@ -58,7 +57,7 @@ bot.on('ready', () => {
 bot.on('unknownCommand', message => {
     //Check is it's possible to send an emoji
     if (message.editedAt || !message.guild || !message.guild.available || !message.guild.emojis.size) return;
-    if (message.guild.id !== process.env.SHILOH_SERVER) {
+    if (message.guild.id !== process.env.SHILOH_SERVER_ID) {
         console.log("NOT shiloh chat. Getting a random emoji.")
         emoji = message.guild.emojis.random();      // Gets a random custom emoji
         message.say(emoji.toString());              // Says the emoji in the 
@@ -97,7 +96,6 @@ bot.on('message', message => {
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
-    if (message.channel.id == process.env.MOD_CHAT) return;
     let eggplant = bot.generaldb.get("eggplant");   // Gets the state from de DB
     let apple = bot.generaldb.get("apple");
     let ladybug = bot.generaldb.get("ladybug");
@@ -136,10 +134,10 @@ bot.on('message', message => {
 });
 
 bot.on('guildMemberAdd', member => {
-    if (member.guild.id != process.env.SHILOH_SERVER) return; //Checks if it's the Shiloh server
+    if (member.guild.id != process.env.SHILOH_SERVER_ID) return; //Checks if it's the Shiloh server
     //Greeting message
     member.guild.channels.find(val => val.name == "general").send(`${member.user} ${welcome[Math.floor(Math.random() * welcome.length)]}`);
-    member.addRole(process.env.SINNER_ROLE)     //Gives the newcomer the sinners role
+    member.addRole(process.env.SHILOH_ROLE_READER)     //Gives the newcomer the sinners role
         .catch(error => {
             console.log(error);
             member.guild.channels.find(val => val.name == "general").send(`Whoops. Couldn't give you the readers role. Sorry.`);
@@ -178,7 +176,7 @@ bot.registry
     .registerCommandsIn(path.join(__dirname, 'commands'));
 
 //Login into discord. WHy is this line in the bottom of the code?
-bot.login(token);
+bot.login(process.env.TOKEN_DISCORD_LOGIN);
 
 /*
 PS: removed erlpack from package.json, but just in case the bot crashes, here it is

@@ -20,9 +20,9 @@ class Client extends Commando.CommandoClient {
 	    this.generaldb.set("ladybug", false);                                // Sets initial ladybug vallue to false
 		this.generaldb.set("victim3", "RED");                                // Sets the name of the ladybug vicim. YOu literally asked for this, Red.
 		this.generaldb.set("bird", false);                               	 // Sets initial bird vallue to false
-		this.generaldb.set("victim4", process.env.AZURE);                	 // Sets the id of the bird vicim. Az, you smut. Love ya.
+		this.generaldb.set("victim4", process.env.SHILOH_USER_AZURE);                	 // Sets the id of the bird vicim. Az, you smut. Love ya.
 		this.generaldb.set("egg", false);                               	 // Sets initial bird vallue to false
-		this.generaldb.set("victim5", process.env.MILL);                	 // Sets the id of the egg vicim. Mill ya dirty bird.
+		this.generaldb.set("victim5", process.env.SHILOH_USER_MILL);                	 // Sets the id of the egg vicim. Mill ya dirty bird.
 	    this.generaldb.set("emo", false);
 
 	    this.music = {};
@@ -78,8 +78,8 @@ class Client extends Commando.CommandoClient {
 	                if (handler.stream_status === rnf.online) return;
 	                if (rnf.online) {
 	                    handler.stream_status = true;
-	                    handler.guilds.get(process.env.SHILOH_SERVER)
-	                        .channels.get(process.env.SHILOH_GENERAL)
+	                    handler.guilds.get(process.env.SHILOH_SERVER_ID)
+	                        .channels.get(process.env.SHILOH_CHANNEL_GENERAL)
 	                        .send(`${stream[Math.floor(Math.random() * stream.length)]} https://picarto.tv/REDnFLYNN`);
 	                    return;
 	                }
@@ -144,9 +144,9 @@ class Client extends Commando.CommandoClient {
 	getQuotes() {
 	    let options = {
 	        hostname: 'api.jsonbin.io',
-	        path: '/b/' + process.env.QUOTES_ID + '/latest',
+	        path: '/b/' + process.env.TOKEN_QUOTES_ID + '/latest',
 	        headers: {
-	            'secret-key': process.env.QUOTES_KEY
+	            'secret-key': process.env.TOKEN_QUOTES_PASSWORD
 	        }
 	    };
 

@@ -1,42 +1,42 @@
 module.exports = [
     {
         names: ['ollie', 'thotlie', 'mantis', 'olive garden'],
-        id: process.env.TEAM_OLLIE
+        id: process.env.SHILOH_ROLE_TEAM_OLLIE
     },
     {
         names: ['sawyer', 'hot dad', 'soybean', 'choking hazard'],
-        id: process.env.TEAM_SAWYER
+        id: process.env.SHILOH_ROLE_TEAM_SAWYER
     },
     {
         names: ['callahan', 'chloe', 'best girl'],
-        id: process.env.TEAM_CALLAHAN
+        id: process.env.SHILOH_ROLE_TEAM_CALLAHAN
     },
     {
         names: ['barrett','cliff', 'trash dad', 'snark tank'],
-        id: process.env.TEAM_BARRET
+        id: process.env.SHILOH_ROLE_TEAM_BARRETT
     },
     {
         names: ['sid', 'siddie pool', 'bean'],
-        id: process.env.TEAM_SID
+        id: process.env.SHILOH_ROLE_TEAM_SID
     },
     {
         names: ['shane', 'shame', 'shame corner'],
-        id: process.env.TEAM_SHANE
+        id: process.env.SHILOH_ROLE_TEAM_SHANE
     },
     {
         names: ['hollis'],
-        id: process.env.TEAM_HOLLIS
+        id: process.env.SHILOH_ROLE_TEAM_HOLLIS
     },
     {
         names: ['highwayman', 'hwm'],
-        id: process.env.TEAM_HIGHWAYMAN
+        id: process.env.SHILOH_ROLE_TEAM_HWM
     },
     {
         names: ['grant', 'henry', 'donut'],
-        id: process.env.TEAM_GRANT
+        id: process.env.SHILOH_ROLE_TEAM_GRANT
     },
     {
         names: ['todd', 'ainsley'],
-        id: process.env.TEAM_TODD
+        id: process.env.SHILOH_ROLE_TEAM_TODD
     }
 ];
