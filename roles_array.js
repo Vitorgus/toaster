@@ -16,7 +16,7 @@ module.exports = [
         id: process.env.TEAM_BARRET
     },
     {
-        names: ['sid', 'siddie pool'],
+        names: ['sid', 'siddie pool', 'bean'],
         id: process.env.TEAM_SID
     },
     {
