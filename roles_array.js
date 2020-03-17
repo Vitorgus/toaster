@@ -4,7 +4,7 @@ module.exports = [
         id: process.env.SHILOH_ROLE_TEAM_OLLIE
     },
     {
-        names: ['sawyer', 'hot dad', 'soybean', 'choking hazard'],
+        names: ['sawyer', 'hot dad', 'soybean', 'choking hazard', 'murder daddy'],
         id: process.env.SHILOH_ROLE_TEAM_SAWYER
     },
     {
