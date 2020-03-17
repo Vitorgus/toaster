@@ -18,7 +18,7 @@ module.exports = class joinCommand extends Command {
     }
 
     async run(msg, { team_name }) {
-        if (!msg.guild || msg.guild.id !== process.env.SHILOH_SERVER) return;
+        if (!msg.guild || msg.guild.id !== process.env.SHILOH_SERVER_ID) return;
 
         const team_array = require('../../roles_array');
         let answer = '';
