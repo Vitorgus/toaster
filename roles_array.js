@@ -16,7 +16,7 @@ module.exports = [
         id: process.env.SHILOH_ROLE_TEAM_BARRETT
     },
     {
-        names: ['sid', 'siddie pool'],
+        names: ['sid', 'siddie pool', 'bean'],
         id: process.env.SHILOH_ROLE_TEAM_SID
     },
     {
