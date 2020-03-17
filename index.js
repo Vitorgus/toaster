@@ -96,7 +96,6 @@ bot.on('message', message => {
     if (message.content == "alo") {
         message.channel.send("<@291235973717688321><:red:362768065202618369>");
     }*/
-    if (message.channel.id == process.env.MOD_CHAT) return;
     let eggplant = bot.generaldb.get("eggplant");   // Gets the state from de DB
     let apple = bot.generaldb.get("apple");
     let ladybug = bot.generaldb.get("ladybug");
