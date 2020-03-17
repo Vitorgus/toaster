@@ -137,7 +137,7 @@ bot.on('guildMemberAdd', member => {
     if (member.guild.id != process.env.SHILOH_SERVER_ID) return; //Checks if it's the Shiloh server
     //Greeting message
     member.guild.channels.find(val => val.name == "general").send(`${member.user} ${welcome[Math.floor(Math.random() * welcome.length)]}`);
-    member.addRole(process.env.SINNER_ROLE)     //Gives the newcomer the sinners role
+    member.addRole(process.env.SHILOH_ROLE_READER)     //Gives the newcomer the sinners role
         .catch(error => {
             console.log(error);
             member.guild.channels.find(val => val.name == "general").send(`Whoops. Couldn't give you the readers role. Sorry.`);
