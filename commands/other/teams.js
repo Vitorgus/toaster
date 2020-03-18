@@ -14,7 +14,7 @@ module.exports = class teamsCommand extends Command {
     run(msg, args) {
        if (msg.guild.id !== process.env.SHILOH_SERVER_ID && msg.guild.id !== process.env.TEST_SERVER_ID) return;
 
-       let teams_array = require('../../roles_array');
+       let teams_array = require('../../objects/roles_array');
        let teams_size = [];
 
        teams_array.forEach(({id, names}) => {
