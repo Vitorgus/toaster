@@ -24,9 +24,6 @@ module.exports = class joinCommand extends Command {
         let answer = '';
 
         if (team_name === 'help') {
-
-            console.log('Displaying help from join command');
-
             teams_array.forEach(({id, names}) => {
                 const team_role = msg.guild.roles.get(id);
                 if (!team_role) {
@@ -34,6 +31,7 @@ module.exports = class joinCommand extends Command {
                     return;
                 } else if (team_role.deleted) {
                     console.log(`Role ${team_role.name} is deleted`);
+                    return;
                 }
                 answer += names.slice(0, names.length -1).reduce((string, name) => string + `\`${name}\`` + ', ', team_role.name + ': ') + `\`${names[names.length - 1]}\`` + '\n';
             });
@@ -41,8 +39,6 @@ module.exports = class joinCommand extends Command {
                 + (answer !== '' ? answer : `Strange... No team found.`));
 
         } else {
-
-            console.log("Trying to find team with name = '" + team_name + "'");
 
             const add_team = teams_array.find(({ names }) => names.some(name => team_name === name || team_name === 'team ' + name));
             if (!add_team) return msg.reply(`Coudn't find team with name '${team_name}'`);
@@ -55,23 +51,25 @@ module.exports = class joinCommand extends Command {
                 if (add_team === remove_team) return msg.reply("You're already in that team, silly!");
                 
                 const remove_team_role = msg.guild.roles.get(remove_team.id);
-                if (!remove_team_role) return msg.reply(`Something went wrong: coudn't find the role to remove you from your current team`);
-                
+                if (!remove_team_role) {
+                    console.log(`JOIN ERROR: failed to get team for role ${remove_team.names[0]} with id ${remove_team.id}`);
+                    return msg.reply(`Something went wrong: coudn't find the role to remove you from your current team`);
+                }
                 try{
                     msg.member.removeRole(remove_team_role);
                 } catch(e) {
-                    return msg.reply(`Something went wrong: coudn't remove you to the role ${remove_team_role.name}. Cause: ${e}`);
+                    console.log(`JOIN ERROR: failed to remove user from role ${remove_team_role.name}. Cause: ${e}`);
+                    return msg.reply(`Something went wrong: coudn't remove you from the role ${remove_team_role.name}.`);
                 }
                 answer += `Removed you from ${remove_team_role.name}. `;
-                console.log(`Removed ${msg.author.username} from role ${remove_team_role.name}`);
             }
             try {
                 await msg.member.addRole(add_team_role);
             } catch(e) {
-                return msg.reply(`Something went wrong: coudn't add you to the role ${add_team_role.name}. Cause: ${e}`);
+                console.log(`JOIN ERROR: failed to add user to role ${add_team_role.name}. Cause: ${e}`);
+                return msg.reply(`Something went wrong: coudn't add you to the role ${add_team_role.name}.`);
             }
 
-            console.log(`Added ${msg.author.username} to role ${add_team_role.name}`);
             answer += `Added to ${add_team_role.name}.`;
             return msg.reply(answer);
 
