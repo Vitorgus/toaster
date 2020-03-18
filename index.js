@@ -1,6 +1,6 @@
 const path = require('path');                       //Gets the system path
 const CustomClient = require('./custom_client.js');    //Gets the commando library
-const messages = require('./messages.json');
+const messages = require('./objects/messages.json');
 const welcome = messages.welcome; //require('./welcome.json');
 const edgelord = process.env.SHILOH_USER_GOODFACE;
 const axios = require('axios');
