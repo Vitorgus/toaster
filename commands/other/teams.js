@@ -6,7 +6,7 @@ module.exports = class teamsCommand extends Command {
             name: 'teams',
             group: 'other',
             memberName: 'teams',
-            description: 'returns the number of people in each shioh character\'s team',
+            description: 'returns the number of people in each shiloh character\'s team',
             examples: ['jarvis teams']
         });
     }
