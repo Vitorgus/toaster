@@ -4,7 +4,7 @@ module.exports = class joinCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'join',
-            group: 'util',
+            group: 'shiloh',
             memberName: 'join',
             description: 'Command to add you to your favorite character\'s team. For more info, type `jarvis join help`',
             examples: ['jarvis join help', 'jarvis join team shane', 'jarvis join team best girl', 'jarvis join olive garden'],

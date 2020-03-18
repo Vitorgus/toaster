@@ -4,7 +4,7 @@ module.exports = class teamsCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'teams',
-            group: 'other',
+            group: 'shiloh',
             memberName: 'teams',
             description: 'returns the number of people in each shiloh character\'s team',
             examples: ['jarvis teams']

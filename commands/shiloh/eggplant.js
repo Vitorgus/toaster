@@ -5,7 +5,7 @@ module.exports = class eggplantCommand extends Command {
 		super(client, {
 			name: 'eggplant',
 			aliases: ['zorgplant'],
-			group: 'fun',
+			group: 'shiloh',
 			memberName: 'eggplant',
 			description: 'toggles on/off if the bot should eggplant every Zorg message',
 			examples: ['jarvis eggplant activate', 'jarvis eggplant deactivate', 'jarvis eggplant on', 'jarvis eggplant off'],

@@ -4,7 +4,7 @@ module.exports = class redquoteCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'quote',
-            group: 'fun',
+            group: 'shiloh',
             memberName: 'quote',
             description: 'Gives a random quote from the specified user',
             examples: ['jarvis quote red', 'jarvis quote steam', 'jarvis quote zorg'],

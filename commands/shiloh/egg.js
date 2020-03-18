@@ -4,7 +4,7 @@ module.exports = class eggCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'egg',
-            group: 'fun',
+            group: 'shiloh',
             memberName: 'egg',
             description: 'toggles on/off if the bot should egg every Mill message',
             examples: ['jarvis egg activate', 'jarvis egg deactivate', 'jarvis egg on', 'jarvis egg off'],

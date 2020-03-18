@@ -169,6 +169,7 @@ bot.registry
         ['fun', 'Fun Commands'],
         ['search', 'Search Commands'],
         ['util', 'Utility Commands'],
+        ['shiloh', 'Shiloh Server Commands'],
         ['other', 'Other Useful Commands']
     ])
     .registerDefaultGroups()

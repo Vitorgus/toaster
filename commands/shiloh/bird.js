@@ -4,7 +4,7 @@ module.exports = class birdCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'bird',
-            group: 'fun',
+            group: 'shiloh',
             memberName: 'bird',
             description: 'toggles on/off if the bot should bird every Az message',
             examples: ['jarvis bird activate', 'jarvis bird deactivate', 'jarvis bird on', 'jarvis bird off'],
