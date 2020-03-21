@@ -10,6 +10,8 @@ class Client extends Commando.CommandoClient {
 	constructor(options = {}) {
 		super(options);
 
+		this.testMap = new Map();
+
 	    this.getQuotes();                                                    // Also have no idea if it will work
 
 	    this.generaldb = new Enmap();                                        // Sets the "database" in the this, so it can be accessed inside the functions
