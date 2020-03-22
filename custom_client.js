@@ -11,22 +11,10 @@ class Client extends Commando.CommandoClient {
 		super(options);
 
 		this.reactions_map = new Map();
+		this.reactions_map.set("emo", false);
 
-	    this.getQuotes();                                                    // Also have no idea if it will work
-
-	    this.generaldb = new Enmap();                                        // Sets the "database" in the this, so it can be accessed inside the functions
-	    this.generaldb.set("eggplant", false);                               // Sets initial eggplant vallue to false
-	    this.generaldb.set("victim", "Zorg");                                // Sets the name of the eggplant vicim. Love ya, Zorg.
-	    this.generaldb.set("apple", false);                                  // Sets initial tomato vallue to false
-	    this.generaldb.set("victim2", "RED");                                // Sets the name of the tomato vicim. Love ya, Red.
-	    this.generaldb.set("ladybug", false);                                // Sets initial ladybug vallue to false
-		this.generaldb.set("victim3", "RED");                                // Sets the name of the ladybug vicim. YOu literally asked for this, Red.
-		this.generaldb.set("bird", false);                               	 // Sets initial bird vallue to false
-		this.generaldb.set("victim4", process.env.SHILOH_USER_AZURE);                	 // Sets the id of the bird vicim. Az, you smut. Love ya.
-		this.generaldb.set("egg", false);                               	 // Sets initial bird vallue to false
-		this.generaldb.set("victim5", process.env.SHILOH_USER_MILL);                	 // Sets the id of the egg vicim. Mill ya dirty bird.
-	    this.generaldb.set("emo", false);
-
+		this.getQuotes();                                                    // Also have no idea if it will work
+		
 	    this.music = {};
 
 	    this.stream_status = null;
