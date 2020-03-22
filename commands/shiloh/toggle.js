@@ -7,7 +7,7 @@ module.exports = class toggleCommand extends Command {
             group: 'shiloh',
             memberName: 'toggle',
             description: 'Toggles on/off jarvis\' reaction to someone\'s message',
-            examples: ['jarvis bird activate', 'jarvis bird deactivate', 'jarvis bird on', 'jarvis bird off'],
+            examples: ['jarvis toggle eggplant', 'jarvis toggle bird', 'jarvis toggle egg'],
             args: [{
                 key: 'reaction_name',
                 prompt: 'What reaction should I toggle on/off?',
@@ -28,20 +28,19 @@ module.exports = class toggleCommand extends Command {
         const reaction = reactions_array.find(({ name }) => reaction_name === name);
         if (!reaction) return msg.say(`Coudn't find reaction with name ${reaction_name}`);
 
-        // This logic works, but it's a little slow. Test it on the message event in index.js.
-        if (!this.client.testMap.has(reaction.name)) {
+        if (!this.client.reactions_map.has(reaction.name)) {
             const func = message => {
                 if (message.author.id === reaction.victim) {
                     message.react(reaction.emoji);
                 }
             }
-            this.client.testMap.set(reaction.name, func);
+            this.client.reactions_map.set(reaction.name, func);
             this.client.on('message', func);
             return  msg.say("Activated " + reaction.emoji);
         } else {
-            const func = this.client.testMap.get(reaction.name);
+            const func = this.client.reactions_map.get(reaction.name);
             this.client.removeListener('message', func);
-            this.client.testMap.delete(reaction.name);
+            this.client.reactions_map.delete(reaction.name);
             return msg.say("Deactivated " + reaction.emoji);
         }
     }

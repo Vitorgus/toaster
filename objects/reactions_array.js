@@ -10,13 +10,18 @@ module.exports = [
         emoji: '🍆'
     },
     {
-        name: 'invader',
-        victim: '291235973717688321',
-        emoji: '👾'
+        name: 'bird',
+        victim: process.env.SHILOH_USER_AZURE,
+        emoji: '🐦'
     },
     {
-        name: 'spock',
-        victim: '291235973717688321',
-        emoji: '🖖'
-    }
+        name: 'ladybug',
+        victim: process.env.SHILOH_USER_RED,
+        emoji: '🐞'
+    },
+    {
+        name: 'apple',
+        victim: process.env.SHILOH_USER_RED,
+        emoji: '🍎'
+    },
 ];

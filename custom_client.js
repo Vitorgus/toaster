@@ -10,7 +10,7 @@ class Client extends Commando.CommandoClient {
 	constructor(options = {}) {
 		super(options);
 
-		this.testMap = new Map();
+		this.reactions_map = new Map();
 
 	    this.getQuotes();                                                    // Also have no idea if it will work
 
