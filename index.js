@@ -25,7 +25,7 @@ bot.on('ready', () => {
     /*bot.red_status = bot.guilds.get(process.env.SHILOH_SERVER_ID)
         .members.get(edgelord).presence.status;
     bot.edgy_handler = setInterval(() => {
-        if (!bot.generaldb.get("emo")) {
+        if (!bot.reactions_map.get("emo")) {
             clearInterval(bot.edgy_handler);
             return;
         }
@@ -85,52 +85,14 @@ bot.on('unknownCommand', message => {
         message.say(emoji.toString());              // Says the emoji in the chat
     });
 
-    /* THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
-    const emoji = guild.emojis.first();
-    msg.reply(`Hello! ${emoji}`);
-    */
-});
+    // THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
+    // const emoji = guild.emojis.first();
+    // msg.reply(`Hello! ${emoji}`);
 
-bot.on('message', message => {
-    /* THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
-    if (message.content == "alo") {
-        message.channel.send("<@291235973717688321><:red:362768065202618369>");
-    }*/
-    let eggplant = bot.generaldb.get("eggplant");   // Gets the state from de DB
-    let apple = bot.generaldb.get("apple");
-    let ladybug = bot.generaldb.get("ladybug");
-    let bird = bot.generaldb.get("bird");
-    let egg = bot.generaldb.get("egg");
-    if (eggplant) {
-        let name = bot.generaldb.get("victim");         // Gets the name of the eggplant victim
-        if (message.author.username == name){           // If it gets here, then it is activated, so it checks if the sender os the message is Zorg
-            message.react("🍆");                        // If yes, the reacts with an eggplant
-        }
-    }
-    if (apple) {
-        let name = bot.generaldb.get("victim2");         // Gets the name of the apple victim
-        if (message.author.username == name){            // If it gets here, then it is activated, so it checks if the sender os the message is Red
-            message.react("🍎");                         // If yes, the reacts with a apple
-        }
-    }
-    if (ladybug) {
-        let name = bot.generaldb.get("victim3");         // Gets the name of the apple victim
-        if (message.author.username == name){            // If it gets here, then it is activated, so it checks if the sender os the message is Red
-            message.react("🐞");                         // If yes, the reacts with a ladybug
-        }
-    }
-    if (bird) {
-        let id = bot.generaldb.get("victim4");           // Gets the name of the apple victim
-        if (message.author.id == id){                    // If it gets here, then it is activated, so it checks if the sender os the message is Az
-            message.react("🐦");                         // If yes, the reacts with a bird
-        }
-    }
-    if (egg) {
-        let id = bot.generaldb.get("victim5");           // Gets the name of the apple victim
-        if (message.author.id == id){                    // If it gets here, then it is activated, so it checks if the sender os the message is Az
-            message.react("🥚");                         // If yes, the reacts with a bird
-        }
-    }
+    // THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
+    // if (message.content == "alo") {
+    //     message.channel.send("<@291235973717688321><:red:362768065202618369>");
+    // }
 });
 
 bot.on('guildMemberAdd', member => {
