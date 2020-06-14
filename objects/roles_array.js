@@ -40,7 +40,7 @@ module.exports = [
         id: process.env.SHILOH_ROLE_TEAM_TODD
     },
     {
-        names: ['azrael'],
+        names: ['azrael', 'skull', 'sans'],
         id: process.env.SHILOH_ROLE_TEAM_AZRAEL
     }
 ];
