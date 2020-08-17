@@ -24,7 +24,7 @@ module.exports = [
         id: process.env.SHILOH_ROLE_TEAM_SHANE
     },
     {
-        names: ['hollis', 'owl bab'],
+        names: ['hollis', 'hoolis', 'owl bab'],
         id: process.env.SHILOH_ROLE_TEAM_HOLLIS
     },
     {
