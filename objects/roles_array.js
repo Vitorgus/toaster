@@ -4,7 +4,7 @@ module.exports = [
         id: process.env.SHILOH_ROLE_TEAM_OLLIE
     },
     {
-        names: ['sawyer', 'hot dad', 'soybean', 'choking hazard', 'murder daddy'],
+        names: ['sawyer', 'hot dad', 'soybean', 'choking hazard', 'murder daddy', 'button demon boi'],
         id: process.env.SHILOH_ROLE_TEAM_SAWYER
     },
     {
@@ -40,7 +40,7 @@ module.exports = [
         id: process.env.SHILOH_ROLE_TEAM_TODD
     },
     {
-        names: ['azrael', 'skull', 'sans'],
+        names: ['azrael', 'assrael', 'skull', 'sans'],
         id: process.env.SHILOH_ROLE_TEAM_AZRAEL
     }
 ];
