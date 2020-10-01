@@ -1,6 +1,6 @@
 module.exports = [
     {
-        names: ['ollie', 'thotlie', 'mantis', 'olive garden', 'oliver van mantis', 'van mantis'],
+        names: ['ollie', 'thotlie', 'mantis', 'olive garden', 'oliver van mantis', 'van mantis', 'emo princess'],
         id: process.env.SHILOH_ROLE_TEAM_OLLIE
     },
     {
