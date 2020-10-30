@@ -17,6 +17,6 @@ module.exports = class profilepicCommand extends Command {
     }
 
     run(msg, { user }) {
-        return msg.channel.send(user.avatarURL);
+        return msg.channel.send(user.avatarURL());
     }
 };
