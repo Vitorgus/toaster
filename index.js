@@ -75,7 +75,7 @@ bot.on('unknownCommand', message => {
     .then(res => {
         console.log("Emoji requested sucessfull! Response = " + res.data);
         let emoji_name = /\[':([\s\S]*):'\]/.exec(res.data)[1];
-        let emoji = message.guild.emojis.find("name", emoji_name);
+        let emoji = message.guild.emojis.find(emoji => emoji.name == emoji_name);
         message.say(emoji.toString());
     })
     .catch(error => {
