@@ -67,8 +67,8 @@ class Client extends Commando.CommandoClient {
 	                if (handler.stream_status === rnf.online) return;
 	                if (rnf.online) {
 	                    handler.stream_status = true;
-	                    handler.guilds.get(process.env.SHILOH_SERVER_ID)
-	                        .channels.get(process.env.SHILOH_CHANNEL_GENERAL)
+	                    handler.guilds.cache.get(process.env.SHILOH_SERVER_ID)
+	                        .channels.cache.get(process.env.SHILOH_CHANNEL_GENERAL)
 	                        .send(`${stream[Math.floor(Math.random() * stream.length)]} https://picarto.tv/REDnFLYNN`);
 	                    return;
 	                }
