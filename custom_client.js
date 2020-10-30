@@ -1,5 +1,4 @@
 const Commando = require('discord.js-commando');    //Gets the commando library
-const Enmap = require('enmap');                     //Gets the enmap. Basically a simple database.
 const https = require('https');
 const http = require('http');
 const messages = require('./objects/messages.json');
