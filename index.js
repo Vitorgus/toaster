@@ -11,15 +11,20 @@ const bot = new CustomClient({
     owner: '291235973717688321',    // Setting myself as the owner. That's my Discord ID.
     commandPrefix: 'jarvis ',       // Setting the prefix
     disableMentions: 'everyone',    // Allows the bot to use @everyone and @here
+    presence: {                     // Set bot status
+        status: 'online',
+        activity: {
+            name: "Type 'jarvis help' for commands",
+            type: 'PLAYING'
+        }
+    }
 });
 
 bot.on('ready', () => {
     //bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');            // Sets the avatar image. Disabled cause Discord complains when setting the image too many times.
     bot.package = require('./package.json');                            // Gets the package.json file
     console.log(`Starting ${bot.package.name} v${bot.package.version}...`);// Outputs in the log that the bot has started
-    bot.user.setStatus("online");                                       // Sets bot status
     //bot.user.setGame("JARVIS | jarvis help");
-    bot.user.setActivity("Type 'jarvis help' for commands", { type: 'PLAYING' }); // Sets bot game
 
     /*bot.red_status = bot.guilds.get(process.env.SHILOH_SERVER_ID)
         .members.get(edgelord).presence.status;
@@ -110,12 +115,17 @@ process.on('unhandledRejection', (reason, p) => {               // ...I guess th
   console.log('Unhandled Rejection at:', p, 'reason:', reason);
 });
 
-process.on('SIGTERM', () => {
-    console.log(`SIGTERM shutdown imminent!`);
-    bot.user.setStatus("dnd");
+let shutdown = async () => {
+    console.log(`Shutdown imminent!`);
+    await bot.user.setStatus("dnd");
     //bot.user.setGame("Updating...");
     process.exit();
-});
+}
+
+process.on('SIGTERM', shutdown);
+
+process.on('SIGINT', shutdown);
+
 /*
 process.on('exit', code => {
   console.log(`About to exit with code: ${code}`);
