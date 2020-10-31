@@ -11,7 +11,6 @@ const bot = new CustomClient({
     owner: '291235973717688321',    // Setting myself as the owner. That's my Discord ID.
     commandPrefix: 'jarvis ',       // Setting the prefix
     disableMentions: 'everyone',    // Allows the bot to use @everyone and @here
-    unknownCommandResponse: false   // Disable the default unknown command response, So that it can reply with a random custom emoji later on the code
 });
 
 bot.on('ready', () => {
@@ -56,10 +55,10 @@ bot.on('ready', () => {
 
 bot.on('unknownCommand', message => {
     //Check is it's possible to send an emoji
-    if (message.editedAt || !message.guild || !message.guild.available || !message.guild.emojis.size) return;
+    if (message.editedAt || !message.guild || !message.guild.available || !message.guild.emojis.cache.size) return;
     if (message.guild.id !== process.env.SHILOH_SERVER_ID) {
         console.log("NOT shiloh chat. Getting a random emoji.")
-        emoji = message.guild.emojis.random();      // Gets a random custom emoji
+        emoji = message.guild.emojis.cache.random();      // Gets a random custom emoji
         message.say(emoji.toString());              // Says the emoji in the 
         return;
     }
@@ -75,13 +74,13 @@ bot.on('unknownCommand', message => {
     .then(res => {
         console.log("Emoji requested sucessfull! Response = " + res.data);
         let emoji_name = /\[':([\s\S]*):'\]/.exec(res.data)[1];
-        let emoji = message.guild.emojis.find(emoji => emoji.name == emoji_name);
+        let emoji = message.guild.emojis.cache.find(emoji => emoji.name == emoji_name);
         message.say(emoji.toString());
     })
     .catch(error => {
         console.log("Coudn't get emoji from server. Error: " + error.message);
         console.log("Generating a random emoji instead.");
-        emoji = message.guild.emojis.random();      // Gets a random custom emoji
+        emoji = message.guild.emojis.cache.random();      // Gets a random custom emoji
         message.say(emoji.toString());              // Says the emoji in the chat
     });
 
@@ -135,7 +134,7 @@ bot.registry
         ['other', 'Other Useful Commands']
     ])
     .registerDefaultGroups()
-    .registerDefaultCommands()
+    .registerDefaultCommands({ unknownCommand: false })
     .registerCommandsIn(path.join(__dirname, 'commands'));
 
 //Login into discord. WHy is this line in the bottom of the code?
