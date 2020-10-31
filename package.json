@@ -20,7 +20,7 @@
   },
   "main": "index.js",
   "engines": {
-    "node": "^10.6.0"
+    "node": "12.x"
   },
   "scripts": {
     "start": "node --harmony index.js",
