@@ -10,7 +10,7 @@ module.exports = class useridCommand extends Command {
             examples: ['jarvis userid @<username>'],
             args: [{
                 key: 'user',
-                prompt: 'Which user do you want to troll?',
+                prompt: 'Which user do you want the id?',
                 type: 'user'
             }]
         });

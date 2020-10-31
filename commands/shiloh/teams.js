@@ -18,7 +18,7 @@ module.exports = class teamsCommand extends Command {
        let teams_size = [];
 
        teams_array.forEach(({id, names}) => {
-           let team_role = this.client.guilds.get(process.env.SHILOH_SERVER_ID).roles.get(id);
+           let team_role = this.client.guilds.cache.get(process.env.SHILOH_SERVER_ID).roles.cache.get(id);
            //if (!role || role.deleted) return;
            if (!team_role) console.log(`Coudn't find role for ${names[0]} with id ${id}`);
            else if (team_role.deleted) console.log(`Role ${team_role.name} with id ${id} is deleted, skipping`);

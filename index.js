@@ -10,7 +10,7 @@ const escapeRegex = require('escape-string-regexp');
 const bot = new CustomClient({
     owner: '291235973717688321',    // Setting myself as the owner. That's my Discord ID.
     commandPrefix: 'jarvis ',       // Setting the prefix
-    disableEveryone: true,          // Allows the bot to use @everyone and @here
+    disableMentions: 'everyone',    // Allows the bot to use @everyone and @here
     unknownCommandResponse: false   // Disable the default unknown command response, So that it can reply with a random custom emoji later on the code
 });
 
@@ -75,7 +75,7 @@ bot.on('unknownCommand', message => {
     .then(res => {
         console.log("Emoji requested sucessfull! Response = " + res.data);
         let emoji_name = /\[':([\s\S]*):'\]/.exec(res.data)[1];
-        let emoji = message.guild.emojis.find("name", emoji_name);
+        let emoji = message.guild.emojis.find(emoji => emoji.name == emoji_name);
         message.say(emoji.toString());
     })
     .catch(error => {
