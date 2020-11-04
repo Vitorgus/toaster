@@ -21,7 +21,7 @@
     "node": "12.x"
   },
   "scripts": {
-    "start": "node --harmony index.js",
+    "start": "node index.js",
     "local": "heroku local",
     "local:dev": "npm run local -- -e .env-dev"
   }
