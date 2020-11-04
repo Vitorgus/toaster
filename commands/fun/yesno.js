@@ -1,5 +1,5 @@
 const { Command } = require('discord.js-commando');
-const superagent = require('superagent');
+const axios = require('axios');
 
 module.exports = class yesnoCommand extends Command {
     constructor(client) {
@@ -12,14 +12,14 @@ module.exports = class yesnoCommand extends Command {
         });
     }
 
-    run(msg, args) {
+    async run(msg, args) {
         //msg.channel.startTyping();
-        superagent
-        .get('https://yesno.wtf/api')
-        .end(function(err, res){
-            if (err) console.log(err);
-            if (res) msg.say(res.body.image);
-            //return msg.channel.stopTyping();
-        });
+        try {
+            const answer = await axios.get('https://yesno.wtf/api');
+            msg.say(answer.data.image);
+        } catch (e) {
+            msg.say("Whoops, coudn't find a yes or no gif, so... maybe?");
+            console.log(e);
+        }
     }
 };
