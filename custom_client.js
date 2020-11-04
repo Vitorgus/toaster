@@ -1,6 +1,7 @@
-const Commando = require('discord.js-commando');    //Gets the commando library
+const Commando = require('discord.js-commando');
 const https = require('https');
 const http = require('http');
+const axios = require('axios');
 const messages = require('./objects/messages.json');
 const stream = messages.stream;
 
@@ -12,7 +13,7 @@ class Client extends Commando.CommandoClient {
 		this.reactions_map = new Map();
 		this.reactions_map.set("emo", false);
 
-		this.getQuotes();                                                    // Also have no idea if it will work
+		this.getQuotes();
 		
 	    this.music = {};
 
@@ -85,49 +86,19 @@ class Client extends Commando.CommandoClient {
 	    });
 	}
 
-	checkMoon() {
-	    http.get('http://isitfullmoon.com/api.php?format=json', res => {
-	        const { statusCode } = res;
-	        const contentType = res.headers['content-type'];
-
-	        let error;
-	        if (statusCode !== 200) {
-	            error = new Error('IsitFullMoon API: Request Failed.\n' +
-	            `Status Code: ${statusCode}`);
-	        } else if (!/^text\/javascript/.test(contentType)) {
-	            error = new Error('IsitFullMoon API: Invalid content-type.\n' +
-	            `Expected text/javascript but received ${contentType}`);
-	        }
-	        if (error) {
-	            console.error("Error with full moon GET request: " + error.message);
-	            // consume response data to free up memory
-	            res.resume();
-	            return;
-	        }
-
-	        res.setEncoding('utf8');
-	        let rawData = '';
-	        res.on('data', (chunk) => { rawData += chunk; });
-	        res.on('end', () => {
-	            try {
-	                const moon = JSON.parse(rawData);
-	                this.moon = {
-	                    isFull: null,
-	                    nextFullMoon: null
-	                };
-	                this.moon.nextFullMoon = new Date(moon.isitfullmoon.next * 1000);
-	                if (moon.isitfullmoon.status === "Yes")
-	                    this.moon.isFull = true;
-	                else
-	                    this.moon.isFull = false;
-	                console.log("Full moon variable initialized as " + this.moon.isFull);
-	            } catch (e) {
-	                console.error("Error while parsing full moon JSON: " + e.message);
-	            }
-	        });
-	    }).on('error', (e) => {
-	        console.error(`Error with full moon GET response: ${e.message}`);
-	    });
+	async checkMoon() {
+		try {
+			const answer = await axios.get('http://isitfullmoon.com/api.php?format=json');
+			const isitfullmoon = answer.data.isitfullmoon;
+            this.moon = {
+				isFull: isitfullmoon.status === "Yes",
+				nextFullMoon: new Date(isitfullmoon.next * 1000)
+			};
+			console.log("Full moon variable initialized as " + this.moon.isFull);
+        } catch (e) {
+			console.error(`Error with check moon function: ${e.message}`);
+			console.error(e);
+        }
 	}
 
 	getQuotes() {
