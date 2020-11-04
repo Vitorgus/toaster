@@ -1,49 +1,6 @@
 const { Command } = require('discord.js-commando');
-
-var qs = require("querystring");
-
-var giphy_config = {
-    "api_key": process.env.TOKEN_GIPHY_API,
-    "rating": "pg-13",
-    "url": "http://api.giphy.com/v1/gifs/random",
-    "permission": ["NORMAL"]
-};
-
-function get_gif(tags, func) {
-    //limit=1 will only return 1 gif
-    var params = {
-        "api_key": giphy_config.api_key,
-        "rating": giphy_config.rating,
-        "format": "json",
-        "limit": 1
-    };
-    var query = qs.stringify(params);
-
-    if (tags !== null) {
-        query += "&tag=" + tags.join('+')
-    }
-
-    //wouldnt see request lib if defined at the top for some reason:\
-    var request = require("request");
-    //console.log(query)
-    request(giphy_config.url + "?" + query, function (error, response, body) {
-        //console.log(arguments)
-        if (error || response.statusCode !== 200) {
-            console.error("giphy: Got error: " + body);
-            console.log(error);
-            //console.log(response)
-        }
-        else {
-            try{
-                var responseObj = JSON.parse(body)
-                func(responseObj.data.id);
-            }
-            catch(err){
-                func(undefined);
-            }
-        }
-    }.bind(this));
-}
+const qs = require("querystring");
+const axios = require("axios");
 
 module.exports = class gifCommand extends Command {
     constructor(client) {
@@ -61,17 +18,21 @@ module.exports = class gifCommand extends Command {
         });
     }
 
-    run(msg, { tags }) {
+    async run(msg, { tags }) {
         //msg.channel.startTyping();
-        var tags1 = tags.split(" ");
-        get_gif(tags1, function(id) {
-             //msg.channel.stopTyping();
-            if (typeof id !== "undefined") {
-                return msg.channel.send( "http://media.giphy.com/media/" + id + "/giphy.gif [Tags: " + (tags ? tags : "Random GIF") + "]");
-            }
-            else {
-                return msg.channel.send( "Invalid tags, try something different. [Tags: " + (tags ? tags : "Random GIF") + "]");
-            }
-        });
+        const params = {
+            api_key: process.env.TOKEN_GIPHY_API,
+            rating: "pg-13",
+            tag: tags
+        };
+        const query = 'http://api.giphy.com/v1/gifs/random?' + qs.stringify(params);
+        console.log(query);
+        try {
+            const answer = await axios.get(query);
+            msg.say(answer.data.data.url + " [Tags: " + (tags ? tags : "Random GIF") + "]");
+        } catch (e) {
+            msg.say(`Coudn't get a gif with the tags \`${tags}\` for some reason. Weird.`);
+            console.log(e);
+        }
     }
 };
