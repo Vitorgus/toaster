@@ -19,6 +19,6 @@ module.exports = class rollCommand extends Command {
     run(msg, { num }) {
     	// Verificar número menor que 1 e número em notação decimal
         var result = Math.floor((Math.random() * num)) + 1;
-        return msg.say(msg.author + " rolled a " + result);
+        return msg.say(`${msg.author} rolled a ${result}`);
 }
 };
