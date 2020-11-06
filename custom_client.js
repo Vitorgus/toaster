@@ -134,51 +134,51 @@ class Client extends Commando.CommandoClient {
 	}
 
 	getQuotes() {
-	    let options = {
-	        hostname: 'api.jsonbin.io',
-	        path: '/b/' + process.env.TOKEN_QUOTES_ID + '/latest',
-	        headers: {
-	            'secret-key': process.env.TOKEN_QUOTES_PASSWORD
-	        }
-	    };
+	    // let options = {
+	    //     hostname: 'api.jsonbin.io',
+	    //     path: '/b/' + process.env.TOKEN_QUOTES_ID + '/latest',
+	    //     headers: {
+	    //         'secret-key': process.env.TOKEN_QUOTES_PASSWORD
+	    //     }
+	    // };
 
-	    https.get(options, res => {
-	        const { statusCode } = res;
-	        const contentType = res.headers['content-type'];
+	    // https.get(options, res => {
+	    //     const { statusCode } = res;
+	    //     const contentType = res.headers['content-type'];
 
-	        let error;
-	        if (statusCode !== 200) {
-	            error = new Error('JSONbin API: Request Failed.\n' +
-	            `Status Code: ${statusCode}`);
-	        } else if (!/^application\/json/.test(contentType)) {
-	            error = new Error('JSONbin API: Invalid content-type.\n' +
-	            `Expected application/json but received ${contentType}`);
-	        }
-	        if (error) {
-	            console.error("Error with JSONbin GET request: " + error.message);
-	            // consume response data to free up memory
-	            res.resume();
-	            this.quotes_array = null;
-	            return;
-	        }
+	    //     let error;
+	    //     if (statusCode !== 200) {
+	    //         error = new Error('JSONbin API: Request Failed.\n' +
+	    //         `Status Code: ${statusCode}`);
+	    //     } else if (!/^application\/json/.test(contentType)) {
+	    //         error = new Error('JSONbin API: Invalid content-type.\n' +
+	    //         `Expected application/json but received ${contentType}`);
+	    //     }
+	    //     if (error) {
+	    //         console.error("Error with JSONbin GET request: " + error.message);
+	    //         // consume response data to free up memory
+	    //         res.resume();
+	    //         this.quotes_array = null;
+	    //         return;
+	    //     }
 
-	        res.setEncoding('utf8');
-	        let rawData = '';
-	        res.on('data', (chunk) => { rawData += chunk; });
-	        res.on('end', () => {
-	            try {
-	                const parsedData = JSON.parse(rawData);
-	                this.quotes_array = parsedData;
-	                console.log("Quotes initialized!");
-	            } catch (e) {
-	                console.error("Error while parsing stream JSON: " + e.message);
-	                this.quotes_array = null;
-	            }
-	        });
-	    }).on('error', (e) => {
-	        console.error(`Error with stream GET response: ${e.message}`);
-	        this.quotes_array = null;
-	    });
+	    //     res.setEncoding('utf8');
+	    //     let rawData = '';
+	    //     res.on('data', (chunk) => { rawData += chunk; });
+	    //     res.on('end', () => {
+	    //         try {
+	    //             const parsedData = JSON.parse(rawData);
+	    //             this.quotes_array = parsedData;
+	    //             console.log("Quotes initialized!");
+	    //         } catch (e) {
+	    //             console.error("Error while parsing stream JSON: " + e.message);
+	    //             this.quotes_array = null;
+	    //         }
+	    //     });
+	    // }).on('error', (e) => {
+	    //     console.error(`Error with stream GET response: ${e.message}`);
+	    //     this.quotes_array = null;
+	    // });
 	}
 
 }
