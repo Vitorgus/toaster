@@ -58,7 +58,7 @@ bot.on('ready', () => {
     console.log("All set! Ready to roll!");
 });
 
-bot.on('unknownCommand', message => {
+bot.on('unknownCommand', async message => {
     //Check is it's possible to send an emoji
     if (message.editedAt || !message.guild || !message.guild.available || !message.guild.emojis.cache.size) return;
     if (message.guild.id !== process.env.SHILOH_SERVER_ID) {
@@ -75,19 +75,18 @@ bot.on('unknownCommand', message => {
         text: text
     };
     console.log("Request properties: " + JSON.stringify(config));
-    axios.post('http://thezorg.pythonanywhere.com/', config)
-    .then(res => {
+    try {
+        const res = await axios.post('http://thezorg.pythonanywhere.com/', config)
         console.log("Emoji requested sucessfull! Response = " + res.data);
         let emoji_name = /\[':([\s\S]*):'\]/.exec(res.data)[1];
         let emoji = message.guild.emojis.cache.find(emoji => emoji.name == emoji_name);
         message.say(emoji.toString());
-    })
-    .catch(error => {
+    } catch (e) {
         console.log("Coudn't get emoji from server. Error: " + error.message);
         console.log("Generating a random emoji instead.");
         emoji = message.guild.emojis.cache.random();      // Gets a random custom emoji
         message.say(emoji.toString());              // Says the emoji in the chat
-    });
+    }
 
     // THIS CODE IS JUST HERE TO REMIND ME THAT THE FOLOWING IS POSSIBLE
     // const emoji = guild.emojis.first();
