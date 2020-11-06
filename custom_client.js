@@ -106,6 +106,7 @@ class Client extends Commando.CommandoClient {
 					.channels.cache.get(process.env.SHILOH_CHANNEL_GENERAL)
 					.send(`${stream[Math.floor(Math.random() * stream.length)]} https://picarto.tv/REDnFLYNN`);
 				return;
+				// TODO change bot status to watching red and flynn
 			}
 			clearInterval(handler.stream_timer);
 			//console.log("CheckStream function");
@@ -113,7 +114,7 @@ class Client extends Commando.CommandoClient {
 			setTimeout(handler.checkStream, 300000, true);
         } catch (e) {
 			console.error(`Error with Picarto API: ${e.message}`);
-			console.error(e);
+			// console.error(e);
         }
 	}
 
@@ -128,7 +129,7 @@ class Client extends Commando.CommandoClient {
 			console.log("Full moon variable initialized as " + this.moon.isFull);
         } catch (e) {
 			console.error(`Error with check moon function: ${e.message}`);
-			console.error(e);
+			// console.error(e);
         }
 	}
 
