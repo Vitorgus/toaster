@@ -1,29 +1,30 @@
-// const { Command } = require('discord.js-commando');
+const { MessageAttachment } = require('discord.js');
+const { Command } = require('discord.js-commando');
 
-// module.exports = class stopCommand extends Command {
-//     constructor(client) {
-//         super(client, {
-//             name: 'stop',
-//             aliases: [
-//                 'stfu',
-//                 'stahp',
-//                 'disconnect'
-//             ],
-//             group: 'music',
-//             memberName: 'stop',
-//             description: 'Disconnects JARVIS from voice connection on the server',
-//             examples: ['jarvis stop', 'jarvis stahp', 'jarvis disconnect', 'jarvis stfu'],
-//             guildOnly: true
-//         });
-//     }
+module.exports = class stopCommand extends Command {
+    constructor(client) {
+        super(client, {
+            name: 'stop',
+            aliases: [
+                'stfu',
+                'stahp',
+                'disconnect'
+            ],
+            group: 'music',
+            memberName: 'stop',
+            description: 'Disconnects JARVIS from voice connection on the server',
+            examples: ['jarvis stop', 'jarvis stahp', 'jarvis disconnect', 'jarvis stfu'],
+            guildOnly: true
+        });
+    }
 
-//     run(msg, args) {
-//         let music = this.client.music[msg.guild.id] ;
-//         if(!msg.guild.voiceConnection) return msg.say("I'm not connected to a Voice Channel!");
-//         if (!music || !music.playing) return msg.say("No music is playing!");
-//         music.queue.splice(0, music.queue.length);
-//         msg.guild.voiceConnection.dispatcher.end("Stopped!");
-//         console.log('Disconnected!');
-        
-//     }
-// };
+    run(msg, args) {
+        const connection = msg.guild.voice ? msg.guild.voice.connection : null;
+        const member_channel = msg.member.voice.channel;
+
+        if (!connection) return msg.reply("I'm not even playing music right now!");
+        if (!member_channel || member_channel !== connection.channel) return msg.reply("you're not even in the voice channel I'm playing at!");
+
+        connection.dispatcher.end();
+    }
+};

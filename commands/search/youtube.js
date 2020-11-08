@@ -1,9 +1,5 @@
 const { Command } = require('discord.js-commando');
-
-var youtube_node = require('youtube-node');
-youtube = new youtube_node();
-youtube.setKey(process.env.TOKEN_YOUTUBE_API);
-youtube.addParam('type', 'video');
+const ytsearch = require("../../common/ytsearch");
 
 module.exports = class youtubeCommand extends Command {
     constructor(client) {
@@ -21,25 +17,17 @@ module.exports = class youtubeCommand extends Command {
         });
     }
 
-    run(msg, { tags }) {
+    async run(msg, { tags }) {
         //msg.channel.startTyping();
         //msg.channel.stopTyping();
 
-        youtube.search(tags, 1, {type: "video"}, function(error, result) {
-            //msg.channel.stopTyping();
-            if (error) {
-                console.log(error);
-                return msg.say(`Something went wrong while searching for the video.`);
-            }
-            if (!result || !result.items || result.items.length < 1) {
-                console.log("ERROR_PLAY2");
-                console.log("Result: " + result);
-                console.log("Result items: " + result.items);
-                console.log("Result items length " + result.items.length);
-                return msg.say(`Something that couldn't go wrong, went wrong. ${anchor.client.owners[0]}, check the logs.`);
-            }
-            else msg.say("http://www.youtube.com/watch?v=" + result.items[0].id.videoId);
-        });
-
+        try {
+            const id = await ytsearch(tags);
+            if (!id) return msg.say(`Sorry ${msg.author}, but I didn't find any video when searching for \`${tags}\``);
+            msg.reply(`http://www.youtube.com/watch?v=${id}`);
+        } catch (e) {
+            msg.reply(`something went wrong. Coudn't complete the search \`${tags}\`: \`${e.message}\``)
+            console.log(e);
+        }
     }
 };
