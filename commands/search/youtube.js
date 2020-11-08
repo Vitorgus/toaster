@@ -1,6 +1,5 @@
 const { Command } = require('discord.js-commando');
-const axios = require('axios');
-const qs = require("querystring");
+const ytsearch = require("../../common/ytsearch");
 
 module.exports = class youtubeCommand extends Command {
     constructor(client) {
@@ -22,24 +21,12 @@ module.exports = class youtubeCommand extends Command {
         //msg.channel.startTyping();
         //msg.channel.stopTyping();
 
-        const params = {
-            part: 'id',
-            maxResults: 1,
-            q: tags,
-            type: 'video',
-            key: process.env.TOKEN_YOUTUBE_API,
-            fields: 'items(id(videoId))'
-        };
-
-        const query = 'https://youtube.googleapis.com/youtube/v3/search?' + qs.stringify(params);
-
         try {
-            const answer = await axios.get(query);
-            const search = answer.data.items;
-            if (!search) return msg.reply(`sorry, but I didn't find any video when searching for \`${tags}\``);
-            msg.reply(`http://www.youtube.com/watch?v=${search[0].id.videoId}`);
+            const id = await ytsearch(tags);
+            if (!id) return msg.say(`Sorry ${msg.author}, but I didn't find any video when searching for \`${tags}\``);
+            msg.reply(`http://www.youtube.com/watch?v=${id}`);
         } catch (e) {
-            msg.reply(`something went wrong. Coudn't complete the search \`${tags}\` because: \`${e.message}\``)
+            msg.reply(`something went wrong. Coudn't complete the search \`${tags}\`: \`${e.message}\``)
             console.log(e);
         }
     }
