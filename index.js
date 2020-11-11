@@ -5,6 +5,7 @@ const welcome = messages.welcome; //require('./welcome.json');
 const edgelord = process.env.SHILOH_USER_GOODFACE;
 const axios = require('axios');
 const escapeRegex = require('escape-string-regexp');
+const { Pool } = require('pg');
 
 //Initializing bot
 const bot = new CustomClient({
@@ -54,6 +55,13 @@ bot.on('ready', () => {
         }
         bot.red_status = status;
     }, 5000);*/
+
+    bot.database = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: process.env.DATABASE_URL.includes('localhost') ? false : {
+            rejectUnauthorized: false
+        }
+    });
 
     console.log("All set! Ready to roll!");
 });
@@ -116,6 +124,8 @@ process.on('unhandledRejection', (reason, p) => {               // ...I guess th
 
 let shutdown = async () => {
     console.log(`Shutdown imminent!`);
+    await bot.database.end();
+    console.log('Database pool closed');
     await bot.user.setStatus("dnd");
     //bot.user.setGame("Updating...");
     process.exit();
