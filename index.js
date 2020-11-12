@@ -5,6 +5,7 @@ const welcome = messages.welcome; //require('./welcome.json');
 const edgelord = process.env.SHILOH_USER_GOODFACE;
 const axios = require('axios');
 const escapeRegex = require('escape-string-regexp');
+const AntiSpam = require('./anti-spam.js');
 
 //Initializing bot
 const bot = new CustomClient({
@@ -24,6 +25,30 @@ bot.on('ready', () => {
     //bot.user.setAvatar('http://www.jeffbots.com/hal.jpg');            // Sets the avatar image. Disabled cause Discord complains when setting the image too many times.
     let package = require('./package.json');                            // Gets the package.json file
     console.log(`Starting ${package.name} v${package.version}...`);     // Outputs in the log that the bot has started
+    bot.antispam =  new AntiSpam({
+        warnThreshold: 5, // Amount of messages sent in a row that will cause a warning.
+        kickThreshold: 6, // Amount of messages sent in a row that will cause a ban.
+        banThreshold: 7, // Amount of messages sent in a row that will cause a ban.
+        maxDuplicatesWarning: 6, // Amount of duplicate messages that trigger a warning.
+        maxDuplicatesKick: 7, // Amount of duplicate messages that trigger a warning.
+        maxDuplicatesBan: 8, // Amount of duplicate messages that trigger a warning.
+        verbose: true,
+        debug: true,
+        removeMessages: false,
+        banEnabled: false
+    });
+
+    bot.antispam.on("spamThresholdWarn", (member) => console.log(`${member.user.tag} has reached the warn threshold.`));
+    bot.antispam.on("spamThresholdKick", (member) => console.log(`${member.user.tag} has reached the kick threshold.`));
+    bot.antispam.on("spamThresholdBan", (member) => console.log(`${member.user.tag} has reached the ban threshold.`));
+
+    bot.antispam.on("warnAdd", (member) => console.log(`${member.user.tag} has been warned.`));
+    bot.antispam.on("banAdd", (member) => console.log(`${member.user.tag} has been banned.`));
+    bot.antispam.on("kickAdd", (member) => console.log(`${member.user.tag} has been kicked.`));
+
+    bot.antispam.on("error", (message, error, type) => {
+        console.log(`${message.author.tag} couldn't receive the sanction '${type}', error: ${error}`);
+    });
     //bot.user.setGame("JARVIS | jarvis help");
 
     /*bot.red_status = bot.guilds.get(process.env.SHILOH_SERVER_ID)
@@ -57,6 +82,11 @@ bot.on('ready', () => {
 
     console.log("All set! Ready to roll!");
 });
+
+bot.on('message', async (message) => {
+    // console.log(`message: ${message.content}`);
+    bot.antispam.message(message);
+}); 
 
 bot.on('unknownCommand', async message => {
     //Check is it's possible to send an emoji
