@@ -169,7 +169,7 @@ class AntiSpamClient extends EventEmitter {
 			ignoredGuilds: options.ignoredGuilds || [],
 			ignoredChannels: options.ignoredChannels || [],
 			ignoredPermissions: options.ignoredPermissions || [],
-			ignoreBots: options.ignoreBots ? options.ignoreBots !== undefined : true,
+			ignoreBots: options.ignoreBots !== undefined ? options.ignoreBots : true,
 
 			warnEnabled: options.warnEnabled !== undefined ? options.warnEnabled : true,
 			kickEnabled: options.kickEnabled !== undefined ? options.kickEnabled : true,
