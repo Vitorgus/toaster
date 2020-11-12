@@ -152,14 +152,14 @@ class AntiSpamClient extends EventEmitter {
 			muteRoleName: options.muteRoleName || 'Muted',
 
 			modLogsChannelName: options.modLogsChannelName || 'mod-logs',
-			modLogsEnabled: options.modLogsEnabled || false,
+			modLogsEnabled: options.modLogsEnabled !== undefined ? options.modLogsEnabled : false,
 
 			warnMessage: options.warnMessage || '{@user}, Please stop spamming.',
 			muteMessage: options.muteMessage || '**{user_tag}** has been muted for spamming.',
 			kickMessage: options.kickMessage || '**{user_tag}** has been kicked for spamming.',
 			banMessage: options.banMessage || '**{user_tag}** has been banned for spamming.',
 
-			errorMessages: options.errorMessages || true,
+			errorMessages: options.errorMessages !== undefined ? options.errorMessages : true,
 			kickErrorMessage: options.kickErrorMessage || 'Could not kick **{user_tag}** because of improper permissions.',
 			banErrorMessage: options.banErrorMessage || 'Could not ban **{user_tag}** because of improper permissions.',
 			muteErrorMessage: options.muteErrorMessage || 'Could not mute **{user_tag}** because of improper permissions or the mute role couldn\'t be found.',
@@ -169,17 +169,17 @@ class AntiSpamClient extends EventEmitter {
 			ignoredGuilds: options.ignoredGuilds || [],
 			ignoredChannels: options.ignoredChannels || [],
 			ignoredPermissions: options.ignoredPermissions || [],
-			ignoreBots: options.ignoreBots || true,
+			ignoreBots: options.ignoreBots ? options.ignoreBots !== undefined : true,
 
-			warnEnabled: options.warnEnabled || true,
-			kickEnabled: options.kickEnabled || true,
-			muteEnabled: options.muteEnabled || true,
-			banEnabled: options.banEnabled || true,
+			warnEnabled: options.warnEnabled !== undefined ? options.warnEnabled : true,
+			kickEnabled: options.kickEnabled !== undefined ? options.kickEnabled : true,
+			muteEnabled: options.muteEnabled !== undefined ? options.muteEnabled : true,
+			banEnabled: options.banEnabled !== undefined ? options.banEnabled : true,
 
 			deleteMessagesAfterBanForPastDays: options.deleteMessagesAfterBanForPastDays || 1,
-			verbose: options.verbose || false,
-			debug: options.debug || false,
-			removeMessages: options.removeMessages || true
+			verbose: options.verbose !== undefined ? options.verbose : false,
+			debug: options.debug !== undefined ? options.debug : false,
+			removeMessages: options.removeMessages !== undefined ? options.removeMessages : true
 		}
 
 		/**
