@@ -238,7 +238,7 @@ class AntiSpamClient extends EventEmitter {
 			message.guild.channels.cache.find((channel) => channel.name === this.options.modLogsChannelName && channel.type === 'text')
 			if (modLogChannel) {
 				modLogChannel.send(message)
-			}
+            }
 		}
 	}
 
@@ -290,8 +290,8 @@ class AntiSpamClient extends EventEmitter {
 				reason: 'Spamming!',
 				days: this.options.deleteMessagesAfterBanForPastDays
 			})
-			if (this.options.errorMessages) {
-				message.channel.send(this.format(this.options.banErrorMessage, message)).catch((e) => {
+			if (this.options.banMessage) {
+				message.channel.send(this.format(this.options.banMessage, message)).catch((e) => {
 					if (this.options.verbose) {
 						console.error(`DAntiSpam (banUser#sendSuccessMessage): ${e.message}`)
 					}
