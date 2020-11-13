@@ -483,14 +483,16 @@ class AntiSpamClient extends EventEmitter {
 		 * @type {CachedMessage[]}
 		 */
 		const spamOtherDuplicates = []
-		if (duplicateMatches.length > 0) {
-			let rowBroken = false
-			cachedMessages.sort((a, b) => b.sentTimestamp - a.sentTimestamp).forEach(element => {
-				if (rowBroken) return
-				if (element.content !== duplicateMatches[0].content) rowBroken = true
-				else spamOtherDuplicates.push(element)
-			})
-		}
+        if (this.options.removeMessages) {
+            if (duplicateMatches.length > 0) {
+                let rowBroken = false
+                cachedMessages.sort((a, b) => b.sentTimestamp - a.sentTimestamp).forEach(element => {
+                    if (rowBroken) return
+                    if (element.content !== duplicateMatches[0].content) rowBroken = true
+                    else spamOtherDuplicates.push(element)
+                })
+            }
+        }
 
 		const spamMatches = cachedMessages.filter((m) => m.sentTimestamp > (Date.now() - options.maxInterval))
 
@@ -507,7 +509,7 @@ class AntiSpamClient extends EventEmitter {
 
 		const userCanBeMuted = options.muteEnabled && !this.betterCache.mutedUsers.includes(message.author.id)
 		if (userCanBeMuted && (spamMatches.length >= options.muteThreshold)) {
-			this.banUser(message, member, spamMatches)
+			this.muteUser(message, member, spamMatches)
 			return true
 		} else if (userCanBeMuted && (duplicateMatches.length >= options.maxDuplicatesMute)) {
 			this.muteUser(message, member, [...duplicateMatches, ...spamOtherDuplicates])
