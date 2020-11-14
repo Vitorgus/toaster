@@ -131,56 +131,64 @@ class AntiSpamClient extends EventEmitter {
 	constructor (options) {
 		super()
 		/**
-		 * The options for this AntiSpam client instance
+		 * The default options for the AntiSpam
 		 * @type {AntiSpamClientOptions}
 		 */
-		this.options = {
+        const defaultOptions = {
 
-			warnThreshold: options.warnThreshold || 3,
-			kickThreshold: options.kickThreshold || 5,
-			banThreshold: options.banThreshold || 7,
-			muteThreshold: options.muteThreshold || 4,
+			warnThreshold: 3,
+			kickThreshold: 5,
+			banThreshold: 7,
+			muteThreshold: 4,
 
-			maxInterval: options.maxInterval || 2000,
-			maxDuplicatesInterval: options.maxDuplicatesInterval || 2000,
+			maxInterval: 2000,
+			maxDuplicatesInterval: 2000,
 
-			maxDuplicatesWarn: options.maxDuplicatesWarn || 7,
-			maxDuplicatesKick: options.maxDuplicatesKick || 10,
-			maxDuplicatesBan: options.maxDuplicatesBan || 10,
-			maxDuplicatesMute: options.maxDuplicatesMute || 9,
+			maxDuplicatesWarn: 7,
+			maxDuplicatesKick: 10,
+			maxDuplicatesBan: 10,
+			maxDuplicatesMute: 9,
 
-			muteRoleName: options.muteRoleName || 'Muted',
+			muteRoleName: 'Muted',
 
-			modLogsChannelName: options.modLogsChannelName || 'mod-logs',
-			modLogsEnabled: options.modLogsEnabled !== undefined ? options.modLogsEnabled : false,
+			modLogsChannelName: 'mod-logs',
+			modLogsEnabled: false,
 
-			warnMessage: options.warnMessage || '{@user}, Please stop spamming.',
-			muteMessage: options.muteMessage || '**{user_tag}** has been muted for spamming.',
-			kickMessage: options.kickMessage || '**{user_tag}** has been kicked for spamming.',
-			banMessage: options.banMessage || '**{user_tag}** has been banned for spamming.',
+			warnMessage: '{@user}, Please stop spamming.',
+			muteMessage: '**{user_tag}** has been muted for spamming.',
+			kickMessage: '**{user_tag}** has been kicked for spamming.',
+			banMessage: '**{user_tag}** has been banned for spamming.',
 
-			errorMessages: options.errorMessages !== undefined ? options.errorMessages : true,
-			kickErrorMessage: options.kickErrorMessage || 'Could not kick **{user_tag}** because of improper permissions.',
-			banErrorMessage: options.banErrorMessage || 'Could not ban **{user_tag}** because of improper permissions.',
-			muteErrorMessage: options.muteErrorMessage || 'Could not mute **{user_tag}** because of improper permissions or the mute role couldn\'t be found.',
+			errorMessages: true,
+			kickErrorMessage: 'Could not kick **{user_tag}** because of improper permissions.',
+			banErrorMessage: 'Could not ban **{user_tag}** because of improper permissions.',
+			muteErrorMessage: 'Could not mute **{user_tag}** because of improper permissions or the mute role couldn\'t be found.',
 
-			ignoredMembers: options.ignoredMembers || [],
-			ignoredRoles: options.ignoredRoles || [],
-			ignoredGuilds: options.ignoredGuilds || [],
-			ignoredChannels: options.ignoredChannels || [],
-			ignoredPermissions: options.ignoredPermissions || [],
-			ignoreBots: options.ignoreBots !== undefined ? options.ignoreBots : true,
+			ignoredMembers: [],
+			ignoredRoles: [],
+			ignoredGuilds: [],
+			ignoredChannels: [],
+			ignoredPermissions: [],
+			ignoreBots: true,
 
-			warnEnabled: options.warnEnabled !== undefined ? options.warnEnabled : true,
-			kickEnabled: options.kickEnabled !== undefined ? options.kickEnabled : true,
-			muteEnabled: options.muteEnabled !== undefined ? options.muteEnabled : true,
-			banEnabled: options.banEnabled !== undefined ? options.banEnabled : true,
+			warnEnabled: true,
+			kickEnabled:  true,
+			muteEnabled: true,
+			banEnabled: true,
 
-			deleteMessagesAfterBanForPastDays: options.deleteMessagesAfterBanForPastDays || 1,
-			verbose: options.verbose !== undefined ? options.verbose : false,
-			debug: options.debug !== undefined ? options.debug : false,
-			removeMessages: options.removeMessages !== undefined ? options.removeMessages : true
+			deleteMessagesAfterBanForPastDays: 1,
+			verbose: false,
+			debug:  false,
+			removeMessages: true
 		}
+        /**
+		 * The actual options for this AntiSpam client instance
+		 * @type {AntiSpamClientOptions}
+		 */
+        this.options = {
+            ...defaultOptions,
+            ...options
+        }
 
 		/**
 		 * The cache for this AntiSpam client instance
