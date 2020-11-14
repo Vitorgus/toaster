@@ -195,14 +195,6 @@ class AntiSpamClient extends EventEmitter {
 		 * @type {AntiSpamCache}
 		 */
 		this.cache = {
-			messages: [],
-			warnedUsers: [],
-			kickedUsers: [],
-			mutedUsers: [],
-			bannedUsers: []
-		}
-
-		this.betterCache = {
 			messages: new Discord.Collection(),
 			warnedUsers: [],
 			kickedUsers: [],
@@ -278,8 +270,8 @@ class AntiSpamClient extends EventEmitter {
 		if (this.options.removeMessages && spamMessages) {
 			this.clearSpamMessages(spamMessages, message.client)
 		}
-		this.betterCache.messages.delete(message.author.id);
-		this.betterCache.bannedUsers.push(message.author.id)
+		this.cache.messages.delete(message.author.id);
+		this.cache.bannedUsers.push(message.author.id)
 		if (!member.bannable) {
 			if (this.options.verbose) {
 				console.log(`DAntiSpam (banUser#userNotBannable): ${message.author.tag} (ID: ${message.author.id}) could not be banned, insufficient permissions`)
@@ -324,8 +316,8 @@ class AntiSpamClient extends EventEmitter {
 		if (this.options.removeMessages && spamMessages) {
 			this.clearSpamMessages(spamMessages, message.client)
 		}
-		this.betterCache.messages.delete(message.author.id);
-		this.betterCache.mutedUsers.push(message.author.id)
+		this.cache.messages.delete(message.author.id);
+		this.cache.mutedUsers.push(message.author.id)
 		const role = message.guild.roles.cache.find(role => role.name === this.options.muteRoleName)
 		const userCanBeMuted = role && message.guild.me.hasPermission('MANAGE_ROLES') && (message.guild.me.roles.highest.position > message.member.roles.highest.position)
 		if (!userCanBeMuted) {
@@ -371,8 +363,8 @@ class AntiSpamClient extends EventEmitter {
 		if (this.options.removeMessages && spamMessages) {
 			this.clearSpamMessages(spamMessages, message.client)
 		}
-		this.betterCache.messages.delete(message.author.id);
-		this.betterCache.kickedUsers.push(message.author.id)
+		this.cache.messages.delete(message.author.id);
+		this.cache.kickedUsers.push(message.author.id)
 		if (!member.kickable) {
 			if (this.options.verbose) {
 				console.log(`DAntiSpam (kickUser#userNotKickable): ${message.author.tag} (ID: ${message.author.id}) could not be kicked, insufficient permissions`)
@@ -414,7 +406,7 @@ class AntiSpamClient extends EventEmitter {
 		if (this.options.removeMessages && spamMessages) {
 			this.clearSpamMessages(spamMessages, message.client)
 		}
-		this.betterCache.warnedUsers.push(message.author.id)
+		this.cache.warnedUsers.push(message.author.id)
 		this.log(`Spam detected: ${message.author.tag} got **warned**`, message.client)
 		if (this.options.warnMessage) {
 			message.channel.send(this.format(this.options.warnMessage, message)).catch((e) => {
@@ -476,8 +468,8 @@ class AntiSpamClient extends EventEmitter {
 			content: message.content,
 			sentTimestamp: message.createdTimestamp
 		}
-		if (!this.betterCache.messages.has(message.author.id)) this.betterCache.messages.set(message.author.id, new Discord.Collection());
-		const author_cache = this.betterCache.messages.get(message.author.id);
+		if (!this.cache.messages.has(message.author.id)) this.cache.messages.set(message.author.id, new Discord.Collection());
+		const author_cache = this.cache.messages.get(message.author.id);
 		if (!author_cache.has(message.guild.id)) author_cache.set(message.guild.id, []);
 		author_cache.get(message.guild.id).push(currentMessage);
 
@@ -505,38 +497,41 @@ class AntiSpamClient extends EventEmitter {
 
 		// let sanctioned = false
 
-		const userCanBeBanned = options.banEnabled && !this.betterCache.bannedUsers.includes(message.author.id)
-		if (userCanBeBanned && (spamMatches.length >= options.banThreshold)) {
+        const spamScore = spamMatches.length;
+        const duplicateScore = duplicateMatches.length;
+
+		const userCanBeBanned = options.banEnabled && !this.cache.bannedUsers.includes(message.author.id)
+		if (userCanBeBanned && (spamScore >= options.banThreshold)) {
 			this.banUser(message, member, spamMatches)
 			return true
-		} else if (userCanBeBanned && (duplicateMatches.length >= options.maxDuplicatesBan)) {
+		} else if (userCanBeBanned && (duplicateScore >= options.maxDuplicatesBan)) {
 			this.banUser(message, member, [...duplicateMatches, ...spamOtherDuplicates])
 			return true
 		}
 
-		const userCanBeMuted = options.muteEnabled && !this.betterCache.mutedUsers.includes(message.author.id)
-		if (userCanBeMuted && (spamMatches.length >= options.muteThreshold)) {
+		const userCanBeMuted = options.muteEnabled && !this.cache.mutedUsers.includes(message.author.id)
+		if (userCanBeMuted && (spamScore >= options.muteThreshold)) {
 			this.muteUser(message, member, spamMatches)
 			return true
-		} else if (userCanBeMuted && (duplicateMatches.length >= options.maxDuplicatesMute)) {
+		} else if (userCanBeMuted && (duplicateScore >= options.maxDuplicatesMute)) {
 			this.muteUser(message, member, [...duplicateMatches, ...spamOtherDuplicates])
 			return true
 		}
 
-		const userCanBeKicked = options.kickEnabled && !this.betterCache.kickedUsers.includes(message.author.id)
-		if (userCanBeKicked && (spamMatches.length >= options.kickThreshold)) {
+		const userCanBeKicked = options.kickEnabled && !this.cache.kickedUsers.includes(message.author.id)
+		if (userCanBeKicked && (spamScore >= options.kickThreshold)) {
 			this.kickUser(message, member, spamMatches)
 			return true
-		} else if (userCanBeKicked && (duplicateMatches.length >= options.maxDuplicatesKick)) {
+		} else if (userCanBeKicked && (duplicateScore >= options.maxDuplicatesKick)) {
 			this.kickUser(message, member, [...duplicateMatches, ...spamOtherDuplicates])
 			return true
 		}
 
-		const userCanBeWarned = options.warnEnabled && !this.betterCache.warnedUsers.includes(message.author.id)
-		if (userCanBeWarned && (spamMatches.length >= options.warnThreshold)) {
+		const userCanBeWarned = options.warnEnabled && !this.cache.warnedUsers.includes(message.author.id)
+		if (userCanBeWarned && (spamScore >= options.warnThreshold)) {
 			this.warnUser(message, member, spamMatches)
 			return true
-		} else if (userCanBeWarned && (duplicateMatches.length >= options.maxDuplicatesWarn)) {
+		} else if (userCanBeWarned && (duplicateScore >= options.maxDuplicatesWarn)) {
 			this.warnUser(message, member, [...duplicateMatches, ...spamOtherDuplicates])
 			return true
 		}
@@ -548,7 +543,7 @@ class AntiSpamClient extends EventEmitter {
 	 * Reset the cache of this AntiSpam client instance.
 	 */
 	reset () {
-		this.betterCache = {
+		this.cache = {
 			messages: new Discord.Collection(),
 			warnedUsers: [],
 			kickedUsers: [],
