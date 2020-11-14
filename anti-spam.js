@@ -297,7 +297,7 @@ class AntiSpamClient extends EventEmitter {
 				})
 			}
 			if (this.options.modLogsEnabled) {
-				this.log(`Spam detected: ${message.author} got **banned**`, message.client)
+				this.log(`Spam detected: ${message.author.tag} got **banned**`, message.client)
 			}
 			this.emit('banAdd', member)
 			return true
@@ -345,7 +345,7 @@ class AntiSpamClient extends EventEmitter {
 			})
 		}
 		if (this.options.modLogsEnabled) {
-			this.log(`Spam detected: ${message.author} got **muted**`, message.client)
+			this.log(`Spam detected: ${message.author.tag} got **muted**`, message.client)
 		}
 		this.emit('muteAdd', member)
 		return true
@@ -387,7 +387,7 @@ class AntiSpamClient extends EventEmitter {
 				})
 			}
 			if (this.options.modLogsEnabled) {
-				this.log(`Spam detected: ${message.author} got **kicked**`, message.client)
+				this.log(`Spam detected: ${message.author.tag} got **kicked**`, message.client)
 			}
 			this.emit('kickAdd', member)
 			return true
