@@ -42,5 +42,9 @@ module.exports = [
     {
         names: ['azrael', 'assrael', 'skull', 'sans'],
         id: process.env.SHILOH_ROLE_TEAM_AZRAEL
+    },
+    {
+        names: ['elijah', 'sad boy'],
+        id: process.env.SHILOH_ROLE_TEAM_ELIJAH
     }
 ];
