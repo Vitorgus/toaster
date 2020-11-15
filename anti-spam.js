@@ -270,7 +270,7 @@ class AntiSpamClient extends EventEmitter {
 		if (this.options.removeMessages && spamMessages) {
 			this.clearSpamMessages(spamMessages, message.client)
 		}
-		this.cache.messages.delete(message.author.id);
+		this.cache.messages.get(message.guild.id).delete(message.author.id);
 		this.cache.bannedUsers.push(message.author.id)
 		if (!member.bannable) {
 			if (this.options.verbose) {
@@ -316,7 +316,7 @@ class AntiSpamClient extends EventEmitter {
 		if (this.options.removeMessages && spamMessages) {
 			this.clearSpamMessages(spamMessages, message.client)
 		}
-		this.cache.messages.delete(message.author.id);
+		this.cache.messages.get(message.guild.id).delete(message.author.id);
 		this.cache.mutedUsers.push(message.author.id)
 		const role = message.guild.roles.cache.find(role => role.name === this.options.muteRoleName)
 		const userCanBeMuted = role && message.guild.me.hasPermission('MANAGE_ROLES') && (message.guild.me.roles.highest.position > message.member.roles.highest.position)
@@ -363,7 +363,7 @@ class AntiSpamClient extends EventEmitter {
 		if (this.options.removeMessages && spamMessages) {
 			this.clearSpamMessages(spamMessages, message.client)
 		}
-		this.cache.messages.delete(message.author.id);
+		this.cache.messages.get(message.guild.id).delete(message.author.id);
 		this.cache.kickedUsers.push(message.author.id)
 		if (!member.kickable) {
 			if (this.options.verbose) {
@@ -468,12 +468,13 @@ class AntiSpamClient extends EventEmitter {
 			content: message.content,
 			sentTimestamp: message.createdTimestamp
 		}
-		if (!this.cache.messages.has(message.author.id)) this.cache.messages.set(message.author.id, new Discord.Collection());
-		const author_cache = this.cache.messages.get(message.author.id);
-		if (!author_cache.has(message.guild.id)) author_cache.set(message.guild.id, []);
-		author_cache.get(message.guild.id).push(currentMessage);
 
-		const cachedMessages = author_cache.get(message.guild.id);
+		if (!this.cache.messages.has(message.guild.id)) this.cache.messages.set(message.guild.id, new Discord.Collection());
+		const guild_cache = this.cache.messages.get(message.guild.id);
+		if (!guild_cache.has(message.author.id)) guild_cache.set(message.author.id, []);
+		guild_cache.get(message.author.id).push(currentMessage);
+
+		const cachedMessages = guild_cache.get(message.author.id);
 
 		const duplicateMatches = cachedMessages.filter((m) => m.content === message.content && (m.sentTimestamp > (currentMessage.sentTimestamp - options.maxDuplicatesInterval)))
 
