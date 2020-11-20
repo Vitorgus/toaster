@@ -31,6 +31,17 @@ module.exports = class teamsCommand extends Command {
             return msg.reply(`sorry, but you don't have permission to add a role.`);
         }
 
+        try {
+            const result = await db.query('SELECT id FROM teams WHERE id = $1', [team.id]);
+
+            if (result.rows.length !== 0) return msg.reply(`\`${team.name}\` has already been added.`);
+        } catch (e) {
+            console.warn(`Hey, coudn't check if team ${team.name} (id ${team.id}) from guild ${msg.guild.id} was already added!`)
+            console.warn(e);
+        }
+
+        //TODO check if alias already exists in guild
+        
         const client = await db.connect();
 
         try {
