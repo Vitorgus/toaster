@@ -38,11 +38,26 @@ module.exports = class teamsCommand extends Command {
 
             if (result.rows.length !== 0) return msg.reply(`\`${team.name}\` has already been added.`);
         } catch (e) {
-            console.warn(`Hey, coudn't check if team ${team.name} (id ${team.id}) from guild ${guild} was already added!`)
+            console.warn(`Hey, coudn't check if team ${team.name} (id ${team.id}) from guild ${msg.guild.name} (id ${guild}) was already added!`)
             console.warn(e);
         }
 
-        //TODO check if alias already exists in guild
+        // TODO reuse code for add alias command
+        try {
+            const result = await db.query(
+                'SELECT t.id FROM teams t JOIN team_alias ta ON t.id = ta.team WHERE ta.alias = $1 AND t.guild = $2',
+                [alias, guild]
+            );
+
+            if (result.rows.length !== 0) {
+                const existing_team = msg.guild.roles.resolve(result.rows[0].id);
+
+                return msg.reply(`alias \`${alias}\` already exists for \`${existing_team.name}\`.`);
+            }
+        } catch (e) {
+            console.warn(`Hey, coudn't check if alias ${alias} already existem in guild ${msg.guild.name} (id ${guild})`);
+            console.warn(e);
+        }
         
         const client = await db.connect();
 
