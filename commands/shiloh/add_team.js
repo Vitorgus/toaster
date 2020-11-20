@@ -31,16 +31,23 @@ module.exports = class teamsCommand extends Command {
             return msg.reply(`sorry, but you don't have permission to add a role.`);
         }
 
-        // TODO check is the team already exists
+        const client = await db.connect();
 
         try {
-            // TODO transaction so it's all or nothing??
-            await db.query('INSERT INTO teams VALUES ($1, $2, $3)', [team.id, team.name, msg.guild.id]);
-            await db.query('INSERT INTO team_alias VALUES ($1, $2)', [alias, team.id]);
+            await client.query('BEGIN'); 
+
+            await client.query('INSERT INTO teams VALUES ($1, $2, $3)', [team.id, team.name, msg.guild.id]);
+            await client.query('INSERT INTO team_alias VALUES ($1, $2)', [alias, team.id]);
+            await client.query('COMMIT');
+
             msg.say(`\`${team.name}\` successfully added with alias \`${alias}\`!`);
-        } catch(e) {
-            console.log(e);
+
+        } catch (e) {
+            await client.query('ROLLBACK');
+            console.error(e);
             msg.reply(`sorry, but I coudn't add team: \`${e.message}\``);
+        } finally {
+            client.release();
         }
         
     }
