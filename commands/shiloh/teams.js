@@ -47,7 +47,8 @@ module.exports = class teamsCommand extends Command {
             let answer = teams_size.reduce((string, role) => string + role.name + ' - ' + role.size + '\n', 'Number of members in each team:\n\n');
             return msg.say(answer);
         } catch(e) {
-            msg.reply(`an error occurred: \`${e.message}\``);
+            msg.reply(`sorry, but I coudn't list the teams for some reason.`);
+            console.error(e);
         }
 
     }

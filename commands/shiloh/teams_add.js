@@ -4,11 +4,11 @@ const { Command } = require('discord.js-commando');
 module.exports = class teamsCommand extends Command {
     constructor(client) {
         super(client, {
-            name: 'add_team',
+            name: 'teams_add',
             group: 'shiloh',
-            memberName: 'add_team',
+            memberName: 'teams_add',
             description: 'adds a new team to the join command',
-            examples: ['jarvis add_team @Le_super_duper_team', 'jarvis add_team 1234567890123456789'],
+            examples: ['jarvis teams_add @Le_super_duper_team', 'jarvis teams_add 1234567890123456789'],
             args: [
                 {
                     key: 'team',
@@ -27,6 +27,8 @@ module.exports = class teamsCommand extends Command {
     async run(msg, { team, alias }) {
         const db = this.client.database;
 
+        const guild = msg.guild.id;
+
         if (!this.client.isOwner(msg.author) || !msg.member.permissions.has(Permissions.MANAGE_ROLES)) {
             return msg.reply(`sorry, but you don't have permission to add a role.`);
         }
@@ -36,7 +38,7 @@ module.exports = class teamsCommand extends Command {
 
             if (result.rows.length !== 0) return msg.reply(`\`${team.name}\` has already been added.`);
         } catch (e) {
-            console.warn(`Hey, coudn't check if team ${team.name} (id ${team.id}) from guild ${msg.guild.id} was already added!`)
+            console.warn(`Hey, coudn't check if team ${team.name} (id ${team.id}) from guild ${guild} was already added!`)
             console.warn(e);
         }
 
@@ -47,7 +49,7 @@ module.exports = class teamsCommand extends Command {
         try {
             await client.query('BEGIN'); 
 
-            await client.query('INSERT INTO teams VALUES ($1, $2, $3)', [team.id, team.name, msg.guild.id]);
+            await client.query('INSERT INTO teams VALUES ($1, $2, $3)', [team.id, team.name, guild]);
             await client.query('INSERT INTO team_alias VALUES ($1, $2)', [alias, team.id]);
             await client.query('COMMIT');
 
