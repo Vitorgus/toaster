@@ -33,9 +33,7 @@ module.exports = class joinCommand extends Command {
                 }
 
                 result.rows.forEach(({id, name, aliases}) => {
-                    console.log(id);
                     const team_role = msg.guild.roles.resolve(id);
-                    console.log(team_role.name);
                     if (!team_role) {
                         console.log(`Coudn't find role for ${name} with id ${id}`);
                         return;
@@ -55,38 +53,77 @@ module.exports = class joinCommand extends Command {
 
         } else {
 
-            // const add_team = teams_array.find(({ names }) => names.some(name => team_name === name || team_name === 'team ' + name));
-            // if (!add_team) return msg.reply(`Coudn't find team with name '${team_name}'`);
+            // TODO code too complex. Plan code better. For now this will do.
+            try {
+                const result_add = await db.query("SELECT id from teams JOIN team_alias ON id = team WHERE alias LIKE $1 AND guild = $2", [team_name, msg.guild.id]);
+                if (result_add.rows.length === 0) return msg.reply(`Coudn't find team with name '${team_name}'`);
 
-            // const add_team_role = msg.guild.roles.cache.get(add_team.id);
-            // if (!add_team_role) return msg.reply(`Something went wrong: coudn't find role for '${team_name}'`);
+                const add_team = result_add.rows[0];
 
-            // const remove_team = teams_array.find(({ id }) => msg.member.roles.cache.has(id));
-            // if (remove_team) {
-            //     if (add_team === remove_team) return msg.reply("You're already in that team, silly!");
-                
-            //     const remove_team_role = msg.guild.roles.cache.get(remove_team.id);
-            //     if (!remove_team_role) {
-            //         console.log(`JOIN ERROR: failed to get team for role ${remove_team.names[0]} with id ${remove_team.id}`);
-            //         return msg.reply(`Something went wrong: coudn't find the role to remove you from your current team`);
-            //     }
-            //     try{
-            //         msg.member.roles.remove(remove_team_role);
-            //     } catch(e) {
-            //         console.log(`JOIN ERROR: failed to remove user from role ${remove_team_role.name}. Cause: ${e}`);
-            //         return msg.reply(`Something went wrong: coudn't remove you from the role ${remove_team_role.name}.`);
-            //     }
-            //     answer += `Removed you from ${remove_team_role.name}. `;
-            // }
-            // try {
-            //     await msg.member.roles.add(add_team_role);
-            // } catch(e) {
-            //     console.log(`JOIN ERROR: failed to add user to role ${add_team_role.name}. Cause: ${e}`);
-            //     return msg.reply(`Something went wrong: coudn't add you to the role ${add_team_role.name}.`);
-            // }
+                const add_team_role = msg.guild.roles.resolve(add_team.id);
+                if (!add_team_role) return msg.reply(`Something went wrong: coudn't find role for '${team_name}'`);
 
-            // answer += `Added to ${add_team_role.name}.`;
-            // return msg.reply(answer);
+                const current_teams = msg.member.roles.cache.map(role => role.id);
+                const result_remove = await db.query("SELECT id, name FROM teams WHERE id = ANY ($1) AND guild = $2", [current_teams, msg.guild.id]);
+
+                let remove_teams = result_remove.rows;
+
+                if (remove_teams.length !== 0) {
+
+                    if (remove_teams.some(team => team.id === add_team.id)) {
+                        answer += "You're already in that team, silly!";
+
+                        remove_teams = remove_teams.filter(team => team.id !== add_team.id);
+                        if (remove_teams.length !== 0) {
+                            answer += " But you seem to be in more than one team. Let me fix that for you.\n\n";
+                            remove_teams.forEach(team => {
+                                const remove_team_role = msg.guild.roles.resolve(team.id);
+                                if (!remove_team_role) {
+                                    console.log(`JOIN ERROR: failed to get team for role ${team.name} with id ${team.id}`);
+                                    answer += `Coudn't find team \`${team.name}\` to remove you from. `;
+                                }
+                                try{
+                                    msg.member.roles.remove(remove_team_role);
+                                    answer += `Removed you from ${remove_team_role.name}. `;
+                                } catch(e) {
+                                    console.log(`JOIN ERROR: failed to remove user from role ${remove_team_role.name}. Cause: ${e}`);
+                                    answer += `Coudn't remove you from the role ${remove_team_role.name}. `;
+                                }
+                            });
+                            return msg.reply(answer);
+                        }
+                    }
+
+                    remove_teams.forEach(team => {
+                        const remove_team_role = msg.guild.roles.resolve(team.id);
+                        if (!remove_team_role) {
+                            console.log(`JOIN ERROR: failed to get team for role ${team.name} with id ${team.id}`);
+                            answer += `Coudn't find team \`${team.name}\` to remove you from. `;
+                        }
+                        try{
+                            msg.member.roles.remove(remove_team_role);
+                            answer += `Removed you from ${remove_team_role.name}. `;
+                        } catch(e) {
+                            console.log(`JOIN ERROR: failed to remove user from role ${remove_team_role.name}. Cause: ${e}`);
+                            answer += `Coudn't remove you from the role ${remove_team_role.name}. `;
+                        }
+                    });
+
+                }
+
+                try {
+                    await msg.member.roles.add(add_team_role);
+                    answer += `Added to ${add_team_role.name}.`;
+                } catch(e) {
+                    console.log(`JOIN ERROR: failed to add user to role ${add_team_role.name}. Cause: ${e}`);
+                    answer += `Coudn't add you to the role ${add_team_role.name}.`;
+                }
+
+                return msg.reply(answer);
+
+            } catch (e) {
+                console.log(e);
+            }
 
         }
     }
