@@ -34,6 +34,10 @@ module.exports = class aliasAddCommand extends Command {
         }
 
         try {
+
+            const result_check = await db.query("SELECT id from teams where id = $1", [team.id]);
+            if (result_check.rows.length === 0) return msg.reply(`role \`${team.name}\` hasn't been added as a team yet! Use \`jarvis teams_add ${team.id} <alias>\` to add it!`);
+
             // TODO check if the following can be done in the DB with constrains
             const result_add = await db.query("SELECT id from teams JOIN team_alias ON id = team WHERE alias LIKE $1 AND guild = $2", [alias, msg.guild.id]);
             if (result_add.rows.length !== 0) {
