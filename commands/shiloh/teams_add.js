@@ -1,7 +1,7 @@
 const { Permissions } = require('discord.js');
 const { Command } = require('discord.js-commando');
 
-module.exports = class teamsCommand extends Command {
+module.exports = class teamsAddCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'teams_add',
