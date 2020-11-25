@@ -8,23 +8,18 @@ module.exports = class teamsAddCommand extends Command {
             group: 'shiloh',
             memberName: 'teams_add',
             description: 'adds a new team to the join command',
-            examples: ['jarvis teams_add @Le_super_duper_team le super duper alias', 'jarvis teams_add 1234567890123456789 alias'],
+            examples: ['jarvis teams_add @Le_super_duper_team', 'jarvis teams_add 1234567890123456789'],
             args: [
                 {
                     key: 'team',
                     prompt: 'Wich team do you want to add? It can be the team\'s id, or you can @ the role!',
                     type: 'role'
-                },
-                {
-                    key: 'alias',
-                    prompt: 'What\'s the first alias for this team?',
-                    type: 'string'
                 }
             ]
         });
     }
 
-    async run(msg, { team, alias }) {
+    async run(msg, { team }) {
         const db = this.client.database;
 
         const guild = msg.guild.id;
@@ -43,6 +38,10 @@ module.exports = class teamsAddCommand extends Command {
         }
 
         // TODO reuse code for add alias command
+
+        const team_name = team.name.toLowerCase();
+        const alias = team_name.startsWith('team ')? team_name.replace('team ', '') : team_name;
+
         try {
             const result = await db.query(
                 'SELECT t.id FROM teams t JOIN team_alias ta ON t.id = ta.team WHERE ta.alias = $1 AND t.guild = $2',
