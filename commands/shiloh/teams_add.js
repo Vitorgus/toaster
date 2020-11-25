@@ -8,7 +8,7 @@ module.exports = class teamsCommand extends Command {
             group: 'shiloh',
             memberName: 'teams_add',
             description: 'adds a new team to the join command',
-            examples: ['jarvis teams_add @Le_super_duper_team', 'jarvis teams_add 1234567890123456789'],
+            examples: ['jarvis teams_add @Le_super_duper_team le super duper alias', 'jarvis teams_add 1234567890123456789 alias'],
             args: [
                 {
                     key: 'team',
