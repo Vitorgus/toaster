@@ -53,15 +53,17 @@ module.exports = class joinCommand extends Command {
 
         } else {
 
+            const name = team_name.startsWith('team ') ? team_name.replace('team ', '') : team_name;
+
             // TODO code too complex. Plan code better. For now this will do.
             try {
-                const result_add = await db.query("SELECT id from teams JOIN team_alias ON id = team WHERE alias LIKE $1 AND guild = $2", [team_name, msg.guild.id]);
-                if (result_add.rows.length === 0) return msg.reply(`Coudn't find team with name '${team_name}'`);
+                const result_add = await db.query("SELECT id from teams JOIN team_alias ON id = team WHERE alias LIKE $1 AND guild = $2", [name, msg.guild.id]);
+                if (result_add.rows.length === 0) return msg.reply(`Coudn't find team with name '${name}'`);
 
                 const add_team = result_add.rows[0];
 
                 const add_team_role = msg.guild.roles.resolve(add_team.id);
-                if (!add_team_role) return msg.reply(`Something went wrong: coudn't find role for '${team_name}'`);
+                if (!add_team_role) return msg.reply(`Something went wrong: coudn't find role for '${name}'`);
 
                 const current_teams = msg.member.roles.cache.map(role => role.id);
                 const result_remove = await db.query("SELECT id, name FROM teams WHERE id = ANY ($1) AND guild = $2", [current_teams, msg.guild.id]);
