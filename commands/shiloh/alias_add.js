@@ -30,7 +30,7 @@ module.exports = class aliasAddCommand extends Command {
         const guild = msg.guild.id;
 
         if (!this.client.isOwner(msg.author) || !msg.member.permissions.has(Permissions.MANAGE_ROLES)) {
-            return msg.reply(`sorry, but you don't have permission to add a role.`);
+            return msg.reply(`sorry, but you don't have permission to do this.`);
         }
 
         try {
