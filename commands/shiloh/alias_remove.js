@@ -1,14 +1,14 @@
 const { Permissions } = require('discord.js');
 const { Command } = require('discord.js-commando');
 
-module.exports = class aliasAddCommand extends Command {
+module.exports = class aliasRemoveCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'alias_remove',
             group: 'shiloh',
             memberName: 'alias_remove',
             description: 'removes an existing alias from a team',
-            examples: ['jarvis alias_remove alias', 'jarvis teams_remove super cool alias'],
+            examples: ['jarvis alias_remove alias', 'jarvis alias_remove super cool alias'],
             args: [
                 {
                     key: 'alias',
@@ -19,7 +19,7 @@ module.exports = class aliasAddCommand extends Command {
         });
     }
 
-    async run(msg, { team, alias }) {
+    async run(msg, { alias }) {
         const db = this.client.database;
 
         const guild = msg.guild.id;
