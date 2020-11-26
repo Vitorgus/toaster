@@ -27,7 +27,11 @@ module.exports = class joinCommand extends Command {
             try {
                 const info = 'to join a team, simply say `jarvis join team <keyword>`, or simply `jarvis join <keyword>`, where `<keyword>` is one of the keywords for the team you wanna join. Here\'s the list of all keywords:\n\n';
 
-                const result = await db.query("SELECT id, name, array_agg(alias) as aliases FROM teams JOIN team_alias ON id = team GROUP BY id");
+                // TODO a team with no alias don't show here. Left join? Right join?
+                const result = await db.query(
+                    "SELECT id, name, array_agg(alias) as aliases FROM teams JOIN team_alias ON id = team WHERE guild = $1 GROUP BY id",
+                    [msg.guild.id]
+                );
                 if (result.rows.length === 0) {
                     answer = 'Strange... No team found. Try adding one with `jarvis teams_add`.';
                 }
