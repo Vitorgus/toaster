@@ -24,7 +24,7 @@ module.exports = class aliasRemoveCommand extends Command {
 
         const guild = msg.guild.id;
 
-        if (!this.client.isOwner(msg.author) || !msg.member.permissions.has(Permissions.MANAGE_ROLES)) {
+        if (!this.client.isOwner(msg.author) && !msg.member.permissions.has(Permissions.MANAGE_ROLES)) {
             return msg.reply(`sorry, but you don't have permission to do this.`);
         }
 
