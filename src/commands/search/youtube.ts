@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const ytsearch = require("../../common/ytsearch");
+import { Command } from 'discord.js-commando';
+import ytsearch from "../../common/ytsearch";
 
 module.exports = class youtubeCommand extends Command {
     constructor(client) {
@@ -18,9 +18,6 @@ module.exports = class youtubeCommand extends Command {
     }
 
     async run(msg, { tags }) {
-        //msg.channel.startTyping();
-        //msg.channel.stopTyping();
-
         try {
             const id = await ytsearch(tags);
             if (!id) return msg.say(`Sorry ${msg.author}, but I didn't find any video when searching for \`${tags}\``);
