@@ -70,7 +70,7 @@ bot.on('unknownCommand', async message => {
     if (message.editedAt || !message.guild || !message.guild.available || !message.guild.emojis.cache.size) return;
     if (message.guild.id !== process.env.SHILOH_SERVER_ID) {
         console.log("NOT shiloh chat. Getting a random emoji.")
-        emoji = message.guild.emojis.cache.random();      // Gets a random custom emoji
+        let emoji = message.guild.emojis.cache.random();      // Gets a random custom emoji
         message.say(emoji.toString());              // Says the emoji in the 
         return;
     }
@@ -89,9 +89,9 @@ bot.on('unknownCommand', async message => {
         let emoji = message.guild.emojis.cache.find(emoji => emoji.name == emoji_name);
         message.say(emoji.toString());
     } catch (e) {
-        console.log("Coudn't get emoji from server. Error: " + error.message);
+        console.log("Coudn't get emoji from server. Error: " + e.message);
         console.log("Generating a random emoji instead.");
-        emoji = message.guild.emojis.cache.random();      // Gets a random custom emoji
+        let emoji = message.guild.emojis.cache.random();      // Gets a random custom emoji
         message.say(emoji.toString());              // Says the emoji in the chat
     }
 
