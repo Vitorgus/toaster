@@ -1,11 +1,11 @@
 import path from 'path';                       //Gets the system path
-import CustomClient from './custom_client.js';    //Gets the commando library
+import CustomClient from './custom_client';    //Gets the commando library
 import messages from './objects/messages.json';
 const welcome = messages.welcome; //require('./welcome.json');
 const edgelord = process.env.SHILOH_USER_GOODFACE;
 import axios from 'axios';
 import escapeRegex from 'escape-string-regexp';
-import { Pool } from 'pg';
+import {TextChannel} from 'discord.js';
 
 //Initializing bot
 const bot = new CustomClient({
@@ -55,13 +55,6 @@ bot.on('ready', () => {
         bot.red_status = status;
     }, 5000);*/
 
-    bot.database = new Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: process.env.DATABASE_URL.includes('localhost') ? false : {
-            rejectUnauthorized: false
-        }
-    });
-
     console.log("All set! Ready to roll!");
 });
 
@@ -108,11 +101,17 @@ bot.on('unknownCommand', async message => {
 bot.on('guildMemberAdd', member => {
     if (member.guild.id != process.env.SHILOH_SERVER_ID) return; //Checks if it's the Shiloh server
     //Greeting message
-    member.guild.channels.cache.find(val => val.name == "general").send(`${member.user} ${welcome[Math.floor(Math.random() * welcome.length)]}`);
+    let channel = member.guild.channels.cache.find(val => val.name == "general");
+    if (channel instanceof TextChannel) {
+        channel.send(`${member.user} ${welcome[Math.floor(Math.random() * welcome.length)]}`);
+    }
     member.roles.add(process.env.SHILOH_ROLE_READER)     //Gives the newcomer the sinners role
         .catch(error => {
             console.log(error);
-            member.guild.channels.cache.find(val => val.name == "general").send(`Whoops. Couldn't give you the readers role. Sorry.`);
+            let channel = member.guild.channels.cache.find(val => val.name == "general");
+            if (channel instanceof TextChannel) {
+                channel.send(`Whoops. Couldn't give you the readers role. Sorry.`);
+            }
         });
     
 });

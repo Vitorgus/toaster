@@ -1,89 +1,43 @@
-const Commando = require('discord.js-commando');
-const https = require('https');
-const http = require('http');
-const axios = require('axios');
-const messages = require('./objects/messages.json');
+import Commando from 'discord.js-commando';
+import https from 'https';
+import http from 'http';
+import axios from 'axios';
+import messages from './objects/messages.json';
+import { Pool } from 'pg';
 const stream = messages.stream;
 
 class Client extends Commando.CommandoClient {
 
+	music = {};
+
+	stream_status = null
+	stream_timer = null;
+	moon = null;
+
+	reactions_map = new Map();
+
+	database = new Pool({
+		connectionString: process.env.DATABASE_URL,
+		ssl: process.env.DATABASE_URL.includes('localhost') ? false : {
+			rejectUnauthorized: false
+		}
+	});
+
 	constructor(options = {}) {
 		super(options);
 
-		this.reactions_map = new Map();
 		this.reactions_map.set("emo", false);
 
 		this.getQuotes();
-		
-	    this.music = {};
-
-	    this.stream_status = null;
-	    this.stream_timer = null;
-
-	    this.moon = null;
 	    
 	    this.once('ready', () => {
 	    	this.stream_timer = setInterval(this.checkStream, 30000, this);
 	    	this.checkMoon();
 	    })
+
 	}
 
 	async checkStream(handler, offline) {
-	    // https.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN', res => {
-	    //     const { statusCode } = res;
-	    //     const contentType = res.headers['content-type'];
-
-	    //     let error;
-	    //     if (statusCode !== 200) {
-	    //         error = new Error('Picarto API: Request Failed.\n' +
-	    //         `Status Code: ${statusCode}`);
-	    //     } else if (!/^application\/json/.test(contentType)) {
-	    //         error = new Error('Picarto API: Invalid content-type.\n' +
-	    //         `Expected application/json but received ${contentType}`);
-	    //     }
-	    //     if (error) {
-	    //         console.error("Error with stream GET request: " + error.message);
-	    //         // consume response data to free up memory
-	    //         res.resume();
-	    //         return;
-	    //     }
-
-	    //     res.setEncoding('utf8');
-	    //     let rawData = '';
-	    //     res.on('data', (chunk) => { rawData += chunk; });
-	    //     res.on('end', () => {
-	    //         try {
-	    //             const rnf = JSON.parse(rawData);
-	    //             if (handler.stream_status === null) {
-	    //                 handler.stream_status = rnf.online;
-	    //                 console.log("Stream status initialized as " + handler.stream_status);
-	    //                 return;
-	    //             }
-	    //             if (offline) {
-	    //                 handler.stream_status = rnf.online;
-	    //                 handler.stream_timer = setInterval(handler.checkStream, 30000);
-	    //                 if (!rnf.online) console.log("Stream is off");
-	    //                 return;
-	    //             }
-	    //             if (handler.stream_status === rnf.online) return;
-	    //             if (rnf.online) {
-	    //                 handler.stream_status = true;
-	    //                 handler.guilds.cache.get(process.env.SHILOH_SERVER_ID)
-	    //                     .channels.cache.get(process.env.SHILOH_CHANNEL_GENERAL)
-	    //                     .send(`${stream[Math.floor(Math.random() * stream.length)]} https://picarto.tv/REDnFLYNN`);
-	    //                 return;
-	    //             }
-	    //             clearInterval(handler.stream_timer);
-	    //             //console.log("CheckStream function");
-	    //             //console.log(handler.checkStream);
-	    //             setTimeout(handler.checkStream, 300000, true);
-	    //         } catch (e) {
-	    //             console.error("Error while parsing stream JSON: " + e.message);
-	    //         }
-	    //     });
-	    // }).on('error', (e) => {
-	    //     console.error(`Error with stream GET response: ${e.message}`);
-		// });
 		try {
 			const answer = await axios.get('https://api.picarto.tv/v1/channel/name/REDnFLYNN');
 			const rnf = answer.data;
@@ -183,4 +137,4 @@ class Client extends Commando.CommandoClient {
 
 }
 
-module.exports = Client;
+export default Client;
