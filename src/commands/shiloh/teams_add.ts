@@ -1,5 +1,6 @@
-const { Permissions } = require('discord.js');
-const { Command } = require('discord.js-commando');
+import { Permissions } from 'discord.js';
+import { Command } from 'discord.js-commando';
+import CustomClient from '../../custom_client';
 
 module.exports = class teamsAddCommand extends Command {
     constructor(client) {
@@ -20,11 +21,11 @@ module.exports = class teamsAddCommand extends Command {
     }
 
     async run(msg, { team }) {
-        const db = this.client.database;
+        const db = (this.client as CustomClient).database;
 
         const guild = msg.guild.id;
 
-        if (!this.client.isOwner(msg.author) && !msg.member.permissions.has(Permissions.MANAGE_ROLES)) {
+        if (!this.client.isOwner(msg.author) && !msg.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
             return msg.reply(`sorry, but you don't have permission to do this.`);
         }
 

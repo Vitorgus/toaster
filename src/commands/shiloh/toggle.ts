@@ -1,4 +1,5 @@
-const { Command } = require('discord.js-commando');
+import { Command } from 'discord.js-commando';
+import CustomClient from '../../custom_client';
 
 module.exports = class toggleCommand extends Command {
     constructor(client) {
@@ -28,19 +29,19 @@ module.exports = class toggleCommand extends Command {
         const reaction = reactions_array.find(({ name }) => reaction_name === name);
         if (!reaction) return msg.say(`Coudn't find reaction with name ${reaction_name}`);
 
-        if (!this.client.reactions_map.has(reaction.name)) {
+        if (!(this.client as CustomClient).reactions_map.has(reaction.name)) {
             const func = message => {
                 if (message.author.id === reaction.victim) {
                     message.react(reaction.emoji);
                 }
             }
-            this.client.reactions_map.set(reaction.name, func);
+            (this.client as CustomClient).reactions_map.set(reaction.name, func);
             this.client.on('message', func);
             return  msg.say("Activated " + reaction.emoji);
         } else {
-            const func = this.client.reactions_map.get(reaction.name);
+            const func = (this.client as CustomClient).reactions_map.get(reaction.name);
             this.client.removeListener('message', func);
-            this.client.reactions_map.delete(reaction.name);
+            (this.client as CustomClient).reactions_map.delete(reaction.name);
             return msg.say("Deactivated " + reaction.emoji);
         }
     }

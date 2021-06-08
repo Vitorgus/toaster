@@ -1,5 +1,6 @@
-const { Collection } = require('discord.js');
-const { Command } = require('discord.js-commando');
+import { Collection } from 'discord.js';
+import { Command } from 'discord.js-commando';
+import CustomClient from '../../custom_client';
 
 module.exports = class teamsCommand extends Command {
     constructor(client) {
@@ -20,7 +21,7 @@ module.exports = class teamsCommand extends Command {
 
         await guild.members.fetch();
 
-        const db = this.client.database;
+        const db = (this.client as CustomClient).database;
 
         try {
             const result = await db.query('SELECT id FROM teams WHERE guild = $1', [guild_id])

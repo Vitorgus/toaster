@@ -1,4 +1,5 @@
-const { Command } = require('discord.js-commando');
+import { Command } from 'discord.js-commando';
+import CustomClient from '../../custom_client';
 
 module.exports = class joinCommand extends Command {
     constructor(client) {
@@ -19,7 +20,7 @@ module.exports = class joinCommand extends Command {
 
     async run(msg, { team_name }) {
 
-        const db = this.client.database;
+        const db = (this.client as CustomClient).database;
 
         let answer = '';
 
