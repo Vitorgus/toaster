@@ -1,6 +1,5 @@
-const { Command } = require('discord.js-commando');
-
-const leet = require("leet");
+import { Command } from 'discord.js-commando';
+import leet from "leet";
 
 module.exports = class leetCommand extends Command {
     constructor(client) {

@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const axios = require('axios');
+import { Command } from 'discord.js-commando';
+import axios from 'axios';
 
 module.exports = class yesnoCommand extends Command {
     constructor(client) {
@@ -12,14 +12,13 @@ module.exports = class yesnoCommand extends Command {
         });
     }
 
-    async run(msg, args) {
-        //msg.channel.startTyping();
+    async run(msg) {
         try {
             const answer = await axios.get('https://yesno.wtf/api');
-            msg.say(answer.data.image);
+            return msg.say(answer.data.image);
         } catch (e) {
-            msg.say("Whoops, coudn't find a yes or no gif, so... maybe?");
             console.log(e);
+            return msg.say("Whoops, coudn't find a yes or no gif, so... maybe?");
         }
     }
 };
