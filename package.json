@@ -24,12 +24,12 @@
     "node": "14.x"
   },
   "scripts": {
-    "start": "node src/index.js",
+    "build": "tsc",
+    "start": "node build/index.js",
     "local": "heroku local",
     "local:dev": "npm run local -- -e .env-dev"
   },
   "devDependencies": {
-    "@tsconfig/node14": "^1.0.0",
     "@types/node": "^15.12.2",
     "typescript": "^4.3.2"
   }
