@@ -1,4 +1,4 @@
-const { Command } = require('discord.js-commando');
+import { Command } from 'discord.js-commando';
 
 module.exports = class useridCommand extends Command {
     constructor(client) {

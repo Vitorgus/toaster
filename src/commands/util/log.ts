@@ -1,4 +1,4 @@
-const { Command } = require('discord.js-commando');
+import { Command } from 'discord.js-commando';
 
 module.exports = class logCommand extends Command {
     constructor(client) {
@@ -19,5 +19,6 @@ module.exports = class logCommand extends Command {
 
     run(msg, { text }) {
         console.log("Log command: "+ text);
+        return msg.say(`Message \`${text}\` logged!`);
     }
 };
