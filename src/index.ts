@@ -1,11 +1,11 @@
-const path = require('path');                       //Gets the system path
-const CustomClient = require('./custom_client.js');    //Gets the commando library
-const messages = require('./objects/messages.json');
+import path from 'path';                       //Gets the system path
+import CustomClient from './custom_client.js';    //Gets the commando library
+import messages from './objects/messages.json';
 const welcome = messages.welcome; //require('./welcome.json');
 const edgelord = process.env.SHILOH_USER_GOODFACE;
-const axios = require('axios');
-const escapeRegex = require('escape-string-regexp');
-const { Pool } = require('pg');
+import axios from 'axios';
+import escapeRegex from 'escape-string-regexp';
+import { Pool } from 'pg';
 
 //Initializing bot
 const bot = new CustomClient({
