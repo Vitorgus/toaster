@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "allowJs": true,
+    "checkJs": true,
+    "outDir": "build",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"]
+}
