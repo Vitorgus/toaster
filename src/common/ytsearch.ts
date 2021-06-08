@@ -1,7 +1,7 @@
-const axios = require('axios');
-const qs = require("querystring");
+import axios from 'axios';
+import qs from "querystring";
 
-module.exports = async tags => {
+export default async tags => {
     const params = {
         part: 'id',
         maxResults: 1,
