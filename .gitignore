@@ -48,8 +48,11 @@ token.js
 serverconfigs.json
 secret.json
 TODO.txt
+notes.txt
 to_add
 old_quotes
 .env
 .env-dev
 mock.js
+
+build

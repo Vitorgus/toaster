@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "preserveConstEnums": true,
+        "allowJs": true,
+        "outDir": "build",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": ["es2020"],
+        "module": "commonjs",
+        "target": "es2020",
+        "removeComments": true
+    },
+    "include": ["src/**/*"]
+}

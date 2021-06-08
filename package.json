@@ -21,11 +21,17 @@
   },
   "main": "index.js",
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "scripts": {
-    "start": "node index.js",
-    "local": "heroku local",
+    "build": "tsc",
+    "start": "node build/index.js",
+    "local": "npm run build && heroku local",
     "local:dev": "npm run local -- -e .env-dev"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "@types/pg": "^8.6.0",
+    "typescript": "^4.3.2"
   }
 }
