@@ -1,7 +1,7 @@
-const { Command } = require('discord.js-commando');
+import { Command } from 'discord.js-commando';
 
-const ytdl = require('ytdl-core');
-const ytsearch = require("../../common/ytsearch");
+import ytdl from 'ytdl-core';
+import ytsearch from "../../common/ytsearch";
 
 module.exports = class playCommand extends Command {
     constructor(client) {

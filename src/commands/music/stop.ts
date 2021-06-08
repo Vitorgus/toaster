@@ -1,5 +1,5 @@
-const { MessageAttachment } = require('discord.js');
-const { Command } = require('discord.js-commando');
+import { MessageAttachment } from 'discord.js';
+import { Command } from 'discord.js-commando';
 
 module.exports = class stopCommand extends Command {
     constructor(client) {
