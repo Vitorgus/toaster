@@ -26,7 +26,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js",
-    "local": "heroku local",
+    "local": "npm run build && heroku local",
     "local:dev": "npm run local -- -e .env-dev"
   },
   "devDependencies": {
